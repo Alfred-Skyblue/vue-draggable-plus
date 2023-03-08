@@ -1,0 +1,13 @@
+.DS_Store
+.idea
+.nuxt
+.temp
+*.log
+components.d.ts
+dist
+node_modules
+types
+coverage
+.eslintcache
+.vitepress/cache
+.docs

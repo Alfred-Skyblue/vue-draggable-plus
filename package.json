@@ -1,0 +1,59 @@
+{
+  "name": "vue-draggable-plus",
+  "version": "0.0.0",
+  "description": "vue3拖拽排序组件",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/vue-draggable-plus.umd.cjs",
+  "module": "./dist/vue-draggable-plus.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-draggable-plus.js",
+      "require": "./dist/vue-draggable-plus.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "initial-scan docs && vitepress dev .docs --host",
+    "build": "vite build",
+    "site:build": "initial-scan docs && cross-env NODE_ENV=production vitepress build .docs",
+    "serve": "cross-env NODE_ENV=production vitepress serve .docs --host",
+    "deploy": "gh-pages -d .docs/.vitepress/dist -t true",
+    "docs-build-deploy": "yarn docs-build && yarn docs-deploy",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "lint": "eslint src/**/*.{vue,js,ts,tsx}",
+    "lint-fix": "yarn lint -- --fix",
+    "release": "np"
+  },
+  "keywords": [],
+  "author": "ypt",
+  "license": "MIT",
+  "devDependencies": {
+    "@algolia/client-search": "^4.15.0",
+    "@ruabick/md-demo-plugins": "latest",
+    "@ruabick/vite-plugin-gen-api-doc": "latest",
+    "@ruabick/vite-plugin-gen-temp": "latest",
+    "@ruabick/vitepress-demo-block": "latest",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.20.0",
+    "eslint-define-config": "^1.6.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "gh-pages": "^4.0.0",
+    "np": "^7.6.2",
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.5",
+    "vite": "latest",
+    "vite-plugin-dts": "^1.4.0",
+    "vitepress": "latest",
+    "vue": "latest",
+    "vue-eslint-parser": "^9.1.0"
+  },
+  "peerDependencies": {
+    "vue": "latest"
+  }
+}

@@ -1,0 +1,79 @@
+:root {
+  --vp-code-block-bg: #f9fafb;
+  /* --vp-code-block-bg: var(--vp-c-bg-alt); */
+
+  --vp-code-line-highlight-color: rgba(0, 0, 0, 0.5);
+  --vp-code-line-number-color: var(--vp-c-text-dark-3);
+
+  --vp-code-copy-code-hover-bg: rgba(255, 255, 255, 0.05);
+  --vp-code-copy-code-active-text: var(--vp-c-bg-alt);
+
+  --demi-border-color: #ebedf1;
+}
+
+.dark {
+  --vp-code-block-bg: var(--vp-c-bg-alt);
+}
+
+.vp-doc [class*='language-']:before {
+  color: var(--vp-c-text-2);
+}
+
+@media (min-width: 640px) {
+  .vp-doc div[class*='language-'] {
+    border-radius: 4px;
+    margin: 16px 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .vp-doc div[class*='language-'] {
+    border-radius: 4px;
+  }
+}
+
+/* 中文字太大了 */
+@media (min-width: 640px) {
+  .name,
+  .text {
+    font-size: 28px !important;
+  }
+}
+
+@media (min-width: 960px) {
+  .name,
+  .text {
+    font-size: 32px !important;
+  }
+}
+
+.vp-doc table {
+  display: table;
+  width: 100%;
+  font-size: 15px;
+}
+
+.vp-doc tr {
+  border-top: 1px solid var(--demi-border-color);
+}
+
+.vp-doc tr:nth-child(2n) {
+  background-color: unset;
+}
+
+.vp-doc th,
+.vp-doc td {
+  border: 1px solid var(--demi-border-color);
+  padding: 10px 20px;
+}
+
+.vp-doc th {
+  font-size: 15px;
+  font-weight: 600;
+  background-color: var(--vp-c-white-soft);
+}
+
+.vp-doc table td:first-child {
+  font-size: 15px;
+  font-weight: 600;
+}
