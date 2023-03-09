@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import DemoBlock from '@ruabick/vitepress-demo-block'
 import '@ruabick/vitepress-demo-block/dist/style.css'
 import './var.css'
+import './styles'
 import 'uno.css'
 import type { App } from 'vue'
 interface EnhanceApp {

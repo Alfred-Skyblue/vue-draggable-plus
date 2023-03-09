@@ -1,0 +1,42 @@
+.vitepress-demo button {
+  padding: 3px 15px;
+  background-color: var(--vp-c-brand);
+  border: none;
+  outline: none;
+  color: white;
+  margin: 0.5rem 0;
+  border-bottom: 2px solid var(--vp-c-brand-dark);
+  text-shadow: 1px 1px 1px var(--vp-c-brand-dark);
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.vitepress-demo button.small {
+  padding: 0.25em 0.7em 0.2em 0.7em;
+}
+
+.vitepress-demo button.orange {
+  --vp-c-brand: #db8742;
+  --vp-c-brand-dark: #ad6e39;
+  --vp-c-brand-active: #d67e36;
+}
+
+.vitepress-demo button.red {
+  --vp-c-brand: #f56c6c;
+  --vp-c-brand-dark: #e41c1c;
+  --vp-c-brand-active: #e94c4c;
+}
+
+.vitepress-demo button:hover {
+  background-color: var(--vp-c-brand-dark);
+}
+
+.vitepress-demo button:active {
+  border-bottom: 0;
+  border-top: 2px solid var(--vp-c-brand-dark);
+}
+.vitepress-demo button ~ button {
+  margin-left: 0.5rem;
+}
