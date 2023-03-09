@@ -1,4 +1,3 @@
-import { useDraggable } from './hooks/useDraggable'
 import {
   type PropType,
   defineComponent,
@@ -8,6 +7,8 @@ import {
   computed,
   useAttrs
 } from 'vue'
+import { objectMap } from './utils'
+import { useDraggable } from './hooks'
 
 export const VueDraggablePlus = defineComponent({
   name: 'VueDraggablePlus',
@@ -21,17 +22,24 @@ export const VueDraggablePlus = defineComponent({
       default: 'div'
     }
   },
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, expose }) {
     const attrs = useAttrs()
+
+    const options = computed(() => objectMap(attrs))
     const list = computed({
       get: () => props.modelValue,
       set: v => emit('update:modelValue', v)
     })
     const target = ref()
-    const data = reactive(useDraggable(target, list, attrs))
+    const data = reactive(useDraggable(target, list, options))
+    expose(data)
     return () => {
       if (slots.default)
-        return h(props.tag, { ref: target }, slots.default(data))
+        return h(
+          props.tag,
+          { ref: target, attrs: { data } },
+          slots.default(data)
+        )
     }
   }
 })

@@ -7,8 +7,8 @@ export const sidebar = {
   ],
   '/': [
     {
-      text: '介绍',
-      items: [{ text: '按钮', link: '/' }]
+      text: '演示',
+      items: [{ text: '基础演示', link: '/basic/' }]
     }
   ]
 }
