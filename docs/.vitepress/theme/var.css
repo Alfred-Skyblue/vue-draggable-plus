@@ -19,34 +19,6 @@
   color: var(--vp-c-text-2);
 }
 
-@media (min-width: 640px) {
-  .vp-doc div[class*='language-'] {
-    border-radius: 4px;
-    margin: 16px 0;
-  }
-}
-
-@media (max-width: 639px) {
-  .vp-doc div[class*='language-'] {
-    border-radius: 4px;
-  }
-}
-
-/* 中文字太大了 */
-@media (min-width: 640px) {
-  .name,
-  .text {
-    font-size: 28px !important;
-  }
-}
-
-@media (min-width: 960px) {
-  .name,
-  .text {
-    font-size: 32px !important;
-  }
-}
-
 .vp-doc table {
   display: table;
   width: 100%;

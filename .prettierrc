@@ -1,0 +1,9 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "eslintIntegration": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "trailingComma": "none",
+  "arrowParens": "avoid"
+}

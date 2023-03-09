@@ -1,10 +1,10 @@
-import { defineConfig } from 'vitepress';
-import { applyPlugins } from '@ruabick/md-demo-plugins';
-import { genTemp } from '@ruabick/vite-plugin-gen-temp';
-import { genApiDoc } from '@ruabick/vite-plugin-gen-api-doc';
-import { sidebar } from './sidebar.js';
-import { resolve } from 'path';
-
+import { defineConfig } from 'vitepress'
+import { applyPlugins } from '@ruabick/md-demo-plugins'
+import { genTemp } from '@ruabick/vite-plugin-gen-temp'
+import { genApiDoc } from '@ruabick/vite-plugin-gen-api-doc'
+import { sidebar } from './sidebar.js'
+import { resolve } from 'path'
+import UnoCSS from 'unocss/vite'
 export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
@@ -13,13 +13,13 @@ export default defineConfig({
     '/': {
       lang: 'zh-CN',
       title: 'vue-draggable-plus',
-      description: 'vue3拖拽排序组件',
+      description: 'vue3拖拽排序组件'
     },
     '/en/': {
       lang: 'en-US',
       title: 'vue-draggable-plus',
-      description: 'vue3拖拽排序组件',
-    },
+      description: 'vue3拖拽排序组件'
+    }
   },
   themeConfig: {
     logo: '/logo.svg',
@@ -27,35 +27,38 @@ export default defineConfig({
       text: '',
       items: [
         { text: '简体中文', link: '/' },
-        { text: 'English', link: '/en/' },
-      ],
+        { text: 'English', link: '/en/' }
+      ]
     },
     nav: [{ text: '指南', link: '/guide' }],
     sidebar,
     algolia: {},
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Alfred-Skyblue/vue-draggable-plus' },
-    ],
+      {
+        icon: 'github',
+        link: 'https://github.com/Alfred-Skyblue/vue-draggable-plus'
+      }
+    ]
   },
   vue: {},
   vite: {
-    plugins: [genTemp(), genApiDoc()],
+    plugins: [genTemp(), genApiDoc(), UnoCSS()],
     resolve: {
       alias: {
-        'vue-draggable-plus': resolve('./src/'),
-      },
-    },
+        'vue-draggable-plus': resolve('./src/')
+      }
+    }
   },
   markdown: {
-    config: (md) => {
-      applyPlugins(md);
+    config: md => {
+      applyPlugins(md)
     },
     theme: {
       light: 'github-light',
-      dark: 'github-dark',
-    },
+      dark: 'github-dark'
+    }
   },
   buildEnd() {
-    process.exit(0);
-  },
-});
+    process.exit(0)
+  }
+})

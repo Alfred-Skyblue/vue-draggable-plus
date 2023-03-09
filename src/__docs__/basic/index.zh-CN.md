@@ -1,15 +1,14 @@
 ---
 map:
-  path: /
+  path: /basic
 ---
 
-## 按钮
+# 基础使用
 
-渲染效果如下
+单个列表拖拽排序，双向绑定数据。
 
 <demo src="./demo.vue"
   title="Demo 演示"
   desc="这是一个 Demo 渲染示例">
 </demo>
 
-<API src="../button.vue" lang="zh"></API>

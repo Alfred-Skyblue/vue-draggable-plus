@@ -1,9 +1,9 @@
 ---
 map:
-  path: /
+  path: /basic
 ---
 
-## Button
+# Button
 This is a button component!
 
 <demo src="./demo.vue"
@@ -12,4 +12,3 @@ This is a button component!
 </demo>
 
 
-<API src="../button.vue" lang="en"></API>
