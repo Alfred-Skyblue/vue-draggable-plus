@@ -65,7 +65,7 @@ const list2 = ref(
     id: `${item.id}-2`
   }))
 )
-function stringify(obj) {
+function stringify(obj: Record<string, any>[]) {
   return JSON.stringify(
     obj.map(item => item.name),
     null,

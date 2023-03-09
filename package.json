@@ -6,6 +6,7 @@
   "types": "./dist/index.d.ts",
   "main": "./dist/vue-draggable-plus.umd.cjs",
   "module": "./dist/vue-draggable-plus.js",
+  "sideEffects": false,
   "exports": {
     ".": {
       "import": "./dist/vue-draggable-plus.js",

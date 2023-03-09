@@ -22,15 +22,13 @@ const CLONE_ELEMENT_KEY = '__clone__draggable__element__node__'
 interface DraggableEvent extends SortableEvent {
   item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
 }
-export interface UseSortableReturn {
+type SortableMethod = 'sort' | 'closest' | 'save' | 'toArray' | 'destroy'
+
+export interface UseSortableReturn extends Pick<Sortable, SortableMethod> {
   /**
-   * 启动拖拽
+   * A function that starts the sortable
    */
   start: () => void
-  /**
-   * 销毁拖拽
-   */
-  stop: () => void
 }
 
 export interface UseDraggableOptions<T> extends Options {
@@ -38,6 +36,13 @@ export interface UseDraggableOptions<T> extends Options {
   root?: RefOrValue<HTMLElement | null | undefined>
 }
 
+/**
+ * A custom hook that allows you to drag and drop elements in a list.
+ * @param {string} selector - The selector of the element to be dragged
+ * @param {Ref<T[]>} list - The list to be dragged
+ * @param {RefOrValue<UseDraggableOptions<T>>} options - The options of the sortable
+ * @returns {UseSortableReturn} - The return of the sortable
+ */
 export function useDraggable<T>(
   selector: string,
   list: Ref<T[]>,
@@ -50,10 +55,10 @@ export function useDraggable<T>(
 ): UseSortableReturn
 
 /**
- * A custom hook that returns an object with two methods: `start` and `stop`.
+ * A custom hook that allows you to drag and drop elements in a list.
  * @param {Ref<HTMLElement | null | undefined> | string} el
  * @param {Ref<T[]>} list
- * @param {UseSortableOptions} options
+ * @param {RefOrValue<UseDraggableOptions<T>>} options
  * @returns {UseSortableReturn}
  */
 export function useDraggable<T>(
@@ -61,7 +66,7 @@ export function useDraggable<T>(
   list: Ref<T[]>,
   options: RefOrValue<UseDraggableOptions<T>> = {}
 ): UseSortableReturn {
-  let sortable: Sortable
+  let instance: Sortable
   const { clone = defaultClone, ...restOptions } = unref(options)
 
   /**
@@ -111,17 +116,23 @@ export function useDraggable<T>(
   const start = () => {
     const target = isString(el) ? getElementBySelector(el) : unref(el)
     if (!target) return
-    sortable = new Sortable(target as HTMLElement, {
+    instance = new Sortable(target as HTMLElement, {
       ...defaultOptions,
       ...restOptions
     })
   }
 
-  const stop = () => sortable?.destroy()
+  const methods: Pick<Sortable, SortableMethod> = {
+    destroy: () => instance?.destroy(),
+    toArray: () => instance?.toArray(),
+    save: () => instance?.save(),
+    sort: (...args) => instance?.sort(...args),
+    closest: (...args) => instance?.closest(...args)
+  }
 
   onMounted(start)
 
-  onUnmounted(stop)
+  onUnmounted(methods.destroy)
 
-  return { stop, start }
+  return { start, ...methods }
 }

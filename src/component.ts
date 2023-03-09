@@ -32,6 +32,7 @@ export const VueDraggablePlus = defineComponent({
     })
     const target = ref()
     const data = reactive(useDraggable(target, list, options))
+
     expose(data)
     return () => {
       if (slots.default)
