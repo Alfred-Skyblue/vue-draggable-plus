@@ -13,6 +13,10 @@ import { useDraggable } from './hooks'
 export const VueDraggablePlus = defineComponent({
   name: 'VueDraggablePlus',
   props: {
+    componentProps: {
+      type: Object,
+      default: () => ({})
+    },
     modelValue: {
       type: Array as PropType<any[]>,
       required: true
@@ -20,6 +24,9 @@ export const VueDraggablePlus = defineComponent({
     tag: {
       type: String,
       default: 'div'
+    },
+    selector: {
+      type: String
     }
   },
   setup(props, { slots, emit, expose }) {
@@ -31,14 +38,16 @@ export const VueDraggablePlus = defineComponent({
       set: v => emit('update:modelValue', v)
     })
     const target = ref()
-    const data = reactive(useDraggable(target, list, options))
+    const data = reactive(
+      useDraggable((props.selector || target) as string, list, options)
+    )
 
     expose(data)
     return () => {
       if (slots.default)
         return h(
           props.tag,
-          { ref: target, attrs: { data } },
+          { ref: target, ...props.componentProps },
           slots.default(data)
         )
     }

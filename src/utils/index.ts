@@ -4,6 +4,8 @@
  * @param {number} from
  * @param {number} to
  */
+import { warn } from './log'
+
 export function moveArrayElement<T>(
   array: T[],
   from: number,
@@ -98,22 +100,56 @@ export function removeNode(node: Node) {
 }
 
 /**
- * Logs a warning message.
- * @param {string} msg
- */
-export function warn(msg: string) {
-  console.warn(`[vue-draggable-plus]: ${msg}`)
-}
-
-/**
  * Get an element by selector.
  * @param {string} selector
+ * @param parentElement
  * @returns {Element}
  */
-export function getElementBySelector(selector: string) {
-  const el = document?.querySelector(selector)
+export function getElementBySelector(
+  selector: string,
+  parentElement: Document | Element = document
+) {
+  const el = parentElement?.querySelector(selector)
   if (!el) {
     warn(`Element not found: ${selector}`)
   }
   return el as HTMLElement
+}
+
+/**
+ * It takes a function and returns a function that executes the original function and then executes the second function.
+ * @param {Function} fn - The function to be executed
+ * @param {Function} afterFn - The function to be executed after the original function.
+ * @param {any} [ctx=null] - The context of the function.
+ * @returns {Function}
+ */
+export function mergeExecuted<T extends (...args: []) => any>(
+  fn: T,
+  afterFn: T,
+  ctx: any = null
+) {
+  return function (...args: any[]) {
+    fn.apply(ctx, args)
+    return afterFn.apply(ctx, args)
+  }
+}
+
+/**
+ * Merge the options and events.
+ * @param {Record<string, any>} options
+ * @param {Record<string, any>} events
+ * @returns {Record<string, any>}
+ */
+export function mergeOptionsEvents(
+  options: Record<string, any>,
+  events: Record<string, any>
+) {
+  Object.keys(events).forEach(key => {
+    if (options[key]) {
+      options[key] = mergeExecuted(events[key], options[key])
+    } else {
+      options[key] = events[key]
+    }
+  })
+  return options
 }

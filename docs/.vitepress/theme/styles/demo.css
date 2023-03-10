@@ -40,3 +40,15 @@
 .vitepress-demo button ~ button {
   margin-left: 0.5rem;
 }
+
+.vitepress-demo input[type='text'], input[type='search'], input[type='number'] {
+  display: block;
+  font-size: 0.9rem;
+  padding: 0.5em 1em 0.4em 1em;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  outline: none;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  margin: 0.5rem 0;
+}

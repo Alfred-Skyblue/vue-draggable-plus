@@ -3,7 +3,6 @@
     <VueDraggablePlus
       v-model="list"
       animation="150"
-      ghostClass="ghost"
       :group="{ name: 'people', pull: 'clone', put: false }"
       :sort="false"
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
@@ -20,7 +19,6 @@
       v-model="list2"
       animation="150"
       group="people"
-      ghostClass="ghost"
       class="flex flex-col gap-2 p-4 w-300px m-auto bg-gray-500/5 rounded overflow-auto"
     >
       <div

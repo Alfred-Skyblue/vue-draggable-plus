@@ -1,5 +1,8 @@
 import DefaultTheme from 'vitepress/theme'
 import DemoBlock from '@ruabick/vitepress-demo-block'
+import IconSort from './components/IconSort.vue'
+import IconClose from './components/IconClose.vue'
+
 import '@ruabick/vitepress-demo-block/dist/style.css'
 import './var.css'
 import './styles'
@@ -16,5 +19,7 @@ export default {
     // router is VitePress' custom router. `siteData` is
     // a `ref` of current site-level metadata.
     app.component('demo', DemoBlock)
+    app.component('IconSort', IconSort)
+    app.component('IconClose', IconClose)
   }
 }

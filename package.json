@@ -59,6 +59,6 @@
   },
   "peerDependencies": {
     "sortablejs": "*",
-    "vue": "*"
+    "vue": ">=2.7 || >=3"
   }
 }

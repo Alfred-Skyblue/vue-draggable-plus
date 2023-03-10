@@ -1,13 +1,16 @@
 import Sortable, { type Options, SortableEvent } from 'sortablejs'
-import { onMounted, onUnmounted, unref } from 'vue'
+import { getCurrentInstance, onMounted, onUnmounted, unref } from 'vue'
 import type { Ref } from 'vue'
 import type { RefOrValue } from '@/types'
+import { error } from '../utils/log'
+
 import {
   getElementBySelector,
   insertElement,
   insertNodeAt,
   isString,
   isUndefined,
+  mergeOptionsEvents,
   moveArrayElement,
   removeElement,
   removeNode
@@ -26,9 +29,11 @@ type SortableMethod = 'sort' | 'closest' | 'save' | 'toArray' | 'destroy'
 
 export interface UseSortableReturn extends Pick<Sortable, SortableMethod> {
   /**
-   * A function that starts the sortable
+   * Start the sortable.
+   * @param {HTMLElement} target - The target element to be sorted.
+   * @default By default the root element of the VueDraggablePlus instance is used
    */
-  start: () => void
+  start: (target?: HTMLElement) => void
 }
 
 export interface UseDraggableOptions<T> extends Options {
@@ -66,6 +71,7 @@ export function useDraggable<T>(
   list: Ref<T[]>,
   options: RefOrValue<UseDraggableOptions<T>> = {}
 ): UseSortableReturn {
+  const vm = getCurrentInstance()?.proxy
   let instance: Sortable
   const { clone = defaultClone, ...restOptions } = unref(options)
 
@@ -82,7 +88,6 @@ export function useDraggable<T>(
    * @param {DraggableEvent} evt
    */
   function onAdd(evt: DraggableEvent) {
-    console.log('list', list.value)
     const element = (evt.item as Record<string, any>)[CLONE_ELEMENT_KEY]
     if (isUndefined(element)) return
     removeNode(evt.item)
@@ -103,23 +108,36 @@ export function useDraggable<T>(
     removeElement(list.value, oldIndex!)
   }
 
-  const defaultOptions: UseDraggableOptions<T> = {
-    onUpdate: e => {
-      console.log('update')
-      moveArrayElement(list.value, e.oldIndex!, e.newIndex!)
-    },
+  /**
+   * Changed sorting within list
+   * @param {DraggableEvent} evt
+   */
+  function onUpdate(evt: DraggableEvent) {
+    console.log('beforeUpdate')
+    const { from, item, oldIndex, newIndex } = evt
+    removeNode(item)
+    insertNodeAt(from, item, oldIndex!)
+    moveArrayElement(list.value, oldIndex!, newIndex!)
+  }
+
+  /**
+   * preset options
+   */
+  const presetOptions: UseDraggableOptions<T> = {
+    onUpdate,
     onStart,
     onAdd,
     onRemove
   }
 
-  const start = () => {
-    const target = isString(el) ? getElementBySelector(el) : unref(el)
-    if (!target) return
-    instance = new Sortable(target as HTMLElement, {
-      ...defaultOptions,
-      ...restOptions
-    })
+  const start = (target?: HTMLElement) => {
+    if (!target)
+      target = (isString(el) ? getElementBySelector(el, vm?.$el) : unref(el))!
+    if (!target) error('Target element not found')
+    instance = new Sortable(
+      target as HTMLElement,
+      mergeOptionsEvents(restOptions, presetOptions)
+    )
   }
 
   const methods: Pick<Sortable, SortableMethod> = {
@@ -130,7 +148,9 @@ export function useDraggable<T>(
     closest: (...args) => instance?.closest(...args)
   }
 
-  onMounted(start)
+  onMounted(() => {
+    start()
+  })
 
   onUnmounted(methods.destroy)
 
