@@ -12,3 +12,11 @@ map:
   desc="这是一个 Demo 渲染示例">
 </demo>
 
+
+
+## 指令使用
+
+<demo src="./directiveDemo.vue"
+title="Demo 演示"
+desc="这是一个 Demo 渲染示例">
+</demo>

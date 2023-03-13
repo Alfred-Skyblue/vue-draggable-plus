@@ -1,5 +1,7 @@
+import { tryOnUnmounted } from './tryOnUnmounted'
+import { tryOnMounted } from './tryOnMounted'
 import Sortable, { type Options, SortableEvent } from 'sortablejs'
-import { getCurrentInstance, onMounted, onUnmounted, unref } from 'vue'
+import { getCurrentInstance, unref } from 'vue'
 import type { Ref } from 'vue'
 import type { RefOrValue } from '@/types'
 import { error } from '../utils/log'
@@ -54,6 +56,11 @@ export function useDraggable<T>(
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseSortableReturn
 export function useDraggable<T>(
+  el: HTMLElement,
+  list: Ref<T[]>,
+  options?: RefOrValue<UseDraggableOptions<T>>
+): UseSortableReturn
+export function useDraggable<T>(
   el: Ref<HTMLElement | null | undefined>,
   list: Ref<T[]>,
   options?: RefOrValue<UseDraggableOptions<T>>
@@ -67,7 +74,7 @@ export function useDraggable<T>(
  * @returns {UseSortableReturn}
  */
 export function useDraggable<T>(
-  el: Ref<HTMLElement | null | undefined> | string,
+  el: any,
   list: Ref<T[]>,
   options: RefOrValue<UseDraggableOptions<T>> = {}
 ): UseSortableReturn {
@@ -130,6 +137,7 @@ export function useDraggable<T>(
   }
 
   const start = (target?: HTMLElement) => {
+    console.log('-> target', target)
     if (!target)
       target = (isString(el) ? getElementBySelector(el, vm?.$el) : unref(el))!
     if (!target) error('Root element not found')
@@ -147,11 +155,13 @@ export function useDraggable<T>(
     closest: (...args) => instance?.closest(...args)
   }
 
-  onMounted(() => {
+  tryOnMounted(() => {
     start()
   })
 
-  onUnmounted(methods.destroy)
+  tryOnUnmounted(() => {
+    methods.destroy()
+  })
 
   return { start, ...methods }
 }
