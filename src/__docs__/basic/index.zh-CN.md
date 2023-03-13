@@ -16,7 +16,7 @@ map:
 
 
 ## hooks 使用
-<demo src="./demo.vue"
+<demo src="./hooks.vue"
 title="hooks 使用"
 desc="使用 hooks 完成拖拽排序">
 </demo>

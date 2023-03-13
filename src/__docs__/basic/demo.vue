@@ -1,7 +1,6 @@
 <template>
   <div class="flex">
     <VueDraggable
-      v-model="list"
       animation="150"
       ghostClass="ghost"
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"

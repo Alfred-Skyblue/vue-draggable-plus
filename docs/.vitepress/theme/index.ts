@@ -2,11 +2,11 @@ import DefaultTheme from 'vitepress/theme'
 import DemoBlock from '@ruabick/vitepress-demo-block'
 import IconSort from './components/IconSort.vue'
 import IconClose from './components/IconClose.vue'
+import 'uno.css'
 
 import '@ruabick/vitepress-demo-block/dist/style.css'
 import './var.css'
 import './styles'
-import 'uno.css'
 import type { App } from 'vue'
 interface EnhanceApp {
   app: App

@@ -31,13 +31,12 @@
   "devDependencies": {
     "@algolia/client-search": "^4.15.0",
     "@ruabick/md-demo-plugins": "latest",
-    "@ruabick/vite-plugin-gen-api-doc": "latest",
     "@ruabick/vite-plugin-gen-temp": "latest",
     "@ruabick/vitepress-demo-block": "latest",
     "@types/sortablejs": "^1.15.0",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
-    "@vitejs/plugin-vue": "^3.0.1",
+    "@vitejs/plugin-vue": "^4.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.20.0",
     "eslint-define-config": "^1.6.0",
@@ -52,7 +51,7 @@
     "unocss": "^0.50.4",
     "vite": "latest",
     "vite-plugin-dts": "^1.4.0",
-    "vitepress": "latest",
+    "vitepress": "1.0.0-alpha.56",
     "vue": "^3.2.47",
     "vue-demi": "^0.13.11",
     "vue-eslint-parser": "^9.1.0"

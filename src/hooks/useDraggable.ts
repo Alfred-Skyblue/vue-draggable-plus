@@ -24,6 +24,7 @@ import {
 } from '../utils'
 
 function defaultClone<T>(element: T): T {
+  if (element === undefined || element === null) return element
   return JSON.parse(JSON.stringify(element))
 }
 
@@ -66,17 +67,17 @@ export interface UseDraggableOptions<T> extends Options {
  */
 export function useDraggable<T>(
   selector: string,
-  list: Ref<T[]>,
+  list?: Ref<T[] | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseSortableReturn
 export function useDraggable<T>(
   el: HTMLElement,
-  list: Ref<T[]>,
+  list?: Ref<T[] | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseSortableReturn
 export function useDraggable<T>(
   el: Ref<HTMLElement | null | undefined>,
-  list: Ref<T[]>,
+  list?: Ref<T[] | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseSortableReturn
 export function useDraggable<T>(
@@ -93,18 +94,17 @@ export function useDraggable<T>(
  */
 export function useDraggable<T>(...args: any[]): UseSortableReturn {
   const vm = getCurrentInstance()?.proxy
+
   const el = args[0]
-  let list: Ref<T[]>
-  let options
-  if (unref(args[1]) instanceof Array) {
-    list = args[1]
-    options = args[2]
-  } else {
-    options = args[1]
+  let [, list, options] = args
+
+  if (!Array.isArray(unref(list))) {
+    options = list
+    list = null
   }
 
   let instance: Sortable
-  const { clone = defaultClone, ...restOptions } = unref(options)
+  const { clone = defaultClone, ...restOptions } = unref(options) ?? {}
 
   /**
    * Element dragging started
@@ -165,7 +165,10 @@ export function useDraggable<T>(...args: any[]): UseSortableReturn {
       target = (isString(el) ? getElementBySelector(el, vm?.$el) : unref(el))!
     if (!target) error('Root element not found')
     if (instance) instance.destroy()
-    const opt = mergeOptionsEvents(presetOptions, restOptions)
+    const opt = mergeOptionsEvents(
+      list === null ? {} : presetOptions,
+      restOptions
+    )
     instance = new Sortable(target as HTMLElement, opt)
   }
 

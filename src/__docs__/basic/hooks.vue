@@ -1,23 +1,24 @@
 <template>
   <div class="flex">
-    <ul
+    <div
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
+      ref="el"
     >
-      <li
+      <div
         v-for="item in list"
         :key="item.id"
         class="h-30 bg-gray-500/5 rounded p-3 cursor-move"
       >
         {{ item.name }}
-      </li>
-    </ul>
+      </div>
+    </div>
     <pre class="code-block">{{ text }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useDraggable } from '@/hooks'
+import { useDraggable } from 'vue-draggable-plus'
 const list = ref([
   {
     name: 'Joao',

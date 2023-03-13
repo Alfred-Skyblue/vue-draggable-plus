@@ -34,8 +34,7 @@ export const VueDraggable = defineComponent({
   },
   props: {
     modelValue: {
-      type: Array as PropType<any[]>,
-      required: true
+      type: Array as PropType<any[]>
     },
     tag: {
       type: String,
