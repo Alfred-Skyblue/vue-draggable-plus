@@ -1,8 +1,9 @@
 <template>
   <div class="flex">
-    <VueDraggable
+    <section
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded overflow-auto"
-      v-model="list"
+      ref="el1"
+      v-model="list1"
       animation="150"
       ghostClass="ghost"
       group="people"
@@ -11,15 +12,16 @@
       @remove="remove"
     >
       <div
-        v-for="item in list"
+        v-for="item in list1"
         :key="item.id"
         class="cursor-move h-30 bg-gray-500/5 rounded p-3"
       >
         {{ item.name }}
       </div>
-    </VueDraggable>
-    <VueDraggable
+    </section>
+    <section
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded overflow-auto"
+      ref="el2"
       v-model="list2"
       animation="150"
       group="people"
@@ -35,18 +37,19 @@
       >
         {{ item.name }}
       </div>
-    </VueDraggable>
+    </section>
   </div>
   <div class="flex justify-between">
-    <pre class="code-block">{{ JSON.stringify(list, null, 2) }}</pre>
+    <pre class="code-block">{{ JSON.stringify(list1, null, 2) }}</pre>
     <pre class="code-block">{{ JSON.stringify(list2, null, 2) }}</pre>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import { VueDraggable } from 'vue-draggable-plus'
-const list = ref([
+import { useDraggable } from 'vue-draggable-plus'
+import type { Ref } from 'vue-demi'
+const list1 = ref([
   {
     name: 'Joao',
     id: '1'
@@ -65,11 +68,25 @@ const list = ref([
   }
 ])
 const list2 = ref(
-  list.value.map(item => ({
+  list1.value.map(item => ({
     name: `${item.name}-2`,
     id: `${item.id}-2`
   }))
 )
+const el1: Ref<HTMLElement | null> = ref(null)
+const el2: Ref<HTMLElement | null> = ref(null)
+
+useDraggable(el1, list1, {
+  animation: 150,
+  ghostClass: 'ghost',
+  group: 'people'
+})
+
+useDraggable(el2, list2, {
+  animation: 150,
+  ghostClass: 'ghost',
+  group: 'people'
+})
 function onUpdate() {
   console.log('update')
 }

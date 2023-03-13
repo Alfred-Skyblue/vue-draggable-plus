@@ -24,13 +24,14 @@
         </li>
       </TransitionGroup>
     </VueDraggable>
-    <pre class="code-block">{{ stringify(list) }}</pre>
+    <pre class="code-block">{{ text }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
+import { computed } from 'vue-demi'
 
 const list = ref([
   {
@@ -51,13 +52,13 @@ const list = ref([
   }
 ])
 
-function stringify(obj: Record<'name' | 'id', string>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
+const text = computed(() =>
+  JSON.stringify(
+    list.value.map(item => item.name),
     null,
     2
   )
-}
+)
 
 function handleAdd() {
   const length = list.value.length + 1

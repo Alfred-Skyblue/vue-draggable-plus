@@ -18,19 +18,20 @@
         <li
           v-for="(item, index) in list"
           :key="item.id"
-          class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
+          class="cursor-move h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
         >
           {{ item.name }}
         </li>
       </TransitionGroup>
     </VueDraggable>
-    <pre class="code-block">{{ stringify(list) }}</pre>
+    <pre class="code-block">{{ text }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
+import { computed } from 'vue-demi'
 const drag = ref(false)
 
 const list = ref([
@@ -56,6 +57,7 @@ const onStart = () => {
   drag.value = true
 }
 const onEnd = () => {
+  console.log('onEnd')
   nextTick(() => {
     drag.value = false
   })
@@ -64,13 +66,13 @@ const sort = () => {
   list.value.sort((a, b) => a.id - b.id)
 }
 
-function stringify(obj: Record<'name' | 'id', string>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
+const text = computed(() =>
+  JSON.stringify(
+    list.value.map(item => item.name),
     null,
     2
   )
-}
+)
 </script>
 
 <style>

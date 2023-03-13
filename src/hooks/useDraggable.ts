@@ -1,7 +1,14 @@
 import Sortable, { type Options, SortableEvent } from 'sortablejs'
-import { getCurrentInstance, onMounted, onUnmounted, unref } from 'vue'
-import type { Ref } from 'vue'
-import type { RefOrValue } from '@/types'
+import {
+  getCurrentInstance,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  unref
+} from 'vue-demi'
+import type { Ref } from 'vue-demi'
+import type { Fn, RefOrValue } from '../types'
+
 import { error } from '../utils/log'
 
 import {
@@ -17,7 +24,17 @@ import {
 } from '../utils'
 
 function defaultClone<T>(element: T): T {
-  return element
+  return JSON.parse(JSON.stringify(element))
+}
+
+function tryOnUnmounted(fn: Fn) {
+  if (getCurrentInstance()) onUnmounted(fn)
+}
+
+function tryOnMounted(fn: Fn, sync = true) {
+  if (getCurrentInstance()) onMounted(fn)
+  else if (sync) fn()
+  else nextTick(fn)
 }
 
 const CLONE_ELEMENT_KEY = '__clone__draggable__element__node__'
@@ -38,7 +55,6 @@ export interface UseSortableReturn extends Pick<Sortable, SortableMethod> {
 
 export interface UseDraggableOptions<T> extends Options {
   clone?: (element: T) => T
-  root?: RefOrValue<HTMLElement | null | undefined>
 }
 
 /**
@@ -54,8 +70,17 @@ export function useDraggable<T>(
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseSortableReturn
 export function useDraggable<T>(
+  el: HTMLElement,
+  list: Ref<T[]>,
+  options?: RefOrValue<UseDraggableOptions<T>>
+): UseSortableReturn
+export function useDraggable<T>(
   el: Ref<HTMLElement | null | undefined>,
   list: Ref<T[]>,
+  options?: RefOrValue<UseDraggableOptions<T>>
+): UseSortableReturn
+export function useDraggable<T>(
+  el: Ref<HTMLElement | null | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseSortableReturn
 
@@ -66,12 +91,18 @@ export function useDraggable<T>(
  * @param {RefOrValue<UseDraggableOptions<T>>} options
  * @returns {UseSortableReturn}
  */
-export function useDraggable<T>(
-  el: Ref<HTMLElement | null | undefined> | string,
-  list: Ref<T[]>,
-  options: RefOrValue<UseDraggableOptions<T>> = {}
-): UseSortableReturn {
+export function useDraggable<T>(...args: any[]): UseSortableReturn {
   const vm = getCurrentInstance()?.proxy
+  const el = args[0]
+  let list: Ref<T[]>
+  let options
+  if (unref(args[1]) instanceof Array) {
+    list = args[1]
+    options = args[2]
+  } else {
+    options = args[1]
+  }
+
   let instance: Sortable
   const { clone = defaultClone, ...restOptions } = unref(options)
 
@@ -80,7 +111,7 @@ export function useDraggable<T>(
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
-    evt.item[CLONE_ELEMENT_KEY] = clone(unref(list.value[evt.oldIndex!]))
+    evt.item[CLONE_ELEMENT_KEY] = clone(unref(unref(list)?.[evt.oldIndex!]))
   }
 
   /**
@@ -91,7 +122,7 @@ export function useDraggable<T>(
     const element = (evt.item as Record<string, any>)[CLONE_ELEMENT_KEY]
     if (isUndefined(element)) return
     removeNode(evt.item)
-    insertElement(list.value, evt.newIndex!, element)
+    insertElement(unref(list), evt.newIndex!, element)
   }
 
   /**
@@ -105,7 +136,7 @@ export function useDraggable<T>(
       removeNode(clone)
       return
     }
-    removeElement(list.value, oldIndex!)
+    removeElement(unref(list), oldIndex!)
   }
 
   /**
@@ -116,7 +147,7 @@ export function useDraggable<T>(
     const { from, item, oldIndex, newIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
-    moveArrayElement(list.value, oldIndex!, newIndex!)
+    moveArrayElement(unref(list), oldIndex!, newIndex!)
   }
 
   /**
@@ -133,10 +164,9 @@ export function useDraggable<T>(
     if (!target)
       target = (isString(el) ? getElementBySelector(el, vm?.$el) : unref(el))!
     if (!target) error('Root element not found')
-    instance = new Sortable(
-      target as HTMLElement,
-      mergeOptionsEvents(restOptions, presetOptions)
-    )
+    if (instance) instance.destroy()
+    const opt = mergeOptionsEvents(presetOptions, restOptions)
+    instance = new Sortable(target as HTMLElement, opt)
   }
 
   const methods: Pick<Sortable, SortableMethod> = {
@@ -147,11 +177,9 @@ export function useDraggable<T>(
     closest: (...args) => instance?.closest(...args)
   }
 
-  onMounted(() => {
-    start()
-  })
+  tryOnMounted(start)
 
-  onUnmounted(methods.destroy)
+  tryOnUnmounted(methods.destroy)
 
   return { start, ...methods }
 }

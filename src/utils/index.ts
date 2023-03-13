@@ -11,6 +11,7 @@ export function moveArrayElement<T>(
   from: number,
   to: number
 ): void {
+  if (!Array.isArray(array)) return
   if (to >= 0 && to < array.length) {
     array.splice(to, 0, array.splice(from, 1)[0])
   }
@@ -44,7 +45,7 @@ export function objectMap(object: Record<any, any>) {
  * @returns {T[]}
  */
 export function removeElement<T>(array: T[], index: number) {
-  return array.splice(index, 1)
+  if (Array.isArray(array)) return array.splice(index, 1)
 }
 
 /**
@@ -54,7 +55,7 @@ export function removeElement<T>(array: T[], index: number) {
  * @param element
  */
 export function insertElement<T>(array: T[], index: number, element: any) {
-  return array.splice(index, 0, element)
+  if (Array.isArray(array)) return array.splice(index, 0, element)
 }
 
 /**

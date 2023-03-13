@@ -8,7 +8,7 @@
         </tr>
       </thead>
       <tbody class="sort-target">
-        <tr v-for="item in list" :key="item.name">
+        <tr v-for="item in list" :key="item.name" class="cursor-move">
           <td scope="row">{{ item.id }}</td>
           <td>{{ item.name }}</td>
         </tr>

@@ -3,7 +3,7 @@
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr class="sort-target">
-          <th v-for="header in headers" :key="header.value">
+          <th class="cursor-move" v-for="header in headers" :key="header.value">
             {{ header.text }}
           </th>
         </tr>

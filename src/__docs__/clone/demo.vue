@@ -6,11 +6,12 @@
       :group="{ name: 'people', pull: 'clone', put: false }"
       :sort="false"
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      @clone="onClone"
     >
       <div
         v-for="item in list"
         :key="item.id"
-        class="h-50px bg-gray-500/5 rounded p-3"
+        class="cursor-move h-50px bg-gray-500/5 rounded p-3"
       >
         {{ item.name }}
       </div>
@@ -24,7 +25,7 @@
       <div
         v-for="item in list2"
         :key="item.id"
-        class="h-50px bg-gray-500/5 rounded p-3"
+        class="cursor-move h-50px bg-gray-500/5 rounded p-3"
       >
         {{ item.name }}
       </div>
@@ -69,5 +70,9 @@ function stringify(obj: Record<string, any>[]) {
     null,
     2
   )
+}
+
+function onClone() {
+  console.log('clone')
 }
 </script>

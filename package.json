@@ -11,8 +11,7 @@
     ".": {
       "import": "./dist/vue-draggable-plus.js",
       "require": "./dist/vue-draggable-plus.umd.cjs"
-    },
-    "./dist/style.css": "./dist/style.css"
+    }
   },
   "scripts": {
     "dev": "initial-scan docs && vitepress dev .docs --host",
@@ -55,6 +54,7 @@
     "vite-plugin-dts": "^1.4.0",
     "vitepress": "latest",
     "vue": "^3.2.47",
+    "vue-demi": "^0.13.11",
     "vue-eslint-parser": "^9.1.0"
   },
   "peerDependencies": {

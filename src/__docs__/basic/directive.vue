@@ -1,28 +1,33 @@
 <template>
   <div class="flex">
-    <VueDraggable
-      v-model="list"
-      animation="150"
-      ghostClass="ghost"
-      class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
-      @start="onStart"
-      @update="onUpdate"
+    <div
+      v-draggable="[
+        list,
+        {
+          animation: 150,
+          ghostClass: 'ghost',
+          ghostClass: 'ghost',
+          onUpdate,
+          onStart
+        }
+      ]"
+      class="target-directive flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
     >
       <div
         v-for="item in list"
         :key="item.id"
-        class="cursor-move h-30 bg-gray-500/5 rounded p-3 cursor-move"
+        class="h-30 bg-gray-500/5 rounded p-3 cursor-move"
       >
         {{ item.name }}
       </div>
-    </VueDraggable>
+    </div>
     <pre class="code-block">{{ text }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { VueDraggable } from 'vue-draggable-plus'
+import { vDraggable } from 'vue-draggable-plus'
 const list = ref([
   {
     name: 'Joao',
@@ -43,11 +48,11 @@ const list = ref([
 ])
 const text = computed(() => JSON.stringify(list.value, null, 2))
 
-const onStart = () => {
+function onStart() {
   console.log('start')
 }
 
-const onUpdate = () => {
+function onUpdate() {
   console.log('update')
 }
 </script>
