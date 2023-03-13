@@ -10,13 +10,9 @@ import {
 import { objectMap } from './utils'
 import { useDraggable } from './hooks'
 
-export const VueDraggablePlus = defineComponent({
-  name: 'VueDraggablePlus',
+export const VueDraggable = defineComponent({
+  name: 'VueDraggable',
   props: {
-    componentProps: {
-      type: Object,
-      default: () => ({})
-    },
     modelValue: {
       type: Array as PropType<any[]>,
       required: true
@@ -25,7 +21,7 @@ export const VueDraggablePlus = defineComponent({
       type: String,
       default: 'div'
     },
-    selector: {
+    target: {
       type: String
     }
   },
@@ -39,17 +35,13 @@ export const VueDraggablePlus = defineComponent({
     })
     const target = ref()
     const data = reactive(
-      useDraggable((props.selector || target) as string, list, options)
+      useDraggable((props.target || target) as string, list, options)
     )
 
     expose(data)
     return () => {
       if (slots.default)
-        return h(
-          props.tag,
-          { ref: target, ...props.componentProps },
-          slots.default(data)
-        )
+        return h(props.tag, { ref: target }, slots.default(data))
     }
   }
 })

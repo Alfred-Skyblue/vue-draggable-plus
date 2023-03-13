@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <VueDraggablePlus
+    <VueDraggable
       v-model="list"
       animation="150"
       ghostClass="ghost"
@@ -13,14 +13,14 @@
       >
         {{ item.name }}
       </div>
-    </VueDraggablePlus>
+    </VueDraggable>
     <pre class="code-block">{{ text }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { VueDraggablePlus } from 'vue-draggable-plus'
+import { VueDraggable } from 'vue-draggable-plus'
 const list = ref([
   {
     name: 'Joao',

@@ -1,16 +1,18 @@
 <template>
-  <button @click="handleAdd">Add</button>
-
+  <button @click="sort">还原</button>
   <div class="flex justify-between">
     <VueDraggable
       v-model="list"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      animation="150"
       target=".sort-target"
+      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      @start="onStart"
+      @end="onEnd"
     >
       <TransitionGroup
         type="transition"
         tag="ul"
-        name="fade"
+        :name="!drag ? 'fade' : null"
         class="sort-target"
       >
         <li
@@ -18,9 +20,7 @@
           :key="item.id"
           class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
         >
-          <IconSort class="handle cursor-move"></IconSort>
-          <input type="text" v-model="item.name" />
-          <iconClose class="cursor-pointer" @click="remove(index)"></iconClose>
+          {{ item.name }}
         </li>
       </TransitionGroup>
     </VueDraggable>
@@ -29,27 +29,40 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
+const drag = ref(false)
 
 const list = ref([
   {
     name: 'Joao',
-    id: '1'
+    id: 1
   },
   {
     name: 'Jean',
-    id: '2'
+    id: 2
   },
   {
     name: 'Johanna',
-    id: '3'
+    id: 3
   },
   {
     name: 'Juan',
-    id: '4'
+    id: 4
   }
 ])
+
+const onStart = () => {
+  drag.value = true
+}
+const onEnd = () => {
+  nextTick(() => {
+    drag.value = false
+  })
+}
+const sort = () => {
+  list.value.sort((a, b) => a.id - b.id)
+}
 
 function stringify(obj: Record<'name' | 'id', string>[]) {
   return JSON.stringify(
@@ -57,18 +70,6 @@ function stringify(obj: Record<'name' | 'id', string>[]) {
     null,
     2
   )
-}
-
-function handleAdd() {
-  const length = list.value.length + 1
-  list.value.push({
-    name: `Juan ${length}`,
-    id: `${length}`
-  })
-}
-
-function remove(index: number) {
-  list.value.splice(index, 1)
 }
 </script>
 

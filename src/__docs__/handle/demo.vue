@@ -2,7 +2,7 @@
   <button @click="handleAdd">Add</button>
 
   <div class="flex justify-between">
-    <VueDraggablePlus
+    <VueDraggable
       v-model="list"
       animation="150"
       handle=".handle"
@@ -17,14 +17,14 @@
         <input type="text" v-model="item.name" />
         <iconClose class="cursor-pointer" @click="remove(index)"></iconClose>
       </div>
-    </VueDraggablePlus>
+    </VueDraggable>
     <pre class="code-block">{{ stringify(list) }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { VueDraggablePlus } from 'vue-draggable-plus'
+import { VueDraggable } from 'vue-draggable-plus'
 
 const list = ref([
   {

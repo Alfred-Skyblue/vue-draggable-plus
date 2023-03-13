@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <VueDraggablePlus
+    <VueDraggable
       v-model="list"
       animation="150"
       ghostClass="ghost"
@@ -16,8 +16,8 @@
       >
         {{ item.name }}
       </div>
-    </VueDraggablePlus>
-    <VueDraggablePlus
+    </VueDraggable>
+    <VueDraggable
       v-model="list2"
       animation="150"
       group="people"
@@ -31,7 +31,7 @@
       >
         {{ item.name }}
       </div>
-    </VueDraggablePlus>
+    </VueDraggable>
   </div>
   <div class="flex justify-between">
     <pre class="code-block">{{ stringify(list) }}</pre>
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { VueDraggablePlus } from 'vue-draggable-plus'
+import { VueDraggable } from 'vue-draggable-plus'
 
 const list = ref([
   {

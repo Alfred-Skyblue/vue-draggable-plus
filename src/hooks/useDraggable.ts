@@ -113,7 +113,6 @@ export function useDraggable<T>(
    * @param {DraggableEvent} evt
    */
   function onUpdate(evt: DraggableEvent) {
-    console.log('beforeUpdate')
     const { from, item, oldIndex, newIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
@@ -133,7 +132,7 @@ export function useDraggable<T>(
   const start = (target?: HTMLElement) => {
     if (!target)
       target = (isString(el) ? getElementBySelector(el, vm?.$el) : unref(el))!
-    if (!target) error('Target element not found')
+    if (!target) error('Root element not found')
     instance = new Sortable(
       target as HTMLElement,
       mergeOptionsEvents(restOptions, presetOptions)
