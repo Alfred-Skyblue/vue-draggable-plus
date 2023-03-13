@@ -1,20 +1,11 @@
 <template>
-  <VueDraggable v-model="data" target=".sort-target">
-    <n-data-table
-      theme="dark"
-      :bordered="false"
-      :single-line="false"
-      :columns="columns"
-      :data="data"
-    />
-  </VueDraggable>
+  <VueDraggable v-model="data" target=".sort-target"></VueDraggable>
   <pre class="code-block">{{ stringify(data) }}</pre>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
-import { NDataTable } from 'naive-ui'
 
 const data = ref([
   {
