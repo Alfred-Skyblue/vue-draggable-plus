@@ -1,15 +1,27 @@
-import { useDraggable, UseDraggableOptions } from './hooks'
+import type { ObjectDirective } from 'vue-demi'
+import type { Ref } from 'vue-demi'
 import type { RefOrValue } from './types'
-import type { Ref } from 'vue'
-
+import { useDraggable, UseDraggableOptions } from './hooks'
+import { isVue3 } from 'vue-demi'
+const directiveHooks = {
+  mounted: (isVue3 ? 'mounted' : 'inserted') as 'mounted',
+  updated: (isVue3 ? 'updated' : 'componentUpdated') as 'updated',
+  unmounted: (isVue3 ? 'unmounted' : 'unbind') as 'unmounted'
+}
 type VDraggableBinding = [
   list: Ref<any[]>,
   options?: RefOrValue<UseDraggableOptions<any>>
 ]
-export const vDraggable = {
-  mounted(el: HTMLElement, binding: Ref<VDraggableBinding>) {
-    console.log('-> el', el)
-    console.log('-> binding', binding)
-    useDraggable(el!, ...binding.value)
+
+const destroyMap: WeakMap<HTMLElement, () => void> = new WeakMap()
+
+export const vDraggable: ObjectDirective<HTMLElement, VDraggableBinding> = {
+  [directiveHooks.mounted](el, binding) {
+    const state = useDraggable(el!, ...binding.value)
+    destroyMap.set(el, state.destroy)
+  },
+  [directiveHooks.unmounted](el) {
+    destroyMap.get(el)?.()
+    destroyMap.delete(el)
   }
 }
