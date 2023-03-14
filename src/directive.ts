@@ -3,11 +3,12 @@ import type { Ref } from 'vue-demi'
 import type { RefOrValue } from './types'
 import { useDraggable, UseDraggableOptions } from './hooks'
 import { isVue3 } from 'vue-demi'
+
 const directiveHooks = {
   mounted: (isVue3 ? 'mounted' : 'inserted') as 'mounted',
-  updated: (isVue3 ? 'updated' : 'componentUpdated') as 'updated',
   unmounted: (isVue3 ? 'unmounted' : 'unbind') as 'unmounted'
 }
+
 type VDraggableBinding = [
   list: Ref<any[]>,
   options?: RefOrValue<UseDraggableOptions<any>>

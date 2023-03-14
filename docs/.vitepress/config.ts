@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import { applyPlugins } from '@ruabick/md-demo-plugins'
 import { genTemp } from '@ruabick/vite-plugin-gen-temp'
 
-import { sidebar } from './sidebar.js'
+import { sidebar } from './sidebar'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
 export default defineConfig({
@@ -13,26 +13,33 @@ export default defineConfig({
     '/': {
       lang: 'zh-CN',
       title: 'vue-draggable-plus',
-      description: 'vue3拖拽排序组件'
+      description: 'vue3拖拽排序组件',
+      label: '简体中文'
     },
-    '/en/': {
+    '/en': {
       lang: 'en-US',
       title: 'vue-draggable-plus',
-      description: 'vue3拖拽排序组件'
+      description: 'vue3拖拽排序组件',
+      label: 'English'
     }
   },
   themeConfig: {
     logo: '/logo.svg',
-    localeLinks: {
-      text: '',
-      items: [
-        { text: '简体中文', link: '/' },
-        { text: 'English', link: '/en/' }
-      ]
-    },
-    nav: [{ text: '指南', link: '/guide' }],
     sidebar,
-    algolia: {},
+    nav: [
+      { text: '指南', link: '/basic/' },
+      {
+        text: '语言',
+        items: [
+          { text: '简体中文', link: '/' },
+          { text: 'English', link: '/en/' }
+        ]
+      }
+    ],
+    // algolia: {
+    //   apiKey: 'b3d9c3b0c0f3f1f3f3f3f3f3f3f3f3f3',
+    //   indexName: 'vue-draggable-plus'
+    // },
     socialLinks: [
       {
         icon: 'github',
@@ -42,6 +49,9 @@ export default defineConfig({
   },
   vue: {},
   vite: {
+    server: {
+      port: 8090
+    },
     plugins: [genTemp(), UnoCSS()],
     resolve: {
       alias: {
@@ -57,8 +67,5 @@ export default defineConfig({
       light: 'github-light',
       dark: 'github-dark'
     }
-  },
-  buildEnd() {
-    process.exit(0)
   }
 })

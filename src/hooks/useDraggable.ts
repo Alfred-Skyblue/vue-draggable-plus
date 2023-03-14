@@ -15,6 +15,7 @@ import {
   getElementBySelector,
   insertElement,
   insertNodeAt,
+  isHTMLElement,
   isString,
   isUndefined,
   mergeOptionsEvents,
@@ -160,10 +161,22 @@ export function useDraggable<T>(...args: any[]): UseSortableReturn {
     onRemove
   }
 
-  const start = (target?: HTMLElement) => {
-    if (!target)
-      target = (isString(el) ? getElementBySelector(el, vm?.$el) : unref(el))!
+  function getTarget(target?: HTMLElement) {
+    const element = unref(el)
+    if (!target) {
+      target = isString(element)
+        ? getElementBySelector(element, vm?.$el)
+        : element
+    }
+    // @ts-ignore
+    if (target && !isHTMLElement(target)) target = target.$el
+
     if (!target) error('Root element not found')
+    return target
+  }
+  const start = (target?: HTMLElement) => {
+    target = getTarget(target)
+    console.log('-> target', target)
     if (instance) instance.destroy()
     const opt = mergeOptionsEvents(
       list === null ? {} : presetOptions,

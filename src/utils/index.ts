@@ -154,3 +154,7 @@ export function mergeOptionsEvents(
   })
   return options
 }
+
+export function isHTMLElement(el: any): el is HTMLElement {
+  return el instanceof HTMLElement
+}
