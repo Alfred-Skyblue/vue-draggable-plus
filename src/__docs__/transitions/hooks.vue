@@ -1,22 +1,19 @@
 <template>
-  <button @click="handleAdd">Add</button>
-
+  <button @click="sort">还原</button>
   <div class="flex justify-between">
     <TransitionGroup
+      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
       ref="el"
       type="transition"
       tag="ul"
-      name="fade"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      :name="!drag ? 'fade' : null"
     >
       <li
-        v-for="(item, index) in list"
+        v-for="item in list"
         :key="item.id"
-        class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
+        class="cursor-move h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
       >
-        <IconSort class="handle cursor-move"></IconSort>
-        <input type="text" v-model="item.name" />
-        <iconClose class="cursor-pointer" @click="remove(index)"></iconClose>
+        {{ item.name }}
       </li>
     </TransitionGroup>
     <preview-list :list="list" />
@@ -24,42 +21,45 @@
 </template>
 
 <script setup lang="ts">
+import { nextTick, ref } from 'vue'
 import { useDraggable } from 'vue-draggable-plus'
-import { ref } from 'vue'
+const drag = ref(false)
 
 const list = ref([
   {
     name: 'Joao',
-    id: '1'
+    id: 1
   },
   {
     name: 'Jean',
-    id: '2'
+    id: 2
   },
   {
     name: 'Johanna',
-    id: '3'
+    id: 3
   },
   {
     name: 'Juan',
-    id: '4'
+    id: 4
   }
 ])
-
 const el = ref()
 
-useDraggable(el, list)
+useDraggable(el, list, {
+  animation: 150,
+  onStart() {
+    drag.value = true
+  },
+  onEnd() {
+    console.log('onEnd')
+    nextTick(() => {
+      drag.value = false
+    })
+  }
+})
 
-function handleAdd() {
-  const length = list.value.length + 1
-  list.value.push({
-    name: `Juan ${length}`,
-    id: `${length}`
-  })
-}
-
-function remove(index: number) {
-  list.value.splice(index, 1)
+const sort = () => {
+  list.value.sort((a, b) => a.id - b.id)
 }
 </script>
 

@@ -7,7 +7,7 @@ import {
   unref
 } from 'vue-demi'
 import type { Ref } from 'vue-demi'
-import type { Fn, RefOrValue } from '../types'
+import type { Fn, RefOrElement, RefOrValue } from '../types'
 
 import { error } from '../utils/log'
 
@@ -44,15 +44,16 @@ const CLONE_ELEMENT_KEY = '__clone__draggable__element__node__'
 interface DraggableEvent extends SortableEvent {
   item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
 }
-type SortableMethod = 'sort' | 'closest' | 'save' | 'toArray' | 'destroy'
+type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy'
 
-export interface UseSortableReturn extends Pick<Sortable, SortableMethod> {
+export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
   /**
    * Start the sortable.
    * @param {HTMLElement} target - The target element to be sorted.
    * @default By default the root element of the VueDraggablePlus instance is used
    */
   start: (target?: HTMLElement) => void
+  pause: () => void
 }
 
 export interface UseDraggableOptions<T> extends Options {
@@ -61,30 +62,20 @@ export interface UseDraggableOptions<T> extends Options {
 
 /**
  * A custom hook that allows you to drag and drop elements in a list.
- * @param {string} selector - The selector of the element to be dragged
- * @param {Ref<T[]>} list - The list to be dragged
- * @param {RefOrValue<UseDraggableOptions<T>>} options - The options of the sortable
- * @returns {UseSortableReturn} - The return of the sortable
+ * @param el
+ * @param {Array} list - The list to be dragged
+ * @param {Object} options - The options of the sortable
+ * @returns {Object} - The return of the sortable
  */
 export function useDraggable<T>(
-  selector: string,
+  el: RefOrElement,
   list?: Ref<T[] | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
-): UseSortableReturn
-export function useDraggable<T>(
-  el: HTMLElement,
-  list?: Ref<T[] | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
-): UseSortableReturn
-export function useDraggable<T>(
-  el: Ref<HTMLElement | null | undefined>,
-  list?: Ref<T[] | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
-): UseSortableReturn
+): UseDraggableReturn
 export function useDraggable<T>(
   el: Ref<HTMLElement | null | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
-): UseSortableReturn
+): UseDraggableReturn
 
 /**
  * A custom hook that allows you to drag and drop elements in a list.
@@ -93,7 +84,7 @@ export function useDraggable<T>(
  * @param {RefOrValue<UseDraggableOptions<T>>} options
  * @returns {UseSortableReturn}
  */
-export function useDraggable<T>(...args: any[]): UseSortableReturn {
+export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   const vm = getCurrentInstance()?.proxy
 
   const el = args[0]
@@ -104,7 +95,7 @@ export function useDraggable<T>(...args: any[]): UseSortableReturn {
     list = null
   }
 
-  let instance: Sortable
+  let instance: Sortable | null = null
   const { clone = defaultClone, ...restOptions } = unref(options) ?? {}
 
   /**
@@ -176,26 +167,32 @@ export function useDraggable<T>(...args: any[]): UseSortableReturn {
   }
   const start = (target?: HTMLElement) => {
     target = getTarget(target)
-    console.log('-> target', target)
-    if (instance) instance.destroy()
+    if (instance) methods.destroy()
     const opt = mergeOptionsEvents(
       list === null ? {} : presetOptions,
       restOptions
     )
+
     instance = new Sortable(target as HTMLElement, opt)
   }
 
   const methods: Pick<Sortable, SortableMethod> = {
-    destroy: () => instance?.destroy(),
-    toArray: () => instance?.toArray(),
+    destroy: () => {
+      instance?.destroy()
+      instance = null
+    },
     save: () => instance?.save(),
-    sort: (...args) => instance?.sort(...args),
+    // @ts-ignore
+    toArray: () => instance?.toArray(),
+    // @ts-ignore
     closest: (...args) => instance?.closest(...args)
   }
+
+  const pause = () => methods?.destroy()
 
   tryOnMounted(start)
 
   tryOnUnmounted(methods.destroy)
 
-  return { start, ...methods }
+  return { start, pause, ...methods }
 }

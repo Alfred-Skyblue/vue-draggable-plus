@@ -2,11 +2,26 @@
 map:
   path: /table-column
 ---
-# transition
+# 表格列拖拽
 
-我们可以通过 `handle` 属性传递一个选择器，来指定拖拽的控制器。
+我们将表格的 thead 指定为[目标容器](../target-container/)，实现表格拖拽
+
+## 组件使用
 
 <demo src="./demo.vue"
-title="使用操纵控制器拖拽"
-desc="传递 handle 属性，使用控制器">
+title="使用组件完成表格列排序"
+desc="拖拽表头进行列排序">
+</demo>
+
+## hooks 使用
+<demo src="./hooks.vue"
+title="使用hooks完成表格列排序"
+desc="拖拽表头进行列排序">
+</demo>
+
+
+## 指令使用
+<demo src="./directive.vue"
+title="使用指令完成表格列排序"
+desc="拖拽表头进行列排序">
 </demo>

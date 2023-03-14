@@ -4,8 +4,9 @@
   <div class="flex justify-between">
     <VueDraggable
       v-model="list"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded h-300px overflow-auto"
       target=".sort-target"
+      :scroll="true"
     >
       <TransitionGroup
         type="transition"
@@ -24,14 +25,13 @@
         </li>
       </TransitionGroup>
     </VueDraggable>
-    <pre class="code-block">{{ text }}</pre>
+    <preview-list :list="list" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
-import { computed } from 'vue-demi'
 
 const list = ref([
   {
@@ -51,14 +51,6 @@ const list = ref([
     id: '4'
   }
 ])
-
-const text = computed(() =>
-  JSON.stringify(
-    list.value.map(item => item.name),
-    null,
-    2
-  )
-)
 
 function handleAdd() {
   const length = list.value.length + 1

@@ -40,15 +40,14 @@
     </section>
   </div>
   <div class="flex justify-between">
-    <pre class="code-block">{{ JSON.stringify(list1, null, 2) }}</pre>
-    <pre class="code-block">{{ JSON.stringify(list2, null, 2) }}</pre>
+    <preview-list :list="list1" />
+    <preview-list :list="list2" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import { useDraggable } from 'vue-draggable-plus'
-import type { Ref } from 'vue-demi'
 const list1 = ref([
   {
     name: 'Joao',
@@ -73,7 +72,7 @@ const list2 = ref(
     id: `${item.id}-2`
   }))
 )
-const el1: Ref<HTMLElement | null> = ref(null)
+const el1 = ref(null)
 const el2: Ref<HTMLElement | null> = ref(null)
 
 useDraggable(el1, list1, {

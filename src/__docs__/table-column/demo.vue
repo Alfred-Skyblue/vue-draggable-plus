@@ -51,12 +51,4 @@ const list = ref([
     id: 4
   }
 ])
-
-function stringify(obj: Record<'name' | 'id', string>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
-    null,
-    2
-  )
-}
 </script>

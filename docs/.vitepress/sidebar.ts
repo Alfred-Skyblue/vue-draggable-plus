@@ -11,8 +11,7 @@ export const sidebar = {
         { text: 'Transition', link: '/en/transition/' },
         { text: '内置动画合并', link: '/en/transitions/' },
         { text: '表格行拖拽', link: '/en/table/' },
-        { text: '表格列拖拽', link: '/en/table-column/' },
-        { text: '第三方组件', link: '/en/third-component/' }
+        { text: '表格列拖拽', link: '/en/table-column/' }
       ]
     }
   ],
@@ -25,11 +24,12 @@ export const sidebar = {
         { text: '克隆', link: '/clone/' },
         { text: '自定义克隆', link: '/custom-clone/' },
         { text: '指定元素触发', link: '/handle/' },
+        { text: '指定目标容器', link: '/target-container/' },
         { text: 'Transition', link: '/transition/' },
         { text: '内置动画合并', link: '/transitions/' },
         { text: '表格行拖拽', link: '/table/' },
         { text: '表格列拖拽', link: '/table-column/' },
-        { text: '第三方组件', link: '/third-component/' }
+        { text: '嵌套', link: '/nested/' }
       ]
     }
   ]

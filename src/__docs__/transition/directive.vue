@@ -2,20 +2,23 @@
   <button @click="handleAdd">Add</button>
 
   <div class="flex justify-between">
-    <section
-      v-draggable="[list, { animation: 150, handle: '.handle' }]"
+    <TransitionGroup
+      v-draggable="[list, { animation: 150 }]"
+      type="transition"
+      tag="ul"
+      name="fade"
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
     >
-      <div
+      <li
         v-for="(item, index) in list"
         :key="item.id"
-        class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-4"
+        class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
       >
         <IconSort class="handle cursor-move"></IconSort>
         <input type="text" v-model="item.name" />
         <iconClose class="cursor-pointer" @click="remove(index)"></iconClose>
-      </div>
-    </section>
+      </li>
+    </TransitionGroup>
     <preview-list :list="list" />
   </div>
 </template>
@@ -55,3 +58,21 @@ function remove(index: number) {
   list.value.splice(index, 1)
 }
 </script>
+
+<style>
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scaleY(0.01) translate(30px, 0);
+}
+
+.fade-leave-active {
+  position: absolute;
+}
+</style>

@@ -1,15 +1,15 @@
 <template>
   <VueDraggable v-model="list" target=".sort-target">
-    <table class="table table-striped">
-      <thead class="thead-dark">
+    <table>
+      <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
+          <th>Id</th>
+          <th>Name</th>
         </tr>
       </thead>
       <tbody class="sort-target">
         <tr v-for="item in list" :key="item.name" class="cursor-move">
-          <td scope="row">{{ item.id }}</td>
+          <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
         </tr>
       </tbody>
@@ -39,12 +39,4 @@ const list = ref([
     id: 4
   }
 ])
-
-function stringify(obj: Record<'name' | 'id', string>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
-    null,
-    2
-  )
-}
 </script>

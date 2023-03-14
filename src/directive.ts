@@ -2,7 +2,7 @@ import type { ObjectDirective } from 'vue-demi'
 import type { Ref } from 'vue-demi'
 import type { RefOrValue } from './types'
 import { useDraggable, UseDraggableOptions } from './hooks'
-import { isVue3 } from 'vue-demi'
+import { isProxy, isVue3 } from 'vue-demi'
 
 const directiveHooks = {
   mounted: (isVue3 ? 'mounted' : 'inserted') as 'mounted',
@@ -16,9 +16,14 @@ type VDraggableBinding = [
 
 const destroyMap: WeakMap<HTMLElement, () => void> = new WeakMap()
 
-export const vDraggable: ObjectDirective<HTMLElement, VDraggableBinding> = {
+export const vDraggable: ObjectDirective<
+  HTMLElement,
+  VDraggableBinding | Ref<any[]>
+> = {
   [directiveHooks.mounted](el, binding) {
-    const state = useDraggable(el!, ...binding.value)
+    const params = isProxy(binding.value) ? [binding.value] : binding.value
+
+    const state = useDraggable(el!, ...(params as VDraggableBinding))
     destroyMap.set(el, state.destroy)
   },
   [directiveHooks.unmounted](el) {

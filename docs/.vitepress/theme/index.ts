@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import DemoBlock from '@ruabick/vitepress-demo-block'
 import IconSort from './components/IconSort.vue'
 import IconClose from './components/IconClose.vue'
+import PreviewList from './components/PreviewList.vue'
 import 'uno.css'
 
 import '@ruabick/vitepress-demo-block/dist/style.css'
@@ -21,5 +22,6 @@ export default {
     app.component('demo', DemoBlock)
     app.component('IconSort', IconSort)
     app.component('IconClose', IconClose)
+    app.component('PreviewList', PreviewList)
   }
 }

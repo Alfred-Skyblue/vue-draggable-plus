@@ -46,8 +46,8 @@
     </section>
   </div>
   <div class="flex justify-between">
-    <pre class="code-block">{{ JSON.stringify(list1, null, 2) }}</pre>
-    <pre class="code-block">{{ JSON.stringify(list2, null, 2) }}</pre>
+    <preview-list :list="list1" />
+    <preview-list :list="list2" />
   </div>
 </template>
 

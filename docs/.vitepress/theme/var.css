@@ -25,27 +25,3 @@
   font-size: 15px;
 }
 
-.vp-doc tr {
-  border-top: 1px solid var(--demi-border-color);
-}
-
-.vp-doc tr:nth-child(2n) {
-  background-color: unset;
-}
-
-.vp-doc th,
-.vp-doc td {
-  border: 1px solid var(--demi-border-color);
-  padding: 10px 20px;
-}
-
-.vp-doc th {
-  font-size: 15px;
-  font-weight: 600;
-  background-color: var(--vp-c-white-soft);
-}
-
-.vp-doc table td:first-child {
-  font-size: 15px;
-  font-weight: 600;
-}

@@ -16,7 +16,7 @@
         <iconClose class="cursor-pointer" @click="remove(index)"></iconClose>
       </div>
     </section>
-    <pre class="code-block">{{ stringify(list) }}</pre>
+    <preview-list :list="list" />
   </div>
 </template>
 
@@ -44,13 +44,6 @@ const list = ref([
 ])
 const el = ref()
 useDraggable(el, list, { animation: 150, handle: '.handle' })
-function stringify(obj: Record<'name' | 'id', string>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
-    null,
-    2
-  )
-}
 
 function handleAdd() {
   const length = list.value.length + 1

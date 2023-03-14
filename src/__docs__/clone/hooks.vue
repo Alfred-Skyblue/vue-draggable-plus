@@ -26,14 +26,14 @@
     </section>
   </div>
   <div class="flex justify-between">
-    <pre class="code-block">{{ stringify(list1) }}</pre>
-    <pre class="code-block">{{ stringify(list2) }}</pre>
+    <preview-list :list="list1" />
+    <preview-list :list="list2" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useDraggable, vDraggable } from 'vue-draggable-plus'
+import { useDraggable } from 'vue-draggable-plus'
 const list1 = ref([
   {
     name: 'Joao',
@@ -70,11 +70,4 @@ useDraggable(el1, list1, {
   }
 })
 useDraggable(el1, list1, { animation: 150, group: 'people' })
-function stringify(obj: Record<string, any>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
-    null,
-    2
-  )
-}
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <VueDraggable
-      v-model="list"
+      v-model="list1"
       animation="150"
       :group="{ name: 'people', pull: 'clone', put: false }"
       :sort="false"
@@ -9,7 +9,7 @@
       @clone="onClone"
     >
       <div
-        v-for="item in list"
+        v-for="item in list1"
         :key="item.id"
         class="cursor-move h-50px bg-gray-500/5 rounded p-3"
       >
@@ -32,15 +32,15 @@
     </VueDraggable>
   </div>
   <div class="flex justify-between">
-    <pre class="code-block">{{ stringify(list) }}</pre>
-    <pre class="code-block">{{ stringify(list2) }}</pre>
+    <preview-list :list="list1" />
+    <preview-list :list="list2" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
-const list = ref([
+const list1 = ref([
   {
     name: 'Joao',
     id: '1'
@@ -59,18 +59,11 @@ const list = ref([
   }
 ])
 const list2 = ref(
-  list.value.map(item => ({
+  list1.value.map(item => ({
     name: `${item.name}-2`,
     id: `${item.id}-2`
   }))
 )
-function stringify(obj: Record<string, any>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
-    null,
-    2
-  )
-}
 
 function onClone() {
   console.log('clone')

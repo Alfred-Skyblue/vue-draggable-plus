@@ -1,36 +1,28 @@
 <template>
   <button @click="sort">还原</button>
   <div class="flex justify-between">
-    <VueDraggable
-      v-model="list"
-      animation="150"
-      target=".sort-target"
+    <TransitionGroup
+      v-draggable="[list, { animation: 150, onStart, onEnd }]"
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
-      @start="onStart"
-      @end="onEnd"
+      type="transition"
+      tag="ul"
+      :name="!drag ? 'fade' : null"
     >
-      <TransitionGroup
-        type="transition"
-        tag="ul"
-        :name="!drag ? 'fade' : null"
-        class="sort-target"
+      <li
+        v-for="item in list"
+        :key="item.id"
+        class="cursor-move h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
       >
-        <li
-          v-for="(item, index) in list"
-          :key="item.id"
-          class="cursor-move h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
-        >
-          {{ item.name }}
-        </li>
-      </TransitionGroup>
-    </VueDraggable>
+        {{ item.name }}
+      </li>
+    </TransitionGroup>
     <preview-list :list="list" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
-import { VueDraggable } from 'vue-draggable-plus'
+import { vDraggable } from 'vue-draggable-plus'
 const drag = ref(false)
 
 const list = ref([
@@ -61,6 +53,7 @@ function onEnd() {
     drag.value = false
   })
 }
+
 function sort() {
   list.value.sort((a, b) => a.id - b.id)
 }

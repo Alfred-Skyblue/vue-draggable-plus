@@ -18,7 +18,7 @@
         <iconClose class="cursor-pointer" @click="remove(index)"></iconClose>
       </div>
     </VueDraggable>
-    <pre class="code-block">{{ stringify(list) }}</pre>
+    <preview-list :list="list" />
   </div>
 </template>
 
@@ -44,14 +44,6 @@ const list = ref([
     id: '4'
   }
 ])
-
-function stringify(obj: Record<'name' | 'id', string>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
-    null,
-    2
-  )
-}
 
 function handleAdd() {
   const length = list.value.length + 1

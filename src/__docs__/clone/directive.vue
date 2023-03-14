@@ -34,8 +34,8 @@
     </section>
   </div>
   <div class="flex justify-between">
-    <pre class="code-block">{{ stringify(list1) }}</pre>
-    <pre class="code-block">{{ stringify(list2) }}</pre>
+    <preview-list :list="list1" />
+    <preview-list :list="list2" />
   </div>
 </template>
 
@@ -66,13 +66,6 @@ const list2 = ref(
     id: `${item.id}-2`
   }))
 )
-function stringify(obj: Record<string, any>[]) {
-  return JSON.stringify(
-    obj.map(item => item.name),
-    null,
-    2
-  )
-}
 
 function onClone() {
   console.log('clone')

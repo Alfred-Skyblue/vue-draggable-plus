@@ -110,7 +110,12 @@ export function getElementBySelector(
   selector: string,
   parentElement: Document | Element = document
 ) {
-  const el = parentElement?.querySelector(selector)
+  let el: HTMLElement | null = null
+  if (typeof parentElement?.querySelector === 'function') {
+    el = parentElement?.querySelector?.(selector)
+  } else {
+    el = document.querySelector(selector)
+  }
   if (!el) {
     warn(`Element not found: ${selector}`)
   }
@@ -145,14 +150,15 @@ export function mergeOptionsEvents(
   options: Record<string, any>,
   events: Record<string, any>
 ) {
+  const evts = { ...options }
   Object.keys(events).forEach(key => {
-    if (options[key]) {
-      options[key] = mergeExecuted(events[key], options[key])
+    if (evts[key]) {
+      evts[key] = mergeExecuted(events[key], options[key])
     } else {
-      options[key] = events[key]
+      evts[key] = events[key]
     }
   })
-  return options
+  return evts
 }
 
 export function isHTMLElement(el: any): el is HTMLElement {

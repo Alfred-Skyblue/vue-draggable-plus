@@ -12,12 +12,12 @@
         {{ item.name }}
       </div>
     </div>
-    <pre class="code-block">{{ text }}</pre>
+    <preview-list :list="list" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useDraggable } from 'vue-draggable-plus'
 const list = ref([
   {
@@ -37,7 +37,7 @@ const list = ref([
     id: 4
   }
 ])
-const el = ref(null)
+const el = ref()
 
 useDraggable(el, list, {
   animation: 150,
@@ -49,8 +49,6 @@ useDraggable(el, list, {
     console.log('update')
   }
 })
-
-const text = computed(() => JSON.stringify(list.value, null, 2))
 </script>
 
 <style scoped>

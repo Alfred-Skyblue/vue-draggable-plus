@@ -6,7 +6,6 @@
         {
           animation: 150,
           ghostClass: 'ghost',
-          ghostClass: 'ghost',
           onUpdate,
           onStart
         }
@@ -21,12 +20,12 @@
         {{ item.name }}
       </div>
     </div>
-    <pre class="code-block">{{ text }}</pre>
+    <preview-list :list="list" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { vDraggable } from 'vue-draggable-plus'
 const list = ref([
   {
@@ -46,7 +45,6 @@ const list = ref([
     id: 4
   }
 ])
-const text = computed(() => JSON.stringify(list.value, null, 2))
 
 function onStart() {
   console.log('start')
