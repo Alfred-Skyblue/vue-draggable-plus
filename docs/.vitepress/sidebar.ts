@@ -1,25 +1,33 @@
 export const sidebar = {
   '/en/': [
     {
-      text: '演示',
+      text: 'Guide',
+      items: [{ text: 'describe', link: '/en/guide/' }]
+    },
+    {
+      text: 'Demo',
       items: [
-        { text: 'basic', link: '/en/basic/' },
-        { text: '双列表拖拽', link: '/en/tow-list/' },
-        { text: '克隆', link: '/en/clone/' },
-        { text: '自定义克隆', link: '/en/custom-clone/' },
-        { text: '指定元素触发', link: '/en/handle/' },
-        { text: 'Transition', link: '/en/transition/' },
-        { text: '内置动画合并', link: '/en/transitions/' },
-        { text: '表格行拖拽', link: '/en/table/' },
-        { text: '表格列拖拽', link: '/en/table-column/' }
+        { text: 'Basic', link: '/en/demo/basic/' },
+        { text: 'Dual list drag and drop', link: '/en/demo/tow-list/' },
+        { text: 'Clone', link: '/en/demo/clone/' },
+        { text: 'Custom Clone', link: '/en/demo/custom-clone/' },
+        { text: 'Handle', link: '/en/demo/handle/' },
+        { text: 'Target Container', link: '/en/demo/target-container/' },
+        { text: 'Transition', link: '/en/demo/transition/' },
+        { text: 'Mixin Animation', link: '/en/demo/transitions/' },
+        { text: 'Table Row', link: '/en/demo/table/' },
+        { text: 'Table Column', link: '/en/demo/table-column/' }
       ]
     }
   ],
   '/': [
     {
+      text: '指南',
+      items: [{ text: '说明', link: '/guide/' }]
+    },
+    {
       text: '演示',
       items: [
-        { text: '说明', link: '/demo/' },
         { text: '基础使用', link: '/demo/basic/' },
         { text: '双列表拖拽', link: '/demo/tow-list/' },
         { text: '克隆', link: '/demo/clone/' },
@@ -31,22 +39,6 @@ export const sidebar = {
         { text: '表格行拖拽', link: '/demo/table/' },
         { text: '表格列拖拽', link: '/demo/table-column/' },
         { text: '嵌套', link: '/demo/nested/' }
-      ]
-    },
-    {
-      text: '使用',
-      items: [
-        { text: '基础使用', link: '/basic/' }
-        // { text: '双列表拖拽', link: '/tow-list/' },
-        // { text: '克隆', link: '/clone/' },
-        // { text: '自定义克隆', link: '/custom-clone/' },
-        // { text: '指定元素触发', link: '/handle/' },
-        // { text: '指定目标容器', link: '/target-container/' },
-        // { text: 'Transition', link: '/transition/' },
-        // { text: '内置动画合并', link: '/transitions/' },
-        // { text: '表格行拖拽', link: '/table/' },
-        // { text: '表格列拖拽', link: '/table-column/' },
-        // { text: '嵌套', link: '/nested/' }
       ]
     }
   ]

@@ -5,23 +5,33 @@ import { genTemp } from '@ruabick/vite-plugin-gen-temp'
 import { sidebar } from './sidebar'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
-
+function getBaseURL(lang: string) {
+  if (process.env.NODE_ENV === 'production') {
+    return lang === 'zh-CN' ? '/vue-draggable-plus/' : '/vue-draggable-plus/en/'
+  } else {
+    return lang === 'zh-CN' ? '/' : '/en/'
+  }
+}
 export default defineConfigWithTheme({
-  lang: 'en-US',
+  lang: 'zh-CN',
   lastUpdated: true,
-  base: process.env.NODE_ENV === 'production' ? '/vue-draggable-plus' : '/',
+  head: [['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }]],
   locales: {
     '/': {
       lang: 'zh-CN',
       title: 'vue-draggable-plus',
       description: 'vue3拖拽排序组件',
-      label: '简体中文'
+      label: '简体中文',
+      // @ts-ignore
+      base: getBaseURL('zh-CN')
     },
     '/en/': {
       lang: 'en-US',
       title: 'vue-draggable-plus',
       description: 'vue3拖拽排序组件',
-      label: 'English'
+      label: 'English',
+      // @ts-ignore
+      base: getBaseURL('en-US')
     }
   },
   themeConfig: {
@@ -45,20 +55,21 @@ export default defineConfigWithTheme({
     locales: {
       '/': {
         label: '简体中文',
-        editLinkText: '在 GitHub 上编辑此页',
         lastUpdated: '上次更新',
         sidebar: sidebar['/'],
         nav: [
-          { text: '指南', link: '^/$|^/basic/' },
-          { text: '演示', link: '/demo/', activeMatch: '^/demo/' }
+          { text: '指南', link: '/guide/', activeMatch: '^/guide/' },
+          { text: '演示', link: '/demo/basic/', activeMatch: '^/demo/' }
         ]
       },
       '/en/': {
         label: 'English',
-        editLinkText: 'Edit this page on GitHub',
         lastUpdated: 'Last Updated',
         sidebar: sidebar['/en/'],
-        nav: [{ text: 'Guide', link: '/en/basic/' }]
+        nav: [
+          { text: 'Guide', link: '/en/guide/' },
+          { text: 'Demo', link: '/en/demo/basic/' }
+        ]
       }
     },
     socialLinks: [

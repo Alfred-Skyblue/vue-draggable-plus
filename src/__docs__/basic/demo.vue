@@ -1,6 +1,6 @@
 <template>
-  <button @click="start">启动</button>
-  <button @click="pause">暂停</button>
+  <button @click="start">start</button>
+  <button @click="pause">pause</button>
   <div class="flex">
     <VueDraggable
       ref="el"
@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { type UseDraggableReturn, VueDraggable } from 'vue-draggable-plus'
+import { UseDraggableReturn, VueDraggable } from 'vue-draggable-plus'
 const list = ref([
   {
     name: 'Joao',

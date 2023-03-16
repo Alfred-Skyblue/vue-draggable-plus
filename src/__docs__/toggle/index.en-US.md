@@ -1,5 +1,0 @@
----
-map:
-  path: /transition
----
-## Toggle
