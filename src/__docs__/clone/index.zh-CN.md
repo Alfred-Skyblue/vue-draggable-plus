@@ -1,6 +1,6 @@
 ---
 map:
-  path: /clone
+  path: /demo/clone
 ---
 
 # 拖拽克隆

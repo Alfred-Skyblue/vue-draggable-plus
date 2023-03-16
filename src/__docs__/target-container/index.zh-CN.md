@@ -1,6 +1,6 @@
 ---
 map:
-  path: /target-container
+  path: /demo/target-container
 ---
 
 # 指定目标容器

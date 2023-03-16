@@ -2,4 +2,4 @@
 map:
   path: /transition
 ---
-## Transition
+## Toggle

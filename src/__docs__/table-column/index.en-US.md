@@ -2,4 +2,4 @@
 map:
   path: /table-column
 ---
-## transition
+## TableColumn

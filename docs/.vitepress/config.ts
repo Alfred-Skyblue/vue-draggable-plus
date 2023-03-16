@@ -1,12 +1,13 @@
-import { defineConfig } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
 import { applyPlugins } from '@ruabick/md-demo-plugins'
 import { genTemp } from '@ruabick/vite-plugin-gen-temp'
 
 import { sidebar } from './sidebar'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
-export default defineConfig({
-  lang: 'zh-CN',
+
+export default defineConfigWithTheme({
+  lang: 'en-US',
   lastUpdated: true,
   base: process.env.NODE_ENV === 'production' ? '/vue-draggable-plus' : '/',
   locales: {
@@ -16,7 +17,7 @@ export default defineConfig({
       description: 'vue3拖拽排序组件',
       label: '简体中文'
     },
-    '/en': {
+    '/en/': {
       lang: 'en-US',
       title: 'vue-draggable-plus',
       description: 'vue3拖拽排序组件',
@@ -24,22 +25,42 @@ export default defineConfig({
     }
   },
   themeConfig: {
+    repo: 'vuejs/vitepress',
+    editLinks: true,
     logo: '/logo.svg',
     sidebar,
-    nav: [
-      { text: '指南', link: '/basic/' },
-      {
-        text: '语言',
-        items: [
-          { text: '简体中文', link: '/' },
-          { text: 'English', link: '/en/' }
+    nav: [{ text: '指南', link: '/basic/' }],
+    localeLinks: {
+      items: [
+        {
+          link: '/',
+          text: '简体中文'
+        },
+        {
+          link: '/en/',
+          text: 'English'
+        }
+      ]
+    },
+    locales: {
+      '/': {
+        label: '简体中文',
+        editLinkText: '在 GitHub 上编辑此页',
+        lastUpdated: '上次更新',
+        sidebar: sidebar['/'],
+        nav: [
+          { text: '指南', link: '^/$|^/basic/' },
+          { text: '演示', link: '/demo/', activeMatch: '^/demo/' }
         ]
+      },
+      '/en/': {
+        label: 'English',
+        editLinkText: 'Edit this page on GitHub',
+        lastUpdated: 'Last Updated',
+        sidebar: sidebar['/en/'],
+        nav: [{ text: 'Guide', link: '/en/basic/' }]
       }
-    ],
-    // algolia: {
-    //   apiKey: 'b3d9c3b0c0f3f1f3f3f3f3f3f3f3f3f3',
-    //   indexName: 'vue-draggable-plus'
-    // },
+    },
     socialLinks: [
       {
         icon: 'github',
@@ -47,6 +68,7 @@ export default defineConfig({
       }
     ]
   },
+
   vue: {},
   vite: {
     server: {

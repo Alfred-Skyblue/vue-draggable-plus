@@ -1,6 +1,6 @@
 ---
 map:
-  path: /table-column
+  path: /demo/table-column
 ---
 # 表格列拖拽
 

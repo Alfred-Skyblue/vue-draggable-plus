@@ -2,7 +2,7 @@
 map:
   path: /demo/transition
 ---
-# Transition
+# transition
 
 我们可以使用 transition 组件来实现过渡动画。
 

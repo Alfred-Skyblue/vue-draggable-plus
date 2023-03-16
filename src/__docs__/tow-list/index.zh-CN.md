@@ -1,6 +1,6 @@
 ---
 map:
-  path: /tow-list
+  path: /demo/tow-list
 ---
 # 双列表拖拽排序
 

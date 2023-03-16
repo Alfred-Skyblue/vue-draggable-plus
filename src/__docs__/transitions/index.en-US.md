@@ -2,4 +2,4 @@
 map:
   path: /transitions
 ---
-## transition
+## Transitions Animations

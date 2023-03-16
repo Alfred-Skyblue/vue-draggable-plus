@@ -1,6 +1,6 @@
 ---
 map:
-  path: /custom-clone
+  path: /demo/custom-clone
 ---
 
 # 自定义克隆

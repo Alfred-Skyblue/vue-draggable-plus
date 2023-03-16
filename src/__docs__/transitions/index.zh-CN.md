@@ -1,6 +1,6 @@
 ---
 map:
-  path: /transitions
+  path: /demo/transitions
 ---
 # 混合动画
 

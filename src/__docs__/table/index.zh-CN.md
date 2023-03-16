@@ -1,6 +1,6 @@
 ---
 map:
-  path: /table
+  path: /demo/table
 ---
 # Table
 

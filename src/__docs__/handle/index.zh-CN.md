@@ -1,6 +1,6 @@
 ---
 map:
-  path: /handle
+  path: /demo/handle
 ---
 
 # 使用操纵控制器拖拽

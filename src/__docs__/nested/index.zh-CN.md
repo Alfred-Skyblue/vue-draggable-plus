@@ -1,6 +1,6 @@
 ---
 map:
-  path: /nested
+  path: /demo/nested
 ---
 
 # 嵌套
