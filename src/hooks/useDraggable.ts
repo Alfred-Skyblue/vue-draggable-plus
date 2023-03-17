@@ -1,11 +1,5 @@
-import Sortable, { type Options, SortableEvent } from 'sortablejs'
-import {
-  getCurrentInstance,
-  nextTick,
-  onMounted,
-  onUnmounted,
-  unref
-} from 'vue-demi'
+import Sortable, { type Options, type SortableEvent } from 'sortablejs'
+import { getCurrentInstance, onMounted, onUnmounted, unref } from 'vue-demi'
 import type { Ref } from 'vue-demi'
 import type { Fn, RefOrElement, RefOrValue } from '../types'
 
@@ -33,13 +27,12 @@ function tryOnUnmounted(fn: Fn) {
   if (getCurrentInstance()) onUnmounted(fn)
 }
 
-function tryOnMounted(fn: Fn, sync = true) {
+function tryOnMounted(fn: Fn) {
   if (getCurrentInstance()) onMounted(fn)
-  else if (sync) fn()
-  else nextTick(fn)
+  else fn()
 }
 
-const CLONE_ELEMENT_KEY = '__clone__draggable__element__node__'
+const CLONE_ELEMENT_KEY = '__CLONE__DRAGGABLE__ELEMENT__NODE__'
 
 interface DraggableEvent extends SortableEvent {
   item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
