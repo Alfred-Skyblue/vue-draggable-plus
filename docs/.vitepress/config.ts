@@ -59,7 +59,8 @@ export default defineConfigWithTheme({
         sidebar: sidebar['/'],
         nav: [
           { text: '指南', link: '/guide/', activeMatch: '^/guide/' },
-          { text: '演示', link: '/demo/basic/', activeMatch: '^/demo/' }
+          { text: '演示', link: '/demo/basic/', activeMatch: '^/demo/' },
+          { text: 'API', link: '/api/', activeMatch: '^/api/' }
         ]
       },
       '/en/': {

@@ -7,7 +7,6 @@
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded h-300px overflow-auto"
       target=".sort-target"
       :scroll="true"
-      animation="150"
     >
       <TransitionGroup
         type="transition"

@@ -1,6 +1,6 @@
 # Describe
 
-Since the `vue3` component of `Sortablejs` has not been updated, it has been seriously out of touch with `vue3`, so this project was born. This component is based on `Sortablejs`, so if you want to know more about `Sortablejs`, you can check it out [`Sortablejs` official website](https://sortablejs.github.io/Sortable/)
+Since the `vue3` component of `Sortablejs` has not been updated, it has been seriously out of touch with `vue3`, so this project was born. This component is based on `Sortablejs`, so if you want to know more about `Sortablejs`, you can check it out [`Sortablejs` official website](https://github.com/SortableJS/Sortable)
 
 We have encapsulated a variety of usages for this, you can use components, `hooks`, or instructions, there is always one that suits you
 

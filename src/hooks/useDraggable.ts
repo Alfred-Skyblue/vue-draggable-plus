@@ -146,6 +146,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * preset options
    */
   const presetOptions: UseDraggableOptions<T> = {
+    // TODO: 待处理多选
     onUpdate,
     onStart,
     onAdd,
