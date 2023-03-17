@@ -1,5 +1,5 @@
 <template>
-  <VueDraggable v-model="list" target=".sort-target">
+  <VueDraggable v-model="list" target=".sort-target" animation="150">
     <table>
       <thead>
         <tr>
