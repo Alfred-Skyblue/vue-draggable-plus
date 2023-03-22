@@ -1,12 +1,30 @@
 {
   "name": "vue-draggable-plus",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": {
+    "name": "yangpanteng",
+    "email": "yangpanteng@gmail.com"
+  },
   "description": "vue3拖拽排序组件",
+  "homepage": "https://github.com/Alfred-Skyblue/vue-draggable-plus#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alfred-Skyblue/vue-draggable-plus"
+  },
   "type": "module",
   "types": "./dist/index.d.ts",
   "main": "./dist/vue-draggable-plus.umd.cjs",
   "module": "./dist/vue-draggable-plus.js",
   "sideEffects": false,
+  "license": "MIT",
+  "keywords": [],
+  "files": [
+    "dist",
+    "src",
+    "types",
+    "LICENSE",
+    "README.md"
+  ],
   "exports": {
     ".": {
       "import": "./dist/vue-draggable-plus.js",
@@ -18,16 +36,15 @@
     "build": "vite build",
     "site:build": "initial-scan docs && cross-env NODE_ENV=production vitepress build .docs",
     "serve": "cross-env NODE_ENV=production vitepress serve .docs --host",
-    "deploy": "gh-pages -d .docs/.vitepress/dist -t true",
     "docs-build-deploy": "yarn docs-build && yarn docs-deploy",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "lint": "eslint src/**/*.{vue,ts,tsx}",
+    "lint": "eslint src/**/*.ts",
     "lint-fix": "pnpm lint --fix",
     "release": "np"
   },
-  "keywords": [],
-  "author": "ypt",
-  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@algolia/client-search": "^4.15.0",
     "@ruabick/md-demo-plugins": "latest",
@@ -43,7 +60,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-vue": "^9.9.0",
-    "gh-pages": "^4.0.0",
     "np": "^7.6.2",
     "prettier": "^2.7.1",
     "sortablejs": "^1.15.0",
@@ -56,8 +72,9 @@
     "vue-demi": "^0.13.11",
     "vue-eslint-parser": "^9.1.0"
   },
-  "peerDependencies": {
-    "sortablejs": "*",
-    "vue": ">=2.7 || >=3"
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   }
 }
