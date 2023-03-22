@@ -1,7 +1,7 @@
 import type { ObjectDirective } from 'vue-demi'
 import type { Ref } from 'vue-demi'
 import type { RefOrValue } from './types'
-import { useDraggable, UseDraggableOptions } from './hooks'
+import { useDraggable, UseDraggableOptions } from './useDraggable'
 import { isProxy, isVue3 } from 'vue-demi'
 
 const directiveHooks = {

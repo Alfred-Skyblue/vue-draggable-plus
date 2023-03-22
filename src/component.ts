@@ -8,7 +8,7 @@ import {
   useAttrs
 } from 'vue-demi'
 import { objectMap } from './utils'
-import { useDraggable } from './hooks'
+import { useDraggable } from './useDraggable'
 
 // Need to declare Event thrown here, otherwise it will cause Sortablejs internal dispatch Event, repeated trigger events
 const emits = [

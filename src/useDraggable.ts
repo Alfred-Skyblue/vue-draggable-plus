@@ -1,9 +1,9 @@
 import Sortable, { type Options, type SortableEvent } from 'sortablejs'
 import { getCurrentInstance, onMounted, onUnmounted, unref } from 'vue-demi'
 import type { Ref } from 'vue-demi'
-import type { Fn, RefOrElement, RefOrValue } from '../types'
+import type { Fn, RefOrElement, RefOrValue } from './types'
 
-import { error } from '../utils/log'
+import { error } from './utils/log'
 
 import {
   getElementBySelector,
@@ -16,7 +16,7 @@ import {
   moveArrayElement,
   removeElement,
   removeNode
-} from '../utils'
+} from './utils'
 
 function defaultClone<T>(element: T): T {
   if (element === undefined || element === null) return element
@@ -37,7 +37,7 @@ const CLONE_ELEMENT_KEY = '__CLONE__DRAGGABLE__ELEMENT__NODE__'
 interface DraggableEvent extends SortableEvent {
   item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
 }
-type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy'
+type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy' | 'option'
 
 export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
   /**
@@ -47,6 +47,7 @@ export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
    */
   start: (target?: HTMLElement) => void
   pause: () => void
+  resume: () => void
 }
 
 export interface UseDraggableOptions<T> extends Options {
@@ -139,7 +140,6 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * preset options
    */
   const presetOptions: UseDraggableOptions<T> = {
-    // TODO: 待处理多选
     onUpdate,
     onStart,
     onAdd,
@@ -171,6 +171,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   const methods: Pick<Sortable, SortableMethod> = {
+    option: (name: keyof Options, value?: any) => instance?.option(name, value),
     destroy: () => {
       instance?.destroy()
       instance = null
@@ -182,11 +183,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     closest: (...args) => instance?.closest(...args)
   }
 
-  const pause = () => methods?.destroy()
-
+  const pause = () => methods?.option('disabled', true)
+  const resume = () => methods?.option('disabled', false)
   tryOnMounted(start)
 
   tryOnUnmounted(methods.destroy)
 
-  return { start, pause, ...methods }
+  return { start, pause, resume, ...methods }
 }
