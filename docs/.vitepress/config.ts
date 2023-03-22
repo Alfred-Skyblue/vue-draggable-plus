@@ -12,6 +12,7 @@ function getBaseURL(lang: string) {
     return lang === 'zh-CN' ? '/' : '/en/'
   }
 }
+
 export default defineConfigWithTheme({
   lang: 'zh-CN',
   lastUpdated: true,
