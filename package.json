@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "initial-scan docs && vitepress dev .docs --host",
     "build": "vite build",
-    "site:build": "initial-scan docs && cross-env NODE_ENV=production vitepress build .docs",
+    "docs:build": "initial-scan docs && cross-env NODE_ENV=production vitepress build .docs",
     "serve": "cross-env NODE_ENV=production vitepress serve .docs --host",
     "docs-build-deploy": "yarn docs-build && yarn docs-deploy",
     "lint": "eslint src/**/*.ts",
