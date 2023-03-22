@@ -40,6 +40,10 @@ export const sidebar = {
         { text: '表格列拖拽', link: '/demo/table-column/' },
         { text: '嵌套', link: '/demo/nested/' }
       ]
+    },
+    {
+      text: 'API',
+      items: [{ text: 'API', link: '/api/' }]
     }
   ]
 }
