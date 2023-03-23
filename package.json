@@ -46,8 +46,7 @@
     "serve": "cross-env NODE_ENV=production vitepress serve .docs --host",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "pnpm lint --fix",
-    "release": "np",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "np"
   },
   "publishConfig": {
     "access": "public",
