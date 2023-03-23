@@ -1,4 +1,4 @@
-# 说明
+# 使用说明
 
 由于 `Sortablejs` 的 `vue3` 组件一直没有更新，已经跟 `vue3` 严重脱节，所以诞生了这个项目，这个组件是基于 `Sortablejs` 的，所以如果你想了解更多关于 `Sortablejs` 的信息，可以查看[Sortablejs 官网](https://github.com/SortableJS/Sortable)。
 
