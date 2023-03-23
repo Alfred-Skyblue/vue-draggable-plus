@@ -69,5 +69,5 @@ useDraggable(el1, list1, {
     console.log('clone')
   }
 })
-useDraggable(el1, list1, { animation: 150, group: 'people' })
+useDraggable(el2, list2, { animation: 150, group: 'people' })
 </script>
