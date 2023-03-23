@@ -1,12 +1,12 @@
 {
   "name": "vue-draggable-plus",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "author": {
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
   },
   "description": "vue3拖拽排序组件",
-  "homepage": "https://github.com/Alfred-Skyblue/vue-draggable-plus#readme",
+  "homepage": "https://alfred-skyblue.github.io/vue-draggable-plus/",
   "repository": {
     "type": "git",
     "url": "https://github.com/Alfred-Skyblue/vue-draggable-plus"
@@ -17,7 +17,16 @@
   "module": "./dist/vue-draggable-plus.js",
   "sideEffects": false,
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "vue2.x",
+    "vue3.x",
+    "Sortable",
+    "sortablejs",
+    "drag",
+    "dragging",
+    "vue-draggable",
+    "vue-draggable-plus"
+  ],
   "files": [
     "dist",
     "LICENSE",
@@ -34,7 +43,6 @@
     "build": "vite build",
     "docs:build": "initial-scan docs && cross-env NODE_ENV=production vitepress build .docs",
     "serve": "cross-env NODE_ENV=production vitepress serve .docs --host",
-    "docs-build-deploy": "yarn docs-build && yarn docs-deploy",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "pnpm lint --fix",
     "release": "np"
