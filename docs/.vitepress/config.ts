@@ -102,5 +102,10 @@ export default defineConfigWithTheme({
       light: 'github-light',
       dark: 'github-dark'
     }
+  },
+  buildEnd() {
+    setTimeout(() => {
+      process.exit(0)
+    }, 2000)
   }
 })

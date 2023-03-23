@@ -16,7 +16,7 @@
 ## 安装
 
 ```bash
-npm install vue-draggable-plus sortablejs
+npm install vue-draggable-plus
 ```
 
 ## 使用
