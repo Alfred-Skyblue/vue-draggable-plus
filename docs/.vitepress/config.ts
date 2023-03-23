@@ -6,17 +6,14 @@ import { sidebar } from './sidebar'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
 function getBaseURL(lang: string) {
-  if (process.env.NODE_ENV === 'production') {
-    return lang === 'zh-CN' ? '/vue-draggable-plus/' : '/vue-draggable-plus/en/'
-  } else {
-    return lang === 'zh-CN' ? '/' : '/en/'
-  }
+  return lang === 'zh-CN' ? '/vue-draggable-plus/' : '/vue-draggable-plus/en/'
 }
 
 export default defineConfigWithTheme({
   lang: 'zh-CN',
   lastUpdated: true,
   head: [['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }]],
+  base: '/vue-draggable-plus/',
   locales: {
     '/': {
       lang: 'zh-CN',
