@@ -12,7 +12,16 @@ function getBaseURL(lang: string) {
 export default defineConfigWithTheme({
   lang: 'zh-CN',
   lastUpdated: true,
-  head: [['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }]],
+  head: [
+    [
+      'link',
+      {
+        rel: 'icon',
+        href: '/vue-draggable-plus/logo.svg',
+        type: 'image/svg+xml'
+      }
+    ]
+  ],
   locales: {
     '/': {
       lang: 'zh-CN',
@@ -34,7 +43,7 @@ export default defineConfigWithTheme({
   themeConfig: {
     repo: 'vuejs/vitepress',
     editLinks: true,
-    logo: '/logo.svg',
+    logo: '/vue-draggable-plus/logo.svg',
     sidebar,
     nav: [{ text: '指南', link: '/basic/' }],
     // localeLinks: {

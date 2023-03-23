@@ -8,7 +8,7 @@ hero:
   name: VueDraggablePlus
   text: 支持 Vue2 和 Vue3 的拖拽组件
   image:
-     src: /logo.svg
+     src: /vue-draggable-plus/logo.svg
   actions:
     - theme: brand
       text: 开始
