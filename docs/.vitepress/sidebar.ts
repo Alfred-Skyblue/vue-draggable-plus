@@ -23,7 +23,7 @@ export const sidebar = {
   '/': [
     {
       text: '指南',
-      items: [{ text: '说明', link: '/guide/' }]
+      items: [{ text: '使用说明', link: '/guide/' }]
     },
     {
       text: '演示',
