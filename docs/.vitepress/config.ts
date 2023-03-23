@@ -5,20 +5,18 @@ import { genTemp } from '@ruabick/vite-plugin-gen-temp'
 import { sidebar } from './sidebar'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
-function getBaseURL(lang: string) {
-  return lang === 'zh-CN' ? '/vue-draggable-plus/' : '/vue-draggable-plus/en/'
-}
 
 export default defineConfigWithTheme({
   lang: 'zh-CN',
   lastUpdated: true,
+  base: '/vue-draggable-plus/',
   head: [
     [
       'link',
       {
         rel: 'icon',
-        href: '/vue-draggable-plus/logo.svg',
-        type: 'image/svg+xml'
+        type: 'image/svg+xml',
+        href: '/vue-draggable-plus/favicon.svg'
       }
     ]
   ],
@@ -29,7 +27,7 @@ export default defineConfigWithTheme({
       description: 'vue3拖拽排序组件',
       label: '简体中文',
       // @ts-ignore
-      base: getBaseURL('zh-CN')
+      base: '/vue-draggable-plus/'
     },
     '/en/': {
       lang: 'en-US',
@@ -37,13 +35,13 @@ export default defineConfigWithTheme({
       description: 'vue3拖拽排序组件',
       label: 'English',
       // @ts-ignore
-      base: getBaseURL('en-US')
+      base: '/vue-draggable-plus/en/'
     }
   },
   themeConfig: {
     repo: 'vuejs/vitepress',
     editLinks: true,
-    logo: '/vue-draggable-plus/logo.svg',
+    logo: '/logo.svg',
     sidebar,
     nav: [{ text: '指南', link: '/basic/' }],
     // localeLinks: {
