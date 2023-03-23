@@ -20,8 +20,6 @@
   "keywords": [],
   "files": [
     "dist",
-    "src",
-    "types",
     "LICENSE",
     "README.md"
   ],
