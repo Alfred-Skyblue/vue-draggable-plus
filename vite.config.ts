@@ -11,9 +11,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, './src/index.ts'),
-      name: 'vue-draggable-plus',
-      // the proper extensions will be added
-      fileName: 'vue-draggable-plus'
+      name: 'VueDraggablePlus',
+      fileName: 'vue-draggable-plus',
+      formats: ['es', 'umd', 'cjs', 'iife']
     },
     rollupOptions: {
       // @ts-ignore

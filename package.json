@@ -35,7 +35,8 @@
   "exports": {
     ".": {
       "import": "./dist/vue-draggable-plus.js",
-      "require": "./dist/vue-draggable-plus.umd.cjs"
+      "require": "./dist/vue-draggable-plus.cjs",
+      "default": "./dist/vue-draggable-plus.umd.cjs"
     }
   },
   "scripts": {
