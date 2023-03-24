@@ -1,4 +1,4 @@
-<center><img src="./docs/public/logo.svg" alt=""></center>
+<p align="center"><img src="./docs/public/logo.svg" alt=""></p>
 # vue-draggable-plus
 
 拖拽排序组件，支持 Vue>=v3或 Vue >=2.7，当然如果您是 vue2.6 一下用户，只需要导入 `@vue/composition-api` 就可以使用了。
