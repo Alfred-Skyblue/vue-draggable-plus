@@ -14,7 +14,7 @@ type VDraggableBinding = [
   options?: RefOrValue<UseDraggableOptions<any>>
 ]
 
-const destroyMap: WeakMap<HTMLElement, () => void> = new WeakMap()
+const elementMap: WeakMap<HTMLElement, () => void> = new WeakMap()
 
 export const vDraggable: ObjectDirective<
   HTMLElement,
@@ -24,10 +24,10 @@ export const vDraggable: ObjectDirective<
     const params = isProxy(binding.value) ? [binding.value] : binding.value
 
     const state = useDraggable(el!, ...(params as VDraggableBinding))
-    destroyMap.set(el, state.destroy)
+    elementMap.set(el, state.destroy)
   },
   [directiveHooks.unmounted](el) {
-    destroyMap.get(el)?.()
-    destroyMap.delete(el)
+    elementMap.get(el)?.()
+    elementMap.delete(el)
   }
 }
