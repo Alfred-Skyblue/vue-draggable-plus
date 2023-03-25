@@ -1,7 +1,8 @@
 <p align="center"><img src="./docs/public/logo.svg" alt=""></p>
+
 # vue-draggable-plus
 
-拖拽排序组件，支持 Vue>=v3或 Vue >=2.7，当然如果您是 vue2.6 一下用户，只需要导入 `@vue/composition-api` 就可以使用了。
+拖拽排序模块，支持 Vue>=v3或 Vue >=2.7，当然如果您是 vue2.6 一下用户，只需要导入 `@vue/composition-api` 就可以使用了，这都是 [vue-demi](https://github.com/vueuse/vue-demi) 赋予我们的能力。
 
 [中文文档](alfred-skyblue.github.io/vue-draggable-plus/)
 ## 说明
