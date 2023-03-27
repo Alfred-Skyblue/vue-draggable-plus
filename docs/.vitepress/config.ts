@@ -44,18 +44,18 @@ export default defineConfigWithTheme({
     logo: '/logo.svg',
     sidebar,
     nav: [{ text: '指南', link: '/basic/' }],
-    // localeLinks: {
-    //   items: [
-    //     {
-    //       link: '/',
-    //       text: '简体中文'
-    //     },
-    //     {
-    //       link: '/en/',
-    //       text: 'English'
-    //     }
-    //   ]
-    // },
+    localeLinks: {
+      items: [
+        {
+          link: '/',
+          text: '简体中文'
+        },
+        {
+          link: '/en/',
+          text: 'English'
+        }
+      ]
+    },
     locales: {
       '/': {
         label: '简体中文',
