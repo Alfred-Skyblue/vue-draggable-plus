@@ -20,6 +20,14 @@ module.exports = defineConfig({
     sourceType: 'module',
     ecmaVersion: 2021
   },
+  overrides:[
+    {
+      files: ['*.ts'],
+      rules: {
+        'no-console': ['error', { allow: ['warn', 'error'] }],
+      }
+    }
+  ],
   rules: {
     'no-debugger': ['error'],
     'node/no-unpublished-require': 0,
