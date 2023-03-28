@@ -1,4 +1,10 @@
-# Describe
+# vue-draggable-plus
+
+Drag and drop sorting module, support Vue>=v3 or Vue>=2.7
+
+[Example of use](https://stackblitz.com/edit/vue-rpa7f8?file=src%2FApp.vue)
+
+## Describe
 
 Since the `vue3` component of `Sortablejs` has not been updated, it has been seriously out of touch with `vue3`, so this project was born. This component is based on `Sortablejs`, so if you want to know more about `Sortablejs`, you can check it out [`Sortablejs` official website](https://github.com/SortableJS/Sortable)
 

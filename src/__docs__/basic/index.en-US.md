@@ -10,21 +10,21 @@ Single list drag and drop sorting, two way data binding.
 ## Component Usage
 
 <demo src="./demo.vue"
-title="组件使用"
-desc="使用组件完成拖拽排序">
+title="Component usage"
+desc="Use components to complete drag and drop sorting">
 </demo>
 
 
 ## Hooks Usage
 <demo src="./hooks.vue"
-title="hooks 使用"
-desc="使用 hooks 完成拖拽排序">
+title="hooks usage"
+desc="Use hooks to complete drag and drop sorting">
 </demo>
 
 
 ## Directive Usage
 
 <demo src="./directive.vue"
-title="指令使用"
+title="directive use"
 desc="使用指令完成拖拽排序">
 </demo>

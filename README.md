@@ -2,28 +2,35 @@
 
 # vue-draggable-plus
 
-拖拽排序模块，支持 Vue>=v3或 Vue >=2.7，当然如果您是 vue2.6 一下用户，只需要导入 `@vue/composition-api` 就可以使用了，这都是 [vue-demi](https://github.com/vueuse/vue-demi) 赋予我们的能力。
+[Document](https://alfred-skyblue.github.io/vue-draggable-plus/en/)
+[中文文档](https://alfred-skyblue.github.io/vue-draggable-plus/)
 
-[中文文档](alfred-skyblue.github.io/vue-draggable-plus/)
-## 说明
 
-由于 `Sortablejs` 的 `vue3` 组件一直没有更新，已经跟 `vue3` 严重脱节，所以诞生了这个项目，这个组件是基于 `Sortablejs` 的，所以如果你想了解更多关于 `Sortablejs` 的信息，可以查看[Sortablejs 官网](https://github.com/SortableJS/Sortable)。
+Drag and drop sorting module, support Vue>=v3 or Vue>=2.7
 
-我们对此封装了多种用法，您可以使用组件的方式，也可以使用 `hooks` 的方式，也可以使用指令的方式，总有一款适合您
+[Example of use](https://stackblitz.com/edit/vue-rpa7f8?file=src%2FApp.vue)
 
-## 解决痛点
+## Describe
 
-在 `Sortablejs` 官方以往的 `Vue` 组件中，都是通过使用组件作为列表的直接子元素来实现拖拽列表，当我们使用一些组件库时，如果组件库中没有提供列表根元素的插槽，我们很难实现拖拽列表，vue-draggable-plus 完美解决了这个问题，它可以让你在任何元素上使用拖拽列表，我们可以使用指定元素的选择器，来获取到列表根元素，然后将列表根元素作为 `Sortablejs` 的 `container`，详情参考[指定目标容器](/demo/target-container/)。
+Since the `vue3` component of `Sortablejs` has not been updated, it has been seriously out of touch with `vue3`, so this project was born. This component is based on `Sortablejs`, so if you want to know more about `Sortablejs`, you can check it out [`Sortablejs` official website](https://github.com/SortableJS/Sortable)
 
-## 安装
+We have encapsulated a variety of usages for this, you can use components, `hooks`, or instructions, there is always one that suits you
+
+## Solve pain points
+
+In `Sortablejs` official `Vue` components in the past, the drag-and-drop list is implemented by using the component as a direct child element of the list. When we use some component libraries, if there is no slot for the root element of the list in the component library , it is difficult for us to implement a drag list, vue-draggable-plus perfectly solves this problem, it allows you to use a drag list on any element, we can use the selector of the specified element to get the root element of the list, and then Use the root element of the list as `container` of `Sortablejs`, for details, refer to [specify target container](/demo/target-container/).
+
+## Install
 
 ```bash
+
 npm install vue-draggable-plus
+
 ```
 
-## 使用
+## Usage
 
-### 组件方式
+### Component usage
 
 ```vue
 <template>
@@ -58,7 +65,7 @@ const list = ref([
 </script>
 ```
 
-### hooks 方式
+### Hooks Usage
 
 ```vue
 <template>
@@ -98,7 +105,7 @@ const list = ref([
     id: 4
   }
 ])
-// 返回值是一个对象，包含了一些方法，比如 start、destroy、pause 等
+// The return value is an object, which contains some methods, such as start, destroy, pause, etc.
 const draggable = useDraggable<UseDraggableReturn>(el, list, {
   animation: 150,
   onStart() {
@@ -111,25 +118,25 @@ const draggable = useDraggable<UseDraggableReturn>(el, list, {
 </script>
 ```
 
-### 指令方式
+### Directive Usage
 
 ```vue
 <template>
-    <div
-      v-draggable="[
+  <div
+    v-draggable="[
         list,
         {
           animation: 150,
         }
       ]"
+  >
+    <div
+      v-for="item in list"
+      :key="item.id"
     >
-      <div
-        v-for="item in list"
-        :key="item.id"
-      >
-        {{ item.name }}
-      </div>
+      {{ item.name }}
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
