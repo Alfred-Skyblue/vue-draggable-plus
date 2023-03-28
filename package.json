@@ -1,12 +1,12 @@
 {
   "name": "vue-draggable-plus",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
   },
   "description": "vue3拖拽排序组件",
-  "homepage": "https://alfred-skyblue.github.io/vue-draggable-plus/en/",
+  "homepage": "https://alfred-skyblue.github.io/vue-draggable-plus/",
   "repository": {
     "type": "git",
     "url": "https://github.com/Alfred-Skyblue/vue-draggable-plus"

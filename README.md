@@ -2,7 +2,6 @@
 
 # vue-draggable-plus
 
-[Document](https://alfred-skyblue.github.io/vue-draggable-plus/en/)
 [中文文档](https://alfred-skyblue.github.io/vue-draggable-plus/)
 
 
