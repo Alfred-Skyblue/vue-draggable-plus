@@ -9,6 +9,7 @@ export default defineConfig({
     port: 5230
   },
   build: {
+    target: 'es2015',
     lib: {
       entry: resolve(__dirname, './src/index.ts'),
       name: 'VueDraggablePlus',
