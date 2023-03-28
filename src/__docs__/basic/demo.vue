@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { UseDraggableReturn, VueDraggable } from 'vue-draggable-plus'
+import { type UseDraggableReturn, VueDraggable } from 'vue-draggable-plus'
 const list = ref([
   {
     name: 'Joao',

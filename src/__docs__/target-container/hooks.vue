@@ -10,10 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, getCurrentInstance } from 'vue'
 import { useDraggable } from 'vue-draggable-plus'
 import ElTable from './ElTable.vue'
-import { getCurrentInstance } from 'vue-demi'
 
 const vm = getCurrentInstance()
 onMounted(() => {
