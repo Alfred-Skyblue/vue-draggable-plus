@@ -68,7 +68,16 @@ export function useDraggable<T>(
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseDraggableReturn
 export function useDraggable<T>(
+  el: null | undefined,
+  list?: Ref<T[] | undefined>,
+  options?: RefOrValue<UseDraggableOptions<T>>
+): UseDraggableReturn
+export function useDraggable<T>(
   el: Ref<HTMLElement | null | undefined>,
+  options?: RefOrValue<UseDraggableOptions<T>>
+): UseDraggableReturn
+export function useDraggable<T>(
+  el: null | undefined,
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseDraggableReturn
 
@@ -192,7 +201,6 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   const resume = () => methods?.option('disabled', false)
 
   tryOnMounted(() => {
-    // Add immediate option
     immediate && start()
   })
 
