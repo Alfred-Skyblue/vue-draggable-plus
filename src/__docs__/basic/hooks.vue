@@ -1,4 +1,5 @@
 <template>
+  <button @click="start()">start</button>
   <div class="flex">
     <div
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
@@ -39,7 +40,8 @@ const list = ref([
 ])
 const el = ref()
 
-useDraggable(el, list, {
+const { start } = useDraggable(el, list, {
+  immediate: false,
   animation: 150,
   ghostClass: 'ghost',
   onStart() {

@@ -52,6 +52,7 @@ export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
 
 export interface UseDraggableOptions<T> extends Options {
   clone?: (element: T) => T
+  immediate?: boolean
 }
 
 /**
@@ -90,7 +91,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   let instance: Sortable | null = null
-  const { clone = defaultClone, ...restOptions } = unref(options) ?? {}
+  const {
+    immediate = true,
+    clone = defaultClone,
+    ...restOptions
+  } = unref(options) ?? {}
 
   /**
    * Element dragging started
@@ -185,7 +190,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
 
   const pause = () => methods?.option('disabled', true)
   const resume = () => methods?.option('disabled', false)
-  tryOnMounted(start)
+
+  tryOnMounted(() => {
+    // Add immediate option
+    immediate && start()
+  })
 
   tryOnUnmounted(methods.destroy)
 
