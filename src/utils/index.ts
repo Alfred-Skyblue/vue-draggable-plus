@@ -33,7 +33,9 @@ export function camelize(str: string) {
  */
 export function objectMap(object: Record<any, any>) {
   return Object.keys(object).reduce((result, key) => {
-    result[camelize(key)] = object[key]
+    if (typeof object[key] !== 'undefined') {
+      result[camelize(key)] = object[key]
+    }
     return result
   }, {} as Record<string, any>)
 }

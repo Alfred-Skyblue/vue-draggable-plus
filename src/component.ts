@@ -1,14 +1,60 @@
-import {
-  type PropType,
-  defineComponent,
-  h,
-  reactive,
-  ref,
-  computed,
-  useAttrs
-} from 'vue-demi'
+import { defineComponent, h, reactive, ref, computed, useAttrs } from 'vue-demi'
 import { objectMap } from './utils'
-import { useDraggable } from './useDraggable'
+import { useDraggable, UseDraggableOptions } from './useDraggable'
+import { toRaw } from 'vue'
+
+interface IProps extends UseDraggableOptions<any> {
+  modelValue: any[]
+  tag?: string
+  target?: string
+}
+const props = [
+  'onUpdate',
+  'onStart',
+  'onAdd',
+  'onRemove',
+  'animation',
+  'ghostClass',
+  'group',
+  'sort',
+  'disabled',
+  'store',
+  'handle',
+  'draggable',
+  'swapThreshold',
+  'invertSwap',
+  'invertedSwapThreshold',
+  'removeCloneOnHide',
+  'direction',
+  'chosenClass',
+  'dragClass',
+  'ignore',
+  'filter',
+  'preventOnFilter',
+  'easing',
+  'setData',
+  'dropBubble',
+  'dragoverBubble',
+  'dataIdAttr',
+  'delay',
+  'delayOnTouchOnly',
+  'touchStartThreshold',
+  'forceFallback',
+  'fallbackClass',
+  'fallbackOnBody',
+  'fallbackTolerance',
+  'fallbackOffset',
+  'supportPointer',
+  'emptyInsertThreshold',
+  'scroll',
+  'forceAutoScrollFallback',
+  'scrollSensitivity',
+  'scrollSpeed',
+  'bubbleScroll',
+  'modelValue',
+  'tag',
+  'target'
+] as const
 
 // Need to declare Event thrown here, otherwise it will cause Sortablejs internal dispatch Event, repeated trigger events
 const emits = [
@@ -26,24 +72,13 @@ const emits = [
   'change'
 ] as const
 
-export const VueDraggable = defineComponent({
+export const VueDraggable = defineComponent<IProps>({
   name: 'VueDraggable',
   model: {
     prop: 'modelValue',
     event: 'update:modelValue'
   },
-  props: {
-    modelValue: {
-      type: Array as PropType<any[]>
-    },
-    tag: {
-      type: String,
-      default: 'div'
-    },
-    target: {
-      type: String
-    }
-  },
+  props: props as unknown as any,
   emits: ['update:modelValue', ...emits],
   setup(props, { slots, emit, expose }) {
     const attrs = useAttrs()
@@ -56,7 +91,14 @@ export const VueDraggable = defineComponent({
       return acc
     }, {} as any)
 
-    const options = computed(() => ({ ...objectMap(attrs), ...events }))
+    const options = computed(() => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { modelValue, ...rest } = toRaw(props)
+      return {
+        ...objectMap({ ...attrs, ...rest }),
+        ...events
+      }
+    })
 
     const list = computed({
       get: () => props.modelValue,
@@ -72,7 +114,7 @@ export const VueDraggable = defineComponent({
 
     return () => {
       if (slots.default)
-        return h(props.tag, { ref: target }, slots.default(data))
+        return h(props.tag || 'div', { ref: target }, slots.default(data))
     }
   }
 })

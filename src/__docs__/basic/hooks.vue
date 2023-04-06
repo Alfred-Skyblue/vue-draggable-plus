@@ -41,7 +41,6 @@ const list = ref([
 const el = ref()
 
 const { start } = useDraggable(el, list, {
-  immediate: false,
   animation: 150,
   ghostClass: 'ghost',
   onStart() {
