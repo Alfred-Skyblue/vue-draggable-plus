@@ -8,6 +8,23 @@ interface IProps extends UseDraggableOptions<any> {
   tag?: string
   target?: string
 }
+
+// Need to declare Event thrown here, otherwise it will cause Sortablejs internal dispatch Event, repeated trigger events
+const emits = [
+  'update',
+  'start',
+  'add',
+  'remove',
+  'choose',
+  'unchoose',
+  'end',
+  'sort',
+  'filter',
+  'clone',
+  'move',
+  'change'
+] as const
+
 const props = [
   'onUpdate',
   'onStart',
@@ -53,23 +70,8 @@ const props = [
   'bubbleScroll',
   'modelValue',
   'tag',
-  'target'
-] as const
-
-// Need to declare Event thrown here, otherwise it will cause Sortablejs internal dispatch Event, repeated trigger events
-const emits = [
-  'update',
-  'start',
-  'add',
-  'remove',
-  'choose',
-  'unchoose',
-  'end',
-  'sort',
-  'filter',
-  'clone',
-  'move',
-  'change'
+  'target',
+  ...emits.map(key => `on${key.replace(/^\S/, s => s.toUpperCase())}`)
 ] as const
 
 export const VueDraggable = defineComponent<IProps>({
@@ -82,12 +84,9 @@ export const VueDraggable = defineComponent<IProps>({
   emits: ['update:modelValue', ...emits],
   setup(props, { slots, emit, expose }) {
     const attrs = useAttrs()
-
     const events = emits.reduce((acc, key) => {
       const event = `on${key.replace(/^\S/, s => s.toUpperCase())}`
-      acc[event] = (e: any) => {
-        emit(key, e)
-      }
+      acc[event] = (e: any) => emit(key, e)
       return acc
     }, {} as any)
 
@@ -95,8 +94,8 @@ export const VueDraggable = defineComponent<IProps>({
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { modelValue, ...rest } = toRaw(props)
       return {
-        ...objectMap({ ...attrs, ...rest }),
-        ...events
+        ...events,
+        ...objectMap({ ...attrs, ...rest })
       }
     })
 
