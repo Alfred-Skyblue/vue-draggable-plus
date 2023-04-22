@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div
+    <ul
       v-draggable="[
         list,
         {
@@ -12,14 +12,14 @@
       ]"
       class="target-directive flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
     >
-      <div
+      <li
         v-for="item in list"
         :key="item.id"
         class="h-30 bg-gray-500/5 rounded p-3 cursor-move"
       >
         {{ item.name }}
-      </div>
-    </div>
+      </li>
+    </ul>
     <preview-list :list="list" />
   </div>
 </template>
