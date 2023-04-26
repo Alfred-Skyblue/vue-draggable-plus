@@ -222,6 +222,7 @@ function onEnd(event: SortableEvent) {
 
 `Options` inherits all configuration items from `Sortablejs`. For details, please see the [`Sortablejs` official documentation](https://github.com/SortableJS/Sortable).
 
+### Types
 ```ts
 type Easing =
   | 'steps(int, start | end)'
