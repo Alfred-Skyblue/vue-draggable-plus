@@ -73,7 +73,8 @@ export default defineConfigWithTheme({
         sidebar: sidebar['/en/'],
         nav: [
           { text: 'Guide', link: '/en/guide/' },
-          { text: 'Demo', link: '/en/demo/basic/' }
+          { text: 'Demo', link: '/en/demo/basic/' },
+          { text: 'API', link: '/en/api/', activeMatch: '^/api/' }
         ]
       }
     },
