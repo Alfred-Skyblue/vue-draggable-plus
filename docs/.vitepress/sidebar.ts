@@ -16,8 +16,13 @@ export const sidebar = {
         { text: 'Transition', link: '/en/demo/transition/' },
         { text: 'Mixin Animation', link: '/en/demo/transitions/' },
         { text: 'Table Row', link: '/en/demo/table/' },
-        { text: 'Table Column', link: '/en/demo/table-column/' }
+        { text: 'Table Column', link: '/en/demo/table-column/' },
+        { text: 'nested', link: '/en/demo/nested/' }
       ]
+    },
+    {
+      text: 'API',
+      items: [{ text: 'API', link: '/en/api/' }]
     }
   ],
   '/': [
