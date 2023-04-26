@@ -12,7 +12,7 @@ hero:
    src: /logo.svg
  actions:
    - theme: brand
-     text: Start
+     text: Guide
      link: /en/guide/
    - theme: brand
      text: Demo
