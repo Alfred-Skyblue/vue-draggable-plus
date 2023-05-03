@@ -102,11 +102,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   let instance: Sortable | null = null
-  const {
-    immediate = true,
-    clone = defaultClone,
-    ...restOptions
-  } = unref(options) ?? {}
+  const { immediate = true, clone = defaultClone } = unref(options) ?? {}
 
   /**
    * Element dragging started
@@ -177,6 +173,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   function mergeOptions() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { immediate, clone, ...restOptions } = unref(options) ?? {}
     return mergeOptionsEvents(list === null ? {} : presetOptions, restOptions)
   }
 

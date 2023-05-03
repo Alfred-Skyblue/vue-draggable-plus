@@ -1,4 +1,12 @@
-import { defineComponent, h, reactive, ref, computed, useAttrs } from 'vue-demi'
+import {
+  defineComponent,
+  h,
+  reactive,
+  ref,
+  computed,
+  useAttrs,
+  unref
+} from 'vue-demi'
 import { objectMap } from './utils'
 import { useDraggable, UseDraggableOptions } from './useDraggable'
 import { toRefs } from 'vue'
@@ -93,9 +101,15 @@ export const VueDraggable = defineComponent<IProps>({
     const options = computed(() => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { modelValue, ...rest } = toRefs(props)
+      const opt = Object.entries(rest).reduce((acc, [key, value]) => {
+        // @ts-ignore
+        const newValue = unref(value)
+        if (newValue !== undefined) acc[key] = newValue
+        return acc
+      }, {} as any)
       return {
         ...events,
-        ...objectMap({ ...attrs, ...rest })
+        ...objectMap({ ...attrs, ...opt })
       }
     })
 

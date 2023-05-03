@@ -64,7 +64,6 @@ const onStart = () => {
 const onUpdate = () => {
   console.log('update')
 }
-
 </script>
 
 <style scoped>
