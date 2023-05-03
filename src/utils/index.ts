@@ -166,3 +166,16 @@ export function mergeOptionsEvents(
 export function isHTMLElement(el: any): el is HTMLElement {
   return el instanceof HTMLElement
 }
+
+/**
+ * @param obj
+ * @param fn
+ */
+export function forEachObject<T extends Record<string, any>>(
+  obj: T,
+  fn: (key: keyof T, value: T[keyof T]) => void
+) {
+  Object.keys(obj).forEach(key => {
+    fn(key, obj[key])
+  })
+}

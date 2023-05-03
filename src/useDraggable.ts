@@ -6,6 +6,7 @@ import type { Fn, RefOrElement, RefOrValue } from './types'
 import { error } from './utils/log'
 
 import {
+  forEachObject,
   getElementBySelector,
   insertElement,
   insertNodeAt,
@@ -17,6 +18,7 @@ import {
   removeElement,
   removeNode
 } from './utils'
+import { watch } from 'vue'
 
 function defaultClone<T>(element: T): T {
   if (element === undefined || element === null) return element
@@ -173,16 +175,28 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     if (!target) error('Root element not found')
     return target
   }
+
+  function mergeOptions() {
+    return mergeOptionsEvents(list === null ? {} : presetOptions, restOptions)
+  }
+
   const start = (target?: HTMLElement) => {
     target = getTarget(target)
     if (instance) methods.destroy()
-    const opt = mergeOptionsEvents(
-      list === null ? {} : presetOptions,
-      restOptions
-    )
 
-    instance = new Sortable(target as HTMLElement, opt)
+    instance = new Sortable(target as HTMLElement, mergeOptions())
   }
+
+  watch(
+    options,
+    () => {
+      if (!instance) return
+      forEachObject(mergeOptions(), (key, value) => {
+        instance?.option(key as keyof Options, value)
+      })
+    },
+    { deep: true }
+  )
 
   const methods: Pick<Sortable, SortableMethod> = {
     option: (name: keyof Options, value?: any) => instance?.option(name, value),

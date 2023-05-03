@@ -1,14 +1,14 @@
 import { defineComponent, h, reactive, ref, computed, useAttrs } from 'vue-demi'
 import { objectMap } from './utils'
 import { useDraggable, UseDraggableOptions } from './useDraggable'
-import { toRaw } from 'vue'
+import { toRefs } from 'vue'
 
 interface IProps extends UseDraggableOptions<any> {
   modelValue: any[]
   tag?: string
   target?: string
 }
-
+// 监听props变更
 // Need to declare Event thrown here, otherwise it will cause Sortablejs internal dispatch Event, repeated trigger events
 const emits = [
   'update',
@@ -92,7 +92,7 @@ export const VueDraggable = defineComponent<IProps>({
 
     const options = computed(() => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { modelValue, ...rest } = toRaw(props)
+      const { modelValue, ...rest } = toRefs(props)
       return {
         ...events,
         ...objectMap({ ...attrs, ...rest })
