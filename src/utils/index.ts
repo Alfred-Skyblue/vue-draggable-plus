@@ -155,7 +155,7 @@ export function mergeOptionsEvents(
   const evts = { ...options }
   Object.keys(events).forEach(key => {
     if (evts[key]) {
-      evts[key] = mergeExecuted(events[key], options[key])
+      evts[key] = mergeExecuted(options[key], events[key])
     } else {
       evts[key] = events[key]
     }
