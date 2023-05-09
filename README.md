@@ -7,7 +7,7 @@
 
 Drag and drop sorting module, support Vue>=v3 or Vue>=2.7
 
-[Example of use](https://stackblitz.com/edit/vue-rpa7f8?file=src%2FApp.vue)
+[Example of use](https://stackblitz.com/edit/github-b2xatc-qe8qxj?file=src%2FApp.vue)
 
 ## Describe
 
