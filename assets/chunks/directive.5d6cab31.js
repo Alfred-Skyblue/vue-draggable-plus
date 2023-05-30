@@ -1,0 +1,1 @@
+import{u as m}from"./component.331e7881.js";import{p as n}from"../app.e106461c.js";const a={mounted:"mounted",unmounted:"unmounted"},o=new WeakMap,p={[a.mounted](t,e){const s=n(e.value)?[e.value]:e.value,u=m(t,...s);o.set(t,u.destroy)},[a.unmounted](t){var e;(e=o.get(t))==null||e(),o.delete(t)}};export{p as v};
