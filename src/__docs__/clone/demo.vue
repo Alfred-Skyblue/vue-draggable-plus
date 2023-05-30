@@ -7,7 +7,6 @@
       :sort="false"
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
       @clone="onClone"
-      :clone="clone"
     >
       <div
         v-for="item in list1"
@@ -41,14 +40,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
-import { computed } from 'vue-demi'
-const _msg = ref<number | string>(1)
-const msg = computed({
-  get: () => _msg.value,
-  set: (value: number | string) => {
-    _msg.value = value
-  }
-})
+
 const list1 = ref([
   {
     name: 'Joao',
