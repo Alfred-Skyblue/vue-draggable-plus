@@ -89,8 +89,7 @@ export function insertNodeAt(
   element: Element,
   index: number
 ) {
-  const refElement =
-    index === 0 ? parentElement.firstChild : parentElement.children[index]
+  const refElement = parentElement.children[index]
   parentElement.insertBefore(element, refElement)
 }
 

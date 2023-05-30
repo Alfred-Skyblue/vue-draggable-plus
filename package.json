@@ -1,6 +1,6 @@
 {
   "name": "vue-draggable-plus",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "author": {
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
@@ -72,7 +72,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "sortablejs": "^1.15.0",
-    "typescript": "^4.9.5",
+    "typescript": "^5.0.4",
     "unocss": "^0.50.4",
     "vite": "latest",
     "vite-plugin-dts": "^1.4.0",
