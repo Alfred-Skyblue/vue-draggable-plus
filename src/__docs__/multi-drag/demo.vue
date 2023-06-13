@@ -1,17 +1,13 @@
 <template>
-  <button @click="start">start</button>
-  <button @click="pause">pause</button>
-  <button @click="disabled = true">disabled</button>
   <div class="flex">
+    <!-- TODO: add a default value to multiDrag prop -->
     <VueDraggable
       ref="el"
       v-model="list"
-      :disabled="disabled"
+      :multiDrag="true"
       animation="150"
       ghostClass="ghost"
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
-      @start="onStart"
-      @update="onUpdate"
     >
       <div
         v-for="item in list"
@@ -48,27 +44,16 @@ const list = ref([
 ])
 
 const el = ref<UseDraggableReturn>()
-const disabled = ref(false)
-function pause() {
-  el.value?.pause()
-}
 
-function start() {
-  el.value?.start()
-}
-
-const onStart = () => {
-  console.log('start')
-}
-
-const onUpdate = () => {
-  console.log('update')
-}
 </script>
 
 <style scoped>
 .ghost {
   opacity: 0.5;
   background: #c8ebfb;
+}
+
+.sortable-selected {
+  background: #6c7a81;
 }
 </style>
