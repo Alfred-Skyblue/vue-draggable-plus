@@ -4,6 +4,7 @@ map:
 ---
 
 # 基础使用
+# TODO: add chinese doc
 
 单个列表拖拽排序，双向绑定数据。
 
