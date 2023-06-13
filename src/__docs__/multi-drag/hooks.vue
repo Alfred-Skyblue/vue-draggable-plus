@@ -41,6 +41,7 @@ const list = ref([
 const el = ref()
 
 const { start } = useDraggable(el, list, {
+  multiDrag: true,
   animation: 150,
   ghostClass: 'ghost',
   onStart() {
@@ -56,5 +57,9 @@ const { start } = useDraggable(el, list, {
 .ghost {
   opacity: 0.5;
   background: #c8ebfb;
+}
+
+.sortable-selected {
+  background: #6c7a81;
 }
 </style>

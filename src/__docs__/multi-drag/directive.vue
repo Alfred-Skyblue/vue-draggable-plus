@@ -4,6 +4,7 @@
       v-draggable="[
         list,
         {
+          multiDrag: true,
           animation: 150,
           ghostClass: 'ghost',
           onUpdate,
@@ -59,5 +60,9 @@ function onUpdate() {
 .ghost {
   opacity: 0.5;
   background: #c8ebfb;
+}
+
+.sortable-selected {
+  background: #6c7a81;
 }
 </style>
