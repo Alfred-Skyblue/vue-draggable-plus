@@ -40,6 +40,7 @@ const props = [
   'onRemove',
   'animation',
   'ghostClass',
+  'multiDrag',
   'group',
   'sort',
   'disabled',
