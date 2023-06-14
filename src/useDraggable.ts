@@ -144,6 +144,22 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onUpdate(evt: DraggableEvent) {
+    const hasMultiDragEnabled = unref(options)?.multiDrag
+    const isAMultiDrag = evt.items.length
+
+    if (hasMultiDragEnabled && isAMultiDrag) {
+      const { items, oldIndicies, newIndicies } = evt
+
+      for (let index = 0; index < items.length; index++) {
+        const oldIndex = oldIndicies[index].index
+        const newIndex = newIndicies[index].index
+  
+        moveArrayElement(unref(list), oldIndex, newIndex)
+      }
+
+      return
+    }
+    
     const { from, item, oldIndex, newIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
