@@ -44,7 +44,8 @@ export const sidebar = {
         { text: '内置动画合并', link: '/demo/transitions/' },
         { text: '表格行拖拽', link: '/demo/table/' },
         { text: '表格列拖拽', link: '/demo/table-column/' },
-        { text: '嵌套', link: '/demo/nested/' }
+        { text: '嵌套', link: '/demo/nested/' },
+        { text: 'Multi drag', link: '/demo/multi-drag/' },
       ]
     },
     {
