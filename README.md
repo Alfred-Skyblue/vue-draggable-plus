@@ -322,3 +322,5 @@ type ScrollFn = ((
 | onMove                | Triggered while an item is being dragged                                                | `((event: MoveEvent,originalEvent: Event) => void)`   | -                    |
 | onClone               | Triggered when an item is cloned                                                         | `((event: SortableEvent) => void)`                   | -                    |
 | onChange              | Triggered when an item is dragged and changes position                                   | `((event: SortableEvent) => void)`                   | -                    |
+| onSelect              | Triggered when an item is selected                                                      | `((event: SortableEvent) => void)`                   | -                    |
+| onDeselect            | Triggered when an item is deselected                                                    | `((event: SortableEvent) => void)`                   | -                    |
