@@ -148,14 +148,16 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     const isAMultiDrag = evt.items.length
 
     if (hasMultiDragEnabled && isAMultiDrag) {
-      const { items, oldIndicies, newIndicies } = evt
+      const { from, items, oldIndicies, newIndicies } = evt
 
-      for (let index = 0; index < items.length; index++) {
+      items.forEach((item, index) => {
         const oldIndex = oldIndicies[index].index
         const newIndex = newIndicies[index].index
   
+        removeNode(item)
+        insertNodeAt(from, item, oldIndex)
         moveArrayElement(unref(list), oldIndex, newIndex)
-      }
+      })
 
       return
     }
