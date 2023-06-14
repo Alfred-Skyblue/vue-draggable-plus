@@ -30,7 +30,9 @@ const emits = [
   'filter',
   'clone',
   'move',
-  'change'
+  'change',
+  'select',
+  'deselect',
 ] as const
 
 const props = [
