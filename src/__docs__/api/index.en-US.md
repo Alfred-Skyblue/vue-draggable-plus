@@ -129,8 +129,10 @@ type ScrollFn = ((
 | handle                  | Selector for handle to initiate drag. If not set, the target element's children are used        | `String`                                              | -                     |
 | invertSwap              | Always use inverted swap zone if set to true                                                  | `Boolean`                                             | `false`               |
 | invertedSwapThreshold   | Inverted swap zone threshold, defaults to `swapThreshold` value                                | `Number`                                              | -                     |
+| multiDrag               | Enable drag of multiple items                                                               | `Boolean`                                             | `false`               |
 | preventOnFilter         | Call `event.preventDefault()` on filter event                                                | `Boolean`                                             | `true`                |
 | removeCloneOnHide       | Remove instead of hiding cloned element when not displayed                                     | `Boolean`                                             | `true`                |
+| selectedClass           | CSS class name for selected item                                                             | `String`                                              | 'sortable-selected'   |
 | sort                    | Allow list items to be sorted within container                                                 | `Boolean`                                             | `true`                |
 | swapThreshold           | Swap zone threshold                                                                         | `Number`                                              | 1                     |
 | touchStartThreshold     | Pixels before cancelling delay touch event                                                   | `Number`                                              | 1                     |
