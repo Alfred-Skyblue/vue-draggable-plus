@@ -53,6 +53,7 @@ const props = [
   'removeCloneOnHide',
   'direction',
   'chosenClass',
+  'selectedClass',
   'dragClass',
   'ignore',
   'filter',
