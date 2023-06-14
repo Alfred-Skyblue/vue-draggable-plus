@@ -1,5 +1,4 @@
 <template>
-  <button @click="start()">start</button>
   <div class="flex">
     <div
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
@@ -40,7 +39,7 @@ const list = ref([
 ])
 const el = ref()
 
-const { start } = useDraggable(el, list, {
+useDraggable(el, list, {
   multiDrag: true,
   animation: 150,
   ghostClass: 'ghost',
@@ -49,6 +48,12 @@ const { start } = useDraggable(el, list, {
   },
   onUpdate() {
     console.log('update')
+  },
+  onSelect() {
+    console.log('selected')
+  },
+  onDeselect() {
+    console.log('deselected')
   }
 })
 </script>

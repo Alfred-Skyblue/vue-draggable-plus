@@ -8,7 +8,9 @@
           animation: 150,
           ghostClass: 'ghost',
           onUpdate,
-          onStart
+          onStart,
+          onSelect,
+          onDeselect
         }
       ]"
       class="target-directive flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
@@ -47,13 +49,21 @@ const list = ref([
   }
 ])
 
-function onStart() {
+const onStart = () => {
   console.log('start')
 }
 
-function onUpdate() {
+const onUpdate = () => {
   console.log('update')
 }
+
+const onSelect = () => {
+  console.log('selected')
+}
+
+const onDeselect = () => {
+  console.log('deselected')
+} 
 </script>
 
 <style scoped>
