@@ -1,4 +1,4 @@
-import Sortable, { type Options, type SortableEvent } from 'sortablejs'
+import Sortable, { type Options, type SortableEvent, MultiDrag } from 'sortablejs'
 import { getCurrentInstance, onMounted, onUnmounted, unref } from 'vue-demi'
 import type { Ref } from 'vue-demi'
 import type { Fn, RefOrElement, RefOrValue } from './types'
@@ -19,6 +19,8 @@ import {
   removeNode
 } from './utils'
 import { watch } from 'vue'
+
+Sortable.mount(new MultiDrag())
 
 function defaultClone<T>(element: T): T {
   if (element === undefined || element === null) return element
@@ -142,6 +144,24 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onUpdate(evt: DraggableEvent) {
+    const hasMultiDragEnabled = unref(options)?.multiDrag
+    const isAMultiDrag = evt.items.length
+
+    if (hasMultiDragEnabled && isAMultiDrag) {
+      const { from, items, oldIndicies, newIndicies } = evt
+
+      items.forEach((item, index) => {
+        const oldIndex = oldIndicies[index].index
+        const newIndex = newIndicies[index].index
+  
+        removeNode(item)
+        insertNodeAt(from, item, oldIndex)
+        moveArrayElement(unref(list), oldIndex, newIndex)
+      })
+
+      return
+    }
+    
     const { from, item, oldIndex, newIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
@@ -175,7 +195,9 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   function mergeOptions() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { immediate, clone, ...restOptions } = unref(options) ?? {}
-    return mergeOptionsEvents(list === null ? {} : presetOptions, restOptions)
+    const initalOpts = list === null ? {} : presetOptions;
+
+    return mergeOptionsEvents(initalOpts, restOptions);
   }
 
   const start = (target?: HTMLElement) => {

@@ -30,7 +30,9 @@ const emits = [
   'filter',
   'clone',
   'move',
-  'change'
+  'change',
+  'select',
+  'deselect',
 ] as const
 
 const props = [
@@ -40,6 +42,7 @@ const props = [
   'onRemove',
   'animation',
   'ghostClass',
+  'multiDrag',
   'group',
   'sort',
   'disabled',
@@ -52,6 +55,7 @@ const props = [
   'removeCloneOnHide',
   'direction',
   'chosenClass',
+  'selectedClass',
   'dragClass',
   'ignore',
   'filter',
