@@ -186,7 +186,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   watch(
-    options,
+    () => options,
     () => {
       if (!instance) return
       forEachObject(mergeOptions(), (key, value) => {
