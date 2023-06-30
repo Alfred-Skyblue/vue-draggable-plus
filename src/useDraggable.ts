@@ -34,7 +34,7 @@ function tryOnMounted(fn: Fn) {
   else fn()
 }
 
-const CLONE_ELEMENT_KEY = '__CLONE__DRAGGABLE__ELEMENT__NODE__'
+const CLONE_ELEMENT_KEY = Symbol('cloneElement')
 
 interface DraggableEvent extends SortableEvent {
   item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
@@ -117,7 +117,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onAdd(evt: DraggableEvent) {
-    const element = (evt.item as Record<string, any>)[CLONE_ELEMENT_KEY]
+    const element = evt.item[CLONE_ELEMENT_KEY]
     if (isUndefined(element)) return
     removeNode(evt.item)
     insertElement(unref(list), evt.newIndex!, element)
@@ -159,7 +159,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   function getTarget(target?: HTMLElement) {
-    const element = unref(el)
+    const element = unref(el) as any
     if (!target) {
       target = isString(element)
         ? getElementBySelector(element, vm?.$el)
@@ -175,7 +175,10 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   function mergeOptions() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { immediate, clone, ...restOptions } = unref(options) ?? {}
-    return mergeOptionsEvents(list === null ? {} : presetOptions, restOptions)
+    return mergeOptionsEvents(
+      list === null ? {} : presetOptions,
+      restOptions
+    ) as Options
   }
 
   const start = (target?: HTMLElement) => {
@@ -190,24 +193,29 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     () => {
       if (!instance) return
       forEachObject(mergeOptions(), (key, value) => {
-        instance?.option(key as keyof Options, value)
+        // @ts-ignore
+        instance?.option(key, value)
       })
     },
     { deep: true }
   )
 
-  const methods: Pick<Sortable, SortableMethod> = {
-    option: (name: keyof Options, value?: any) => instance?.option(name, value),
+  const methods = {
+    option: (name: keyof Options, value?: any) => {
+      // @ts-ignore
+      return instance?.option(name, value)
+    },
     destroy: () => {
       instance?.destroy()
       instance = null
     },
     save: () => instance?.save(),
-    // @ts-ignore
     toArray: () => instance?.toArray(),
-    // @ts-ignore
-    closest: (...args) => instance?.closest(...args)
-  }
+    closest: (...args) => {
+      // @ts-ignore
+      return instance?.closest(...args)
+    }
+  } as Pick<Sortable, SortableMethod>
 
   const pause = () => methods?.option('disabled', true)
   const resume = () => methods?.option('disabled', false)
