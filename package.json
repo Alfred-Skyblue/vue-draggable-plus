@@ -1,6 +1,6 @@
 {
   "name": "vue-draggable-plus",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
@@ -34,8 +34,14 @@
   ],
   "exports": {
     ".": {
-      "import": { "types": "./dist/index.d.ts", "default": "./dist/vue-draggable-plus.js" },
-      "require": { "types": "./dist/index.d.ts", "default": "./dist/vue-draggable-plus.cjs" },
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/vue-draggable-plus.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/vue-draggable-plus.cjs"
+      },
       "default": "./dist/vue-draggable-plus.umd.cjs"
     }
   },
