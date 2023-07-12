@@ -4,7 +4,7 @@
   <div class="flex justify-between">
     <VueDraggable
       v-model="list"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded h-300px overflow-auto"
+      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
       target=".sort-target"
       :scroll="true"
     >
