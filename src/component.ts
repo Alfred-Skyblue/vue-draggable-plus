@@ -34,10 +34,6 @@ const emits = [
 ] as const
 
 const props = [
-  'onUpdate',
-  'onStart',
-  'onAdd',
-  'onRemove',
   'animation',
   'ghostClass',
   'group',
