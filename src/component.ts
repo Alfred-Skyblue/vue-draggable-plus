@@ -5,11 +5,11 @@ import {
   ref,
   computed,
   useAttrs,
-  unref
+  unref,
+  toRefs
 } from 'vue-demi'
 import { objectMap } from './utils'
 import { useDraggable, UseDraggableOptions } from './useDraggable'
-import { toRefs } from 'vue'
 
 interface IProps extends UseDraggableOptions<any> {
   modelValue: any[]

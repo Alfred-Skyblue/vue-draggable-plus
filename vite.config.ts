@@ -4,7 +4,19 @@ import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import UnoCSS from 'unocss/vite'
 export default defineConfig({
-  plugins: [vue(), dts(), UnoCSS()],
+  plugins: [
+    vue(),
+    dts({
+      beforeWriteFile: (filePath, content) => {
+        const _content = content.replace(/vue-demi/g, 'vue')
+        return {
+          filePath,
+          content: _content
+        }
+      }
+    }),
+    UnoCSS()
+  ],
   server: {
     port: 5230
   },
@@ -17,7 +29,6 @@ export default defineConfig({
       formats: ['es', 'umd', 'cjs', 'iife']
     },
     rollupOptions: {
-      // @ts-ignore
       external: ['vue'],
       output: {
         globals: {
