@@ -1,6 +1,6 @@
 {
   "name": "vue-draggable-plus",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": {
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
@@ -86,6 +86,9 @@
     "vue": "^3.2.47",
     "vue-demi": "^0.13.11",
     "vue-eslint-parser": "^9.1.0"
+  },
+  "peerDependencies": {
+    "@types/sortablejs": "^1.15.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
