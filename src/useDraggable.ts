@@ -55,6 +55,7 @@ export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
 export interface UseDraggableOptions<T> extends Options {
   clone?: (element: T) => T
   immediate?: boolean
+  customUpdate?: (event: SortableEvent) => void
 }
 
 /**
@@ -102,7 +103,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   let instance: Sortable | null = null
-  const { immediate = true, clone = defaultClone } = unref(options) ?? {}
+  const {
+    immediate = true,
+    clone = defaultClone,
+    customUpdate
+  } = unref(options) ?? {}
 
   /**
    * Element dragging started
@@ -142,6 +147,10 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onUpdate(evt: DraggableEvent) {
+    if (customUpdate) {
+      customUpdate(evt)
+      return
+    }
     const { from, item, oldIndex, newIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
