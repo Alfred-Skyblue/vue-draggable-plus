@@ -1,5 +1,11 @@
 import Sortable, { type Options, type SortableEvent } from 'sortablejs'
-import { getCurrentInstance, onMounted, onUnmounted, unref } from 'vue-demi'
+import {
+  getCurrentInstance,
+  isRef,
+  onMounted,
+  onUnmounted,
+  unref
+} from 'vue-demi'
 import type { Ref } from 'vue-demi'
 import type { Fn, RefOrElement, RefOrValue } from './types'
 
@@ -154,6 +160,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     const { from, item, oldIndex, newIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
+    if (isRef(list)) {
+      const newList = [...unref(list)]
+      list.value = moveArrayElement(newList, oldIndex!, newIndex!)
+      return
+    }
     moveArrayElement(unref(list), oldIndex!, newIndex!)
   }
 

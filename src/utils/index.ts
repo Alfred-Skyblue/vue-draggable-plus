@@ -6,15 +6,12 @@
  */
 import { warn } from './log'
 
-export function moveArrayElement<T>(
-  array: T[],
-  from: number,
-  to: number
-): void {
+export function moveArrayElement<T>(array: T[], from: number, to: number): T[] {
   if (!Array.isArray(array)) return
   if (to >= 0 && to < array.length) {
     array.splice(to, 0, array.splice(from, 1)[0])
   }
+  return array
 }
 
 /**
