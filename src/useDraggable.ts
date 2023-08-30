@@ -162,7 +162,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     insertNodeAt(from, item, oldIndex!)
     if (isRef(list)) {
       const newList = [...unref(list)]
-      list.value = moveArrayElement(newList, oldDraggableIndex!, newDraggableIndex!)
+      list.value = moveArrayElement(
+        newList,
+        oldDraggableIndex!,
+        newDraggableIndex!
+      )
       return
     }
     moveArrayElement(unref(list), oldDraggableIndex!, newDraggableIndex!)
