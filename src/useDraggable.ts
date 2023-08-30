@@ -131,7 +131,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     const element = evt.item[CLONE_ELEMENT_KEY]
     if (isUndefined(element)) return
     removeNode(evt.item)
-    insertElement(unref(list), evt.newIndex!, element)
+    insertElement(unref(list), evt.newDraggableIndex!, element)
   }
 
   /**
@@ -139,13 +139,13 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onRemove(evt: DraggableEvent) {
-    const { from, item, oldIndex, pullMode, clone } = evt
+    const { from, item, oldIndex, oldDraggableIndex, pullMode, clone } = evt
     if (pullMode === 'clone') {
       insertNodeAt(from, item, oldIndex!)
       removeNode(clone)
       return
     }
-    removeElement(unref(list), oldIndex!)
+    removeElement(unref(list), oldDraggableIndex!)
   }
 
   /**
@@ -157,15 +157,15 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       customUpdate(evt)
       return
     }
-    const { from, item, oldIndex, newIndex } = evt
+    const { from, item, oldIndex, oldDraggableIndex, newDraggableIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
     if (isRef(list)) {
       const newList = [...unref(list)]
-      list.value = moveArrayElement(newList, oldIndex!, newIndex!)
+      list.value = moveArrayElement(newList, oldDraggableIndex!, newDraggableIndex!)
       return
     }
-    moveArrayElement(unref(list), oldIndex!, newIndex!)
+    moveArrayElement(unref(list), oldDraggableIndex!, newDraggableIndex!)
   }
 
   /**
