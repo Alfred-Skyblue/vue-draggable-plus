@@ -2,7 +2,7 @@
   <div class="flex">
     <VueDraggable
       v-model="list1"
-      animation="150"
+      :animation="150"
       :group="{ name: 'people', pull: 'clone', put: false }"
       :sort="false"
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
@@ -18,7 +18,7 @@
     </VueDraggable>
     <VueDraggable
       v-model="list2"
-      animation="150"
+      :animation="150"
       group="people"
       class="flex flex-col gap-2 p-4 w-300px m-auto bg-gray-500/5 rounded overflow-auto"
     >
