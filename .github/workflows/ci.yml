@@ -17,8 +17,7 @@ jobs:
           persist-credentials: false
       - name: Install pnpm
         uses: pnpm/action-setup@v2
-        with:
-          version: 6.x
+
       - name: Set node version to LTS
         uses: actions/setup-node@v3
         with:
