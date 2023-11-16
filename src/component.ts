@@ -75,6 +75,7 @@ const props = [
   'modelValue',
   'tag',
   'target',
+  'customUpdate',
   ...emits.map(key => `on${key.replace(/^\S/, s => s.toUpperCase())}`)
 ] as const
 
