@@ -1,6 +1,7 @@
 {
   "name": "vue-draggable-plus",
   "version": "0.2.7",
+  "packageManager": "pnpm",
   "author": {
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
