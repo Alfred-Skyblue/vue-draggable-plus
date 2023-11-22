@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { applyPlugins } from '@ruabick/md-demo-plugins'
 import { genTemp } from '@ruabick/vite-plugin-gen-temp'
-
 import { sidebar } from './sidebar'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
@@ -55,7 +54,13 @@ export default defineConfig({
     repo: 'vuejs/vitepress',
     editLinks: true,
     logo: '/logo.svg',
-    sidebar
+    sidebar,
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/Alfred-Skyblue/vue-draggable-plus'
+      }
+    ]
   },
   ignoreDeadLinks: true,
   vue: {},
