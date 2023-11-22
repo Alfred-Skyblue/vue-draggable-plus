@@ -84,7 +84,7 @@
     "unocss": "^0.50.4",
     "vite": "^4.5.0",
     "vite-plugin-dts": "^1.4.0",
-    "vitepress": "1.0.0-rcß.4",
+    "vitepress": "1.0.0-rc.4",
     "vue": "^3.3.8",
     "vue-demi": "^0.13.11",
     "vue-eslint-parser": "^9.1.0"
