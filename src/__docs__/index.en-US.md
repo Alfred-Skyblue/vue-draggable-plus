@@ -1,4 +1,8 @@
 ---
+map:
+ path: /
+---
+---
 layout: home
 sidebar: false
 
