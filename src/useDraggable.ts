@@ -31,10 +31,20 @@ function defaultClone<T>(element: T): T {
   return JSON.parse(JSON.stringify(element))
 }
 
+/**
+ * copied from vueuse: https://github.com/vueuse/vueuse/blob/main/packages/shared/tryOnUnmounted/index.ts
+ * Call onUnmounted() if it's inside a component lifecycle, if not, do nothing
+ * @param fn
+ */
 function tryOnUnmounted(fn: Fn) {
   if (getCurrentInstance()) onUnmounted(fn)
 }
 
+/**
+ * copied from vueuse:https://github.com/vueuse/vueuse/blob/main/packages/shared/tryOnMounted/index.ts
+ * Call onMounted() if it's inside a component lifecycle, if not, just call the function
+ * @param fn
+ */
 function tryOnMounted(fn: Fn) {
   if (getCurrentInstance()) onMounted(fn)
   else fn()
