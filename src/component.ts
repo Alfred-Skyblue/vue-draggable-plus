@@ -16,7 +16,6 @@ interface IProps extends UseDraggableOptions<any> {
   tag?: string
   target?: string
 }
-// 监听props变更
 // Need to declare Event thrown here, otherwise it will cause Sortablejs internal dispatch Event, repeated trigger events
 const emits = [
   'update',
