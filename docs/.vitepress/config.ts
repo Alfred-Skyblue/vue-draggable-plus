@@ -30,7 +30,8 @@ export default defineConfig({
         nav: [
           { text: '指南', link: '/guide/', activeMatch: '^/guide/' },
           { text: '演示', link: '/demo/basic/', activeMatch: '^/demo/' },
-          { text: 'API', link: '/api/', activeMatch: '^/api/' }
+          { text: 'API', link: '/api/', activeMatch: '^/api/' },
+          { text: '联系我', link: '/contact-me/', activeMatch: '^/contact-me/' }
         ]
       }
     },

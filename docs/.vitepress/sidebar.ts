@@ -49,6 +49,10 @@ export const sidebar = {
     {
       text: 'API',
       items: [{ text: 'API', link: '/api/' }]
+    },
+    {
+      text: '联系我',
+      link: '/contact-me/'
     }
   ]
 }
