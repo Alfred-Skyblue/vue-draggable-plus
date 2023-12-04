@@ -7,7 +7,7 @@ import 'uno.css'
 
 import '@ruabick/vitepress-demo-block/dist/style.css'
 import './var.css'
-import './styles'
+import './styles/index.css'
 import type { App } from 'vue'
 interface EnhanceApp {
   app: App
