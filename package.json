@@ -5,7 +5,7 @@
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
   },
-  "description": "vue3拖拽排序组件",
+  "description": "Universal Drag-and-Drop Component Supporting both Vue 3 and Vue 2",
   "homepage": "https://alfred-skyblue.github.io/vue-draggable-plus/",
   "repository": {
     "type": "git",
@@ -15,6 +15,8 @@
   "types": "./dist/index.d.ts",
   "main": "./dist/vue-draggable-plus.umd.cjs",
   "module": "./dist/vue-draggable-plus.js",
+  "unpkg": "./dist/vue-draggable-plus.iife.js",
+  "jsdelivr": "./dist/vue-draggable-plus.iife.js",
   "sideEffects": false,
   "license": "MIT",
   "keywords": [
