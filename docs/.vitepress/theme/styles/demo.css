@@ -41,7 +41,9 @@
   margin-left: 0.5rem;
 }
 
-.vitepress-demo input[type='text'], input[type='search'], input[type='number'] {
+.vitepress-demo input[type='text'],
+input[type='search'],
+input[type='number'] {
   display: block;
   font-size: 0.9rem;
   padding: 0.5em 1em 0.4em 1em;
@@ -51,4 +53,8 @@
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   margin: 0.5rem 0;
+}
+
+.vitepress-demo .demo-actions .demo-platforms {
+  visibility: hidden;
 }
