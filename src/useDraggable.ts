@@ -24,7 +24,7 @@ import {
   removeElement,
   removeNode
 } from './utils'
-import { watch } from 'vue'
+import { nextTick, watch } from 'vue'
 
 function defaultClone<T>(element: T): T {
   if (element === undefined || element === null) return element
@@ -47,7 +47,7 @@ function tryOnUnmounted(fn: Fn) {
  */
 function tryOnMounted(fn: Fn) {
   if (getCurrentInstance()) onMounted(fn)
-  else fn()
+  else nextTick(fn)
 }
 
 const CLONE_ELEMENT_KEY = Symbol('cloneElement')
