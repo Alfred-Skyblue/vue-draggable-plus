@@ -130,7 +130,7 @@ type ScrollFn = ((
 | swapThreshold         | 交换区的阈值                                                                             | `Number`                                            | 1                   |
 | touchStartThreshold   | 在取消延迟拖动事件之前点应该移动多少像素                                                               | `Number`                                            | 1                   |
 | setData               | 传递一个函数，函数的第一个参数为`DataTransfer`类型，第二个参数为`HTMLElement` 类型                            | `Function`                                          |                     |
-| scroll                | 是否启用滚动                                                                             | `Boolean`                                         | `HTMLElement`       | `true`              |
+| scroll                | 是否启用滚动                                                                             | `Boolean` or `HTMLElement`                          | `true`              |
 | scrollFn              | 自定义滚动                                                                              | `ScrollFn`                                          | -                   |
 | scrollSensitivity     | 鼠标必须离边缘多近才能开始滚动，单位 px                                                              | `Number`                                            | -                   |
 | scrollSpeed           | 滚动速度(ms/px)                                                                        | `number`                                            | -                   |
