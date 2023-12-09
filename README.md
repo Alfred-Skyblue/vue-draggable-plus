@@ -43,6 +43,7 @@ npm install vue-draggable-plus
 <script setup lang="ts">
 import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
+
 const list = ref([
   {
     name: 'Joao',
@@ -68,52 +69,46 @@ const list = ref([
 
 ```vue
 <template>
-    <div
-      ref="el"
-    >
-      <div
-        v-for="item in list"
-        :key="item.id"
-      >
-        {{ item.name }}
-      </div>
+  <div ref="el">
+    <div v-for="item in list" :key="item.id">
+      {{ item.name }}
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useDraggable, type UseDraggableReturn } from 'vue-draggable-plus'
+import { ref } from "vue";
+import { useDraggable } from "vue-draggable-plus";
 
-const el = ref()
-
+const el = ref<HTMLElement | null>(null);
 const list = ref([
   {
-    name: 'Joao',
-    id: 1
+    name: "Joao",
+    id: 1,
   },
   {
-    name: 'Jean',
-    id: 2
+    name: "Jean",
+    id: 2,
   },
   {
-    name: 'Johanna',
-    id: 3
+    name: "Johanna",
+    id: 3,
   },
   {
-    name: 'Juan',
-    id: 4
-  }
-])
+    name: "Juan",
+    id: 4,
+  },
+]);
 // The return value is an object, which contains some methods, such as start, destroy, pause, etc.
-const draggable = useDraggable<UseDraggableReturn>(el, list, {
+useDraggable<{ id: number; name: string }>(el, list, {
   animation: 150,
   onStart() {
-    console.log('start')
+    console.log("start");
   },
   onUpdate() {
-    console.log('update')
-  }
-})
+    console.log("update");
+  },
+});
 </script>
 ```
 
