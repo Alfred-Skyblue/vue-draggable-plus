@@ -1,5 +1,13 @@
 <p align="center"><img src="./docs/public/logo.svg" alt=""></p>
 
+<p align="center">
+<a href="https://www.npmjs.com/package/vue-draggable-plus" target="__blank"><img src="https://img.shields.io/npm/v/vue-draggable-plus?color=a1b858&label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/vue-draggable-plus" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/vue-draggable-plus?color=50a36f&label="></a>
+<a href="https://alfred-skyblue.github.io/vue-draggable-plus/en/" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20demos&color=1e8a7a" alt="Docs & Demos"></a>
+<br>
+<a href="https://github.com/alfred-skyblue/vue-draggable-plus" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/alfred-skyblue/vue-draggable-plus?style=social"></a>
+</p>
+
 # vue-draggable-plus
 
 [中文文档](https://alfred-skyblue.gitee.io/vue-draggable-plus/)
