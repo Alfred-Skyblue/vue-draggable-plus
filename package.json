@@ -6,10 +6,10 @@
     "email": "yangpanteng@gmail.com"
   },
   "description": "Universal Drag-and-Drop Component Supporting both Vue 3 and Vue 2",
-  "homepage": "https://alfred-skyblue.github.io/vue-draggable-plus/",
+  "homepage": "https://alfred-skyblue.github.io/vue-draggable-plus/en/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Alfred-Skyblue/vue-draggable-plus/en/"
+    "url": "https://github.com/Alfred-Skyblue/vue-draggable-plus"
   },
   "type": "module",
   "types": "./dist/index.d.ts",
