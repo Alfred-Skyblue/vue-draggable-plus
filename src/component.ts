@@ -4,7 +4,6 @@ import {
   reactive,
   ref,
   computed,
-  useAttrs,
   unref,
   toRefs
 } from 'vue-demi'
@@ -86,8 +85,7 @@ export const VueDraggable = defineComponent<IProps>({
   },
   props: props as unknown as any,
   emits: ['update:modelValue', ...emits],
-  setup(props, { slots, emit, expose }) {
-    const attrs = useAttrs()
+  setup(props, { slots, emit, expose, attrs }) {
     const events = emits.reduce((acc, key) => {
       const event = `on${key.replace(/^\S/, s => s.toUpperCase())}`
       acc[event] = (e: any) => emit(key, e)
