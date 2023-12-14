@@ -13,10 +13,10 @@ title="Use Components"
 desc="Pass the handle attribute, use the handle">
 </demo>
 
-## Hooks Usage
-<demo src="./hooks.vue"
-title="Using hooks"
-desc="Pass hooks option implementation">
+## Function Usage
+<demo src="./function.vue"
+title="Using Function"
+desc="Pass function option implementation">
 </demo>
 
 

@@ -13,11 +13,11 @@ title="Usage Component"
 desc="Use components to drag and drop between multiple lists">
 </demo>
 
-## Hooks Usage
+## Function Usage
 
 <demo src="./demo.vue"
-title="Hooks Usage"
-desc="Use hooks to drag and drop between multiple lists">
+title="Function Usage"
+desc="Use function to drag and drop between multiple lists">
 </demo>
 
 ## Directive Usage

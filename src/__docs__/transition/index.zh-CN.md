@@ -13,10 +13,10 @@ title="使用组件包裹过渡"
 desc="超出时可以滚动拖拽">
 </demo>
 
-## hooks 使用
+## 函数使用
 
-<demo src="./hooks.vue"
-title="使用 hooks 方式"
+<demo src="./function.vue"
+title="使用 函数方式"
 desc="">
 </demo>
 

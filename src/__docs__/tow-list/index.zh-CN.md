@@ -13,11 +13,11 @@ title="使用组件"
 desc="使用组件方式在多列表之间拖拽排序">
 </demo>
 
-## hooks 使用
+## 函数使用
 
 <demo src="./demo.vue"
-title="hooks 方式"
-desc="使用 hooks 方式在多列表之间拖拽排序">
+title="函数方式"
+desc="使用 函数方式在多列表之间拖拽排序">
 </demo>
 
 ## 指令使用

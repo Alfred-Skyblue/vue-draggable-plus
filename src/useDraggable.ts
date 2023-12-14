@@ -75,7 +75,7 @@ export interface UseDraggableOptions<T> extends Options {
 }
 
 /**
- * A custom hook that allows you to drag and drop elements in a list.
+ * A custom compositionApi utils that allows you to drag and drop elements in lists.
  * @param el
  * @param {Array} list - The list to be dragged
  * @param {Object} options - The options of the sortable
@@ -101,7 +101,7 @@ export function useDraggable<T>(
 ): UseDraggableReturn
 
 /**
- * A custom hook that allows you to drag and drop elements in a list.
+ * A custom compositionApi utils that allows you to drag and drop elements in lists.
  * @param {Ref<HTMLElement | null | undefined> | string} el
  * @param {Ref<T[]>} list
  * @param {RefOrValue<UseDraggableOptions<T>>} options

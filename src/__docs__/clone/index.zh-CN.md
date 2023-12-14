@@ -23,11 +23,11 @@ title="使用组件实现克隆"
 desc="通过group的pull.clone属性传递，实现clone">
 </demo>
 
-## hooks 使用
+## 函数使用
 
-<demo src="./hooks.vue"
-title="使用 hooks 实现克隆"
-desc="使用 hooks 传递 options 实现克隆">
+<demo src="./function.vue"
+title="使用函数实现克隆"
+desc="使用函数传递 options 实现克隆">
 </demo>
 
 ## 指令使用

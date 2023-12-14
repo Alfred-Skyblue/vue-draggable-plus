@@ -23,9 +23,9 @@ desc="使用组件属性进行自定义克隆">
 </demo>
 
 
-## hooks 使用
+## 函数使用
 
-<demo src="./hooks.vue"
+<demo src="./function.vue"
 title="自定义克隆"
 desc="传递 clone 属性，实现自定义克隆">
 </demo>

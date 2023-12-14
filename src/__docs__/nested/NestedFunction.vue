@@ -2,7 +2,7 @@
   <ul class="drag-area" ref="el">
     <li v-for="el in modelValue" :key="el.name">
       <p>{{ el.name }}</p>
-      <nested-hooks v-model="el.children" />
+      <nested-function v-model="el.children" />
     </li>
   </ul>
 </template>

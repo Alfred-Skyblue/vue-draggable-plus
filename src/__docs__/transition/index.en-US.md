@@ -13,10 +13,10 @@ title="Wrap transitions with components"
 desc="Can be scrolled and dragged when exceeded">
 </demo>
 
-## Hooks Usage
+## Function Usage
 
-<demo src="./hooks.vue"
-title="Using hooks"
+<demo src="./function.vue"
+title="Using function"
 desc="">
 </demo>
 

@@ -47,16 +47,16 @@ title="使用组件操作目标容器"
 desc="它会以VueDraggable为根元素往下查找最近的.el-table选择器">
 </demo>
 
-## hooks 使用
+## 函数使用
 
-<demo src="./hooks.vue"
-title="使用hooks操作目标容器"
+<demo src="./function.vue"
+title="使用function操作目标容器"
 desc="此处为了确保能获取到我们的目标容器，我们为 div 元素增加了一个id my-container，当然如果您可以确保获取到的一定是目标容器，可以省略父元素 id">
 </demo>
 
 ### 注意事项
 
-使用 `hooks` 时请保证组件内只有一个根元素
+使用 `function` 时请保证组件内只有一个根元素
 
 #### 错误使用
 

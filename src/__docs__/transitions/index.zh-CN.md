@@ -13,10 +13,10 @@ title="组件式组合过渡"
 desc="拖拽后点击还原查看效果">
 </demo>
 
-## hooks 使用
+## 函数使用
 
-<demo src="./hooks.vue"
-title="使用hooks 组合过渡"
+<demo src="./function.vue"
+title="使用函数 组合过渡"
 desc="拖拽后点击还原查看效果">
 </demo>
 

@@ -13,9 +13,9 @@ title="使用组件完成表格列排序"
 desc="拖拽表头进行列排序">
 </demo>
 
-## Hooks Usage
-<demo src="./hooks.vue"
-title="使用hooks完成表格列排序"
+## Function Usage
+<demo src="./function.vue"
+title="使用函数完成表格列排序"
 desc="拖拽表头进行列排序">
 </demo>
 

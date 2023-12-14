@@ -23,11 +23,11 @@ title="Clone using components"
 desc="Pass through the pull.clone attribute of the group to realize clone">
 </demo>
 
-## Hooks Usage
+## Function Usage
 
-<demo src="./hooks.vue"
-title="Cloning using hooks"
-desc="Use hooks to pass options to achieve cloning">
+<demo src="./function.vue"
+title="Cloning using function"
+desc="Use function to pass options to achieve cloning">
 </demo>
 
 ## Directive Usage

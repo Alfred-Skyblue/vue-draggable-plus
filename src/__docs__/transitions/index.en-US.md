@@ -13,10 +13,10 @@ title="Component Composition Transition"
 desc="After dragging, click Restore to view the effect">
 </demo>
 
-## Hooks Usage
+## Function Usage
 
-<demo src="./hooks.vue"
-title="Combining transitions using hooks"
+<demo src="./function.vue"
+title="Combining transitions using function"
 desc="After dragging, click Restore to view the effect">
 </demo>
 

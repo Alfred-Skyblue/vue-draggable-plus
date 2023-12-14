@@ -15,10 +15,10 @@ desc="Use components to complete drag and drop sorting">
 </demo>
 
 
-## Hooks Usage
-<demo src="./hooks.vue"
-title="hooks usage"
-desc="Use hooks to complete drag and drop sorting">
+## Function Usage
+<demo src="./function.vue"
+title="function usage"
+desc="Use function to complete drag and drop sorting">
 </demo>
 
 

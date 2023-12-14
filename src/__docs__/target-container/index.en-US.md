@@ -47,16 +47,16 @@ title="Use components to manipulate target containers"
 desc="It will use Vue Draggable as the root element to find the nearest .el-table selector">
 </demo>
 
-## Hooks Usage
+## Function Usage
 
-<demo src="./hooks.vue"
-title="Use hooks to manipulate target containers"
+<demo src="./function.vue"
+title="Use function to manipulate target containers"
 desc="Here, in order to ensure that we can get our target container, we added an id my-container to the div element. Of course, if you can ensure that the target container must be obtained, you can omit the parent element id">
 </demo>
 
 ### Precautions
 
-When using `hooks`, please ensure that there is only one root element in the component
+When using `function`, please ensure that there is only one root element in the component
 
 #### Error Usage
 

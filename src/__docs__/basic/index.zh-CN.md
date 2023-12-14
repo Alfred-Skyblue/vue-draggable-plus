@@ -15,10 +15,10 @@ desc="使用组件完成拖拽排序">
 </demo>
 
 
-## hooks 使用
-<demo src="./hooks.vue"
-title="hooks 使用"
-desc="使用 hooks 完成拖拽排序">
+## 函数使用
+<demo src="./function.vue"
+title="函数使用"
+desc="使用函数完成拖拽排序">
 </demo>
 
 

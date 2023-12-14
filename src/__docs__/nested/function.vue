@@ -1,13 +1,13 @@
 <template>
   <div class="flex justify-between">
-    <NestedHooks v-model="list" class="w-full"></NestedHooks>
+    <NestedFunction v-model="list" class="w-full"></NestedFunction>
     <preview-list :list="list" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import NestedHooks from './NestedHooks.vue'
+import NestedFunction from './NestedFunction.vue'
 
 const list = ref([
   {

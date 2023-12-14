@@ -62,20 +62,20 @@ const list = computed({
 
 ```
 
-## Hooks Usage
-<demo src="./hooks.vue"
+## Function Usage
+<demo src="./function.vue"
 title=""
-desc="Pass hooks option implementation">
+desc="Pass function option implementation">
 </demo>
 
-### NestedHooks.vue
+### NestedFunction.vue
 
 ```vue
 <template>
   <ul class="drag-area" ref="el">
     <li v-for="el in modelValue" :key="el.name">
       <p>{{ el.name }}</p>
-      <nested-hooks v-model="el.children" />
+      <nested-function v-model="el.children" />
     </li>
   </ul>
 </template>

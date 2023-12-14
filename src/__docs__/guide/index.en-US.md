@@ -13,7 +13,7 @@ Drag and drop sorting module, support Vue>=v3 or Vue>=2.7
 
 Since the `vue3` component of `Sortablejs` has not been updated, it has been seriously out of touch with `vue3`, so this project was born. This component is based on `Sortablejs`, so if you want to know more about `Sortablejs`, you can check it out [`Sortablejs` official website](https://github.com/SortableJS/Sortable)
 
-We have encapsulated a variety of usages for this, you can use components, `hooks`, or instructions, there is always one that suits you
+We have encapsulated a variety of usages for this, you can use components, function, or instructions, there is always one that suits you
 
 ## Solve pain points
 
@@ -64,7 +64,7 @@ const list = ref([
 </script>
 ```
 
-### Hooks Usage
+### Function Usage
 
 ```vue
 <template>

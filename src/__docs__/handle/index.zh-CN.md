@@ -13,10 +13,10 @@ title="使用组件方式"
 desc="传递 handle 属性，使用句柄">
 </demo>
 
-## hooks 使用
-<demo src="./hooks.vue"
-title="使用 hooks 方式"
-desc="传递 hooks 选项实现">
+## 函数使用
+<demo src="./function.vue"
+title="使用函数方式"
+desc="传递函数选项实现">
 </demo>
 
 
