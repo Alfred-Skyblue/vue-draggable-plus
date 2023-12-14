@@ -26,5 +26,5 @@ desc="Use function to complete drag and drop sorting">
 
 <demo src="./directive.vue"
 title="directive use"
-desc="使用指令完成拖拽排序">
+desc="Use directive to complete drag and drop sorting">
 </demo>
