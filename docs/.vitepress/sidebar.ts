@@ -23,6 +23,10 @@ export const sidebar = {
     {
       text: 'API',
       items: [{ text: 'API', link: '/en/api/' }]
+    },
+    {
+      text: 'FAQ',
+      items: [{ text: 'FAQ', link: '/en/faq/' }]
     }
   ],
   '/': [
@@ -49,6 +53,10 @@ export const sidebar = {
     {
       text: 'API',
       items: [{ text: 'API', link: '/api/' }]
+    },
+    {
+      text: '常见问题',
+      items: [{ text: '常见问题', link: '/faq/' }]
     },
     {
       text: '联系我',

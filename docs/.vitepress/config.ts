@@ -31,6 +31,7 @@ export default defineConfig({
           { text: '指南', link: '/guide/', activeMatch: '^/guide/' },
           { text: '演示', link: '/demo/basic/', activeMatch: '^/demo/' },
           { text: 'API', link: '/api/', activeMatch: '^/api/' },
+          { text: '常见问题', link: '/faq/', activeMatch: '^/faq/' },
           { text: '联系我', link: '/contact-me/', activeMatch: '^/contact-me/' }
         ]
       }
@@ -46,7 +47,8 @@ export default defineConfig({
         nav: [
           { text: 'Guide', link: '/en/guide/' },
           { text: 'Demo', link: '/en/demo/basic/' },
-          { text: 'API', link: '/en/api/', activeMatch: '^/api/' }
+          { text: 'API', link: '/en/api/', activeMatch: '^/api/' },
+          { text: 'FAQ', link: '/en/faq/', activeMatch: '^/faq/' }
         ]
       }
     }
