@@ -1,7 +1,6 @@
 import Sortable, { type Options, type SortableEvent } from 'sortablejs'
 import {
   getCurrentInstance,
-  isRef,
   onMounted,
   onUnmounted,
   unref
@@ -15,14 +14,12 @@ import {
   forEachObject,
   getElementBySelector,
   insertElement,
-  insertNodeAt,
   isHTMLElement,
   isString,
   isUndefined,
   mergeOptionsEvents,
   moveArrayElement,
   removeElement,
-  removeNode
 } from './utils'
 import { nextTick, watch } from 'vue'
 
@@ -138,10 +135,18 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onAdd(evt: DraggableEvent) {
-    const element = evt.item[CLONE_ELEMENT_KEY]
-    if (isUndefined(element)) return
-    removeNode(evt.item)
-    insertElement(unref(list), evt.newDraggableIndex!, element)
+    const fromList = getListFromEl(evt.from);
+    // get the object from the original list to get the same object instance, to preserve reactivity
+    const item = fromList.value[evt.oldIndex!];
+    if (isUndefined(item)) return
+    const newList = [...list.value];
+    insertElement(newList, evt.newDraggableIndex!, item);
+    list.value = newList;
+  }
+
+  function getListFromEl(el: HTMLElement) {
+    const key = Object.keys(el).find(key => key.startsWith('Sortable'));
+    return key && (el as any)[key]?.__list;
   }
 
   /**
@@ -149,13 +154,10 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onRemove(evt: DraggableEvent) {
-    const { from, item, oldIndex, oldDraggableIndex, pullMode, clone } = evt
-    if (pullMode === 'clone') {
-      insertNodeAt(from, item, oldIndex!)
-      removeNode(clone)
-      return
-    }
-    removeElement(unref(list), oldDraggableIndex!)
+    const { oldDraggableIndex } = evt;
+    const newList = [...list.value];
+    removeElement(newList, oldDraggableIndex!)
+    list.value = newList;
   }
 
   /**
@@ -167,19 +169,13 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       customUpdate(evt)
       return
     }
-    const { from, item, oldIndex, oldDraggableIndex, newDraggableIndex } = evt
-    removeNode(item)
-    insertNodeAt(from, item, oldIndex!)
-    if (isRef<any[]>(list)) {
-      const newList = [...unref(list)]
-      list.value = moveArrayElement(
-        newList,
-        oldDraggableIndex!,
-        newDraggableIndex!
-      )
-      return
-    }
-    moveArrayElement(unref(list), oldDraggableIndex!, newDraggableIndex!)
+    const { oldDraggableIndex, newDraggableIndex } = evt
+    const newList = [...list.value]
+    list.value = moveArrayElement(
+      newList,
+      oldDraggableIndex!,
+      newDraggableIndex!
+    )
   }
 
   /**
@@ -219,7 +215,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     target = getTarget(target)
     if (instance) methods.destroy()
 
-    instance = new Sortable(target as HTMLElement, mergeOptions())
+    instance = new Sortable(target as HTMLElement, mergeOptions());
+    (instance as any).__list = list;
   }
 
   watch(
