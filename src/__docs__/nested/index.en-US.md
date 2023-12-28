@@ -3,7 +3,7 @@ map:
   path: /demo/nested
 ---
 
-# nesting
+# Nesting
 
 We can use recursive components to achieve nested effects
 

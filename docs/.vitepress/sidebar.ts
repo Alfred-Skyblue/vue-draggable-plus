@@ -2,7 +2,7 @@ export const sidebar = {
   '/en/': [
     {
       text: 'Guide',
-      items: [{ text: 'describe', link: '/en/guide/' }]
+      items: [{ text: 'Description', link: '/en/guide/' }]
     },
     {
       text: 'Demo',
@@ -17,7 +17,7 @@ export const sidebar = {
         { text: 'Mixin Animation', link: '/en/demo/transitions/' },
         { text: 'Table Row', link: '/en/demo/table/' },
         { text: 'Table Column', link: '/en/demo/table-column/' },
-        { text: 'nested', link: '/en/demo/nested/' }
+        { text: 'Nesting', link: '/en/demo/nested/' }
       ]
     },
     {
