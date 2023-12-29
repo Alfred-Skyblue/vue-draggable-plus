@@ -3,13 +3,6 @@
     <section
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded overflow-auto"
       ref="el1"
-      v-model="list1"
-      animation="150"
-      ghostClass="ghost"
-      group="people"
-      @update="onUpdate"
-      @add="onAdd"
-      @remove="remove"
     >
       <div
         v-for="item in list1"
@@ -22,13 +15,6 @@
     <section
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded overflow-auto"
       ref="el2"
-      v-model="list2"
-      animation="150"
-      group="people"
-      ghostClass="ghost"
-      @update="onUpdate"
-      @add="onAdd"
-      @remove="remove"
     >
       <div
         v-for="item in list2"
@@ -45,8 +31,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, type Ref } from 'vue'
+<script setup>
+import { ref } from 'vue'
 import { useDraggable } from 'vue-draggable-plus'
 const list1 = ref([
   {
@@ -72,27 +58,37 @@ const list2 = ref(
     id: `${item.id}-2`
   }))
 )
-const el1 = ref(null)
-const el2: Ref<HTMLElement | null> = ref(null)
+
+const el1 = ref()
+const el2 = ref()
 
 useDraggable(el1, list1, {
   animation: 150,
-  ghostClass: 'ghost',
-  group: 'people'
+  ghostClass: "ghost",
+  group: "people",
+  onUpdate: () => {
+    console.log('update list1')
+  },
+  onAdd: () => {
+    console.log('add list1')
+  },
+  remove: () => {
+    console.log('remove list1')
+  }
 })
 
 useDraggable(el2, list2, {
   animation: 150,
-  ghostClass: 'ghost',
-  group: 'people'
+  ghostClass: "ghost",
+  group: "people",
+  onUpdate: () => {
+    console.log('update list2')
+  },
+  onAdd: () => {
+    console.log('add list2')
+  },
+  remove: () => {
+    console.log('remove list2')
+  }
 })
-function onUpdate() {
-  console.log('update')
-}
-function onAdd() {
-  console.log('add')
-}
-function remove() {
-  console.log('remove')
-}
 </script>
