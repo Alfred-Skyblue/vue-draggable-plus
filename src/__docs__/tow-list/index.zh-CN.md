@@ -15,7 +15,7 @@ desc="使用组件方式在多列表之间拖拽排序">
 
 ## 函数使用
 
-<demo src="./demo.vue"
+<demo src="./function.vue"
 title="函数方式"
 desc="使用 函数方式在多列表之间拖拽排序">
 </demo>

@@ -15,7 +15,7 @@ desc="Use components to drag and drop between multiple lists">
 
 ## Function Usage
 
-<demo src="./demo.vue"
+<demo src="./function.vue"
 title="Function Usage"
 desc="Use function to drag and drop between multiple lists">
 </demo>
