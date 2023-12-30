@@ -64,8 +64,8 @@ const el2 = ref()
 
 useDraggable(el1, list1, {
   animation: 150,
-  ghostClass: "ghost",
-  group: "people",
+  ghostClass: 'ghost',
+  group: 'people',
   onUpdate: () => {
     console.log('update list1')
   },
@@ -79,8 +79,8 @@ useDraggable(el1, list1, {
 
 useDraggable(el2, list2, {
   animation: 150,
-  ghostClass: "ghost",
-  group: "people",
+  ghostClass: 'ghost',
+  group: 'people',
   onUpdate: () => {
     console.log('update list2')
   },
