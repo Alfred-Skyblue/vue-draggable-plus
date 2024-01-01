@@ -4,9 +4,9 @@ import {
   isRef,
   onMounted,
   onUnmounted,
-  unref
+  unref,
+  type Ref
 } from 'vue-demi'
-import type { Ref } from 'vue-demi'
 import type { Fn, RefOrElement, RefOrValue } from './types'
 
 import { error } from './utils/log'
