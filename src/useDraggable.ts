@@ -5,6 +5,8 @@ import {
   onMounted,
   onUnmounted,
   unref,
+  nextTick,
+  watch,
   type Ref
 } from 'vue-demi'
 import type { Fn, RefOrElement, RefOrValue } from './types'
@@ -24,7 +26,6 @@ import {
   removeElement,
   removeNode
 } from './utils'
-import { nextTick, watch } from 'vue'
 
 function defaultClone<T>(element: T): T {
   if (element === undefined || element === null) return element
