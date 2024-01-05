@@ -4,7 +4,7 @@
   <div class="flex justify-between">
     <VueDraggable
       v-model="list"
-      animation="150"
+      :animation="150"
       handle=".handle"
       class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
     >
