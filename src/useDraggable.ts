@@ -208,7 +208,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   function mergeOptions() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line 
     const { immediate, clone, ...restOptions } = unref(options) ?? {}
     return mergeOptionsEvents(
       list === null ? {} : presetOptions,
