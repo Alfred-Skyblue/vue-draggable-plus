@@ -68,13 +68,8 @@ const list = ref([
 
 ```vue
 <template>
-    <div
-      ref="el"
-    >
-      <div
-        v-for="item in list"
-        :key="item.id"
-      >
+    <div ref="el">
+      <div v-for="item in list" :key="item.id">
         {{ item.name }}
       </div>
     </div>
@@ -129,10 +124,7 @@ const draggable = useDraggable<UseDraggableReturn>(el, list, {
         }
       ]"
     >
-      <div
-        v-for="item in list"
-        :key="item.id"
-      >
+      <div v-for="item in list" :key="item.id">
         {{ item.name }}
       </div>
     </div>
