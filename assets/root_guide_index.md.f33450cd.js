@@ -57,13 +57,8 @@ import{_ as s,o as n,c as a,S as l}from"./chunks/framework.0e5cb531.js";const u=
 <span class="line"><span style="color:#24292E;">  }</span></span>
 <span class="line"><span style="color:#24292E;">])</span></span>
 <span class="line"><span style="color:#24292E;">&lt;/</span><span style="color:#22863A;">script</span><span style="color:#24292E;">&gt;</span></span></code></pre></div><h3 id="函数方式" tabindex="-1">函数方式 <a class="header-anchor" href="#函数方式" aria-label="Permalink to &quot;函数方式&quot;">​</a></h3><div class="language-vue vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">vue</span><pre class="shiki github-dark vp-code-dark"><code><span class="line"><span style="color:#E1E4E8;">&lt;</span><span style="color:#85E89D;">template</span><span style="color:#E1E4E8;">&gt;</span></span>
-<span class="line"><span style="color:#E1E4E8;">    &lt;</span><span style="color:#85E89D;">div</span></span>
-<span class="line"><span style="color:#E1E4E8;">      </span><span style="color:#B392F0;">ref</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;el&quot;</span></span>
-<span class="line"><span style="color:#E1E4E8;">    &gt;</span></span>
-<span class="line"><span style="color:#E1E4E8;">      &lt;</span><span style="color:#85E89D;">div</span></span>
-<span class="line"><span style="color:#E1E4E8;">        </span><span style="color:#B392F0;">v-for</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item in list&quot;</span></span>
-<span class="line"><span style="color:#E1E4E8;">        </span><span style="color:#B392F0;">:key</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item.id&quot;</span></span>
-<span class="line"><span style="color:#E1E4E8;">      &gt;</span></span>
+<span class="line"><span style="color:#E1E4E8;">    &lt;</span><span style="color:#85E89D;">div</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">ref</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;el&quot;</span><span style="color:#E1E4E8;">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8;">      &lt;</span><span style="color:#85E89D;">div</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">v-for</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item in list&quot;</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">:key</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item.id&quot;</span><span style="color:#E1E4E8;">&gt;</span></span>
 <span class="line"><span style="color:#E1E4E8;">        {{ item.name }}</span></span>
 <span class="line"><span style="color:#E1E4E8;">      &lt;/</span><span style="color:#85E89D;">div</span><span style="color:#E1E4E8;">&gt;</span></span>
 <span class="line"><span style="color:#E1E4E8;">    &lt;/</span><span style="color:#85E89D;">div</span><span style="color:#E1E4E8;">&gt;</span></span>
@@ -104,13 +99,8 @@ import{_ as s,o as n,c as a,S as l}from"./chunks/framework.0e5cb531.js";const u=
 <span class="line"><span style="color:#E1E4E8;">  }</span></span>
 <span class="line"><span style="color:#E1E4E8;">})</span></span>
 <span class="line"><span style="color:#E1E4E8;">&lt;/</span><span style="color:#85E89D;">script</span><span style="color:#E1E4E8;">&gt;</span></span></code></pre><pre class="shiki github-light vp-code-light"><code><span class="line"><span style="color:#24292E;">&lt;</span><span style="color:#22863A;">template</span><span style="color:#24292E;">&gt;</span></span>
-<span class="line"><span style="color:#24292E;">    &lt;</span><span style="color:#22863A;">div</span></span>
-<span class="line"><span style="color:#24292E;">      </span><span style="color:#6F42C1;">ref</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;el&quot;</span></span>
-<span class="line"><span style="color:#24292E;">    &gt;</span></span>
-<span class="line"><span style="color:#24292E;">      &lt;</span><span style="color:#22863A;">div</span></span>
-<span class="line"><span style="color:#24292E;">        </span><span style="color:#6F42C1;">v-for</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item in list&quot;</span></span>
-<span class="line"><span style="color:#24292E;">        </span><span style="color:#6F42C1;">:key</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item.id&quot;</span></span>
-<span class="line"><span style="color:#24292E;">      &gt;</span></span>
+<span class="line"><span style="color:#24292E;">    &lt;</span><span style="color:#22863A;">div</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">ref</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;el&quot;</span><span style="color:#24292E;">&gt;</span></span>
+<span class="line"><span style="color:#24292E;">      &lt;</span><span style="color:#22863A;">div</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">v-for</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item in list&quot;</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">:key</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item.id&quot;</span><span style="color:#24292E;">&gt;</span></span>
 <span class="line"><span style="color:#24292E;">        {{ item.name }}</span></span>
 <span class="line"><span style="color:#24292E;">      &lt;/</span><span style="color:#22863A;">div</span><span style="color:#24292E;">&gt;</span></span>
 <span class="line"><span style="color:#24292E;">    &lt;/</span><span style="color:#22863A;">div</span><span style="color:#24292E;">&gt;</span></span>
@@ -159,10 +149,7 @@ import{_ as s,o as n,c as a,S as l}from"./chunks/framework.0e5cb531.js";const u=
 <span class="line"><span style="color:#9ECBFF;">        }</span></span>
 <span class="line"><span style="color:#9ECBFF;">      ]&quot;</span></span>
 <span class="line"><span style="color:#E1E4E8;">    &gt;</span></span>
-<span class="line"><span style="color:#E1E4E8;">      &lt;</span><span style="color:#85E89D;">div</span></span>
-<span class="line"><span style="color:#E1E4E8;">        </span><span style="color:#B392F0;">v-for</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item in list&quot;</span></span>
-<span class="line"><span style="color:#E1E4E8;">        </span><span style="color:#B392F0;">:key</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item.id&quot;</span></span>
-<span class="line"><span style="color:#E1E4E8;">      &gt;</span></span>
+<span class="line"><span style="color:#E1E4E8;">      &lt;</span><span style="color:#85E89D;">div</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">v-for</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item in list&quot;</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">:key</span><span style="color:#E1E4E8;">=</span><span style="color:#9ECBFF;">&quot;item.id&quot;</span><span style="color:#E1E4E8;">&gt;</span></span>
 <span class="line"><span style="color:#E1E4E8;">        {{ item.name }}</span></span>
 <span class="line"><span style="color:#E1E4E8;">      &lt;/</span><span style="color:#85E89D;">div</span><span style="color:#E1E4E8;">&gt;</span></span>
 <span class="line"><span style="color:#E1E4E8;">    &lt;/</span><span style="color:#85E89D;">div</span><span style="color:#E1E4E8;">&gt;</span></span>
@@ -206,10 +193,7 @@ import{_ as s,o as n,c as a,S as l}from"./chunks/framework.0e5cb531.js";const u=
 <span class="line"><span style="color:#032F62;">        }</span></span>
 <span class="line"><span style="color:#032F62;">      ]&quot;</span></span>
 <span class="line"><span style="color:#24292E;">    &gt;</span></span>
-<span class="line"><span style="color:#24292E;">      &lt;</span><span style="color:#22863A;">div</span></span>
-<span class="line"><span style="color:#24292E;">        </span><span style="color:#6F42C1;">v-for</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item in list&quot;</span></span>
-<span class="line"><span style="color:#24292E;">        </span><span style="color:#6F42C1;">:key</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item.id&quot;</span></span>
-<span class="line"><span style="color:#24292E;">      &gt;</span></span>
+<span class="line"><span style="color:#24292E;">      &lt;</span><span style="color:#22863A;">div</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">v-for</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item in list&quot;</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">:key</span><span style="color:#24292E;">=</span><span style="color:#032F62;">&quot;item.id&quot;</span><span style="color:#24292E;">&gt;</span></span>
 <span class="line"><span style="color:#24292E;">        {{ item.name }}</span></span>
 <span class="line"><span style="color:#24292E;">      &lt;/</span><span style="color:#22863A;">div</span><span style="color:#24292E;">&gt;</span></span>
 <span class="line"><span style="color:#24292E;">    &lt;/</span><span style="color:#22863A;">div</span><span style="color:#24292E;">&gt;</span></span>
