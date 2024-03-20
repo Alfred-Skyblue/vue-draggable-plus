@@ -93,7 +93,7 @@ export const VueDraggable = defineComponent<IProps>({
     }, {} as any)
 
     const options = computed(() => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line 
       const { modelValue, ...rest } = toRefs(props)
       const opt = Object.entries(rest).reduce((acc, [key, value]) => {
         // @ts-ignore

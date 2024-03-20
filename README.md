@@ -132,10 +132,7 @@ const draggable = useDraggable(el, list, {
         }
       ]"
   >
-    <div
-      v-for="item in list"
-      :key="item.id"
-    >
+    <div v-for="item in list" :key="item.id">
       {{ item.name }}
     </div>
   </div>
@@ -273,8 +270,6 @@ type ScrollFn = ((
         hoverTargetEl: HTMLElement,
     ) => 'continue' | void) | undefined;
 ```
-
-## API
 
 ## API
 
