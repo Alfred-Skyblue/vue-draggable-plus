@@ -32,6 +32,7 @@ const emits = [
 ] as const
 
 const props = [
+  'clone',
   'animation',
   'ghostClass',
   'group',
@@ -93,7 +94,7 @@ export const VueDraggable = defineComponent<IProps>({
     }, {} as any)
 
     const options = computed(() => {
-      // eslint-disable-next-line 
+      // eslint-disable-next-line
       const { modelValue, ...rest } = toRefs(props)
       const opt = Object.entries(rest).reduce((acc, [key, value]) => {
         // @ts-ignore
