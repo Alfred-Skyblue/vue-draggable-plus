@@ -93,7 +93,7 @@ export const VueDraggable = defineComponent<IProps>({
     }, {} as any)
 
     const options = computed(() => {
-      // eslint-disable-next-line 
+      // eslint-disable-next-line
       const { modelValue, ...rest } = toRefs(props)
       const opt = Object.entries(rest).reduce((acc, [key, value]) => {
         // @ts-ignore
@@ -119,9 +119,6 @@ export const VueDraggable = defineComponent<IProps>({
 
     expose(data)
 
-    return () => {
-      if (slots.default)
-        return h(props.tag || 'div', { ref: target }, slots.default(data))
-    }
+    return () => h(props.tag || 'div', { ref: target }, slots?.default?.(data))
   }
 })
