@@ -32,6 +32,7 @@ const emits = [
 ] as const
 
 const props = [
+  'clone',
   'animation',
   'ghostClass',
   'group',
