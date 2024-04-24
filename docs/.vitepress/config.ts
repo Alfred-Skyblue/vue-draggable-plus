@@ -32,7 +32,7 @@ export default defineConfig({
           { text: '演示', link: '/demo/basic/', activeMatch: '^/demo/' },
           { text: 'API', link: '/api/', activeMatch: '^/api/' },
           { text: '常见问题', link: '/faq/', activeMatch: '^/faq/' },
-          { text: '联系我', link: '/contact-me/', activeMatch: '^/contact-me/' }
+          { text: '社区群', link: '/contact-me/', activeMatch: '^/contact-me/' }
         ]
       }
     },

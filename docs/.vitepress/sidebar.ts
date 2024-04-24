@@ -59,7 +59,7 @@ export const sidebar = {
       items: [{ text: '常见问题', link: '/faq/' }]
     },
     {
-      text: '联系我',
+      text: '社区群',
       link: '/contact-me/'
     }
   ]
