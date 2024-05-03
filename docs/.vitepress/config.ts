@@ -9,14 +9,14 @@ import { copyDocs } from './theme/plugins/copy-docs'
 export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
-  base: '/vue-draggable-plus/',
+  // base: '/vue-draggable-plus/',
   head: [
     [
       'link',
       {
         rel: 'icon',
         type: 'image/svg+xml',
-        href: '/vue-draggable-plus/favicon.svg'
+        href: '/favicon.svg'
       }
     ]
   ],
