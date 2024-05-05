@@ -54,7 +54,10 @@ export default defineConfig({
     }
   },
   sitemap: {
-    hostname: 'https://vue-draggable-plus.pages.dev/'
+    hostname: 'https://vue-draggable-plus.pages.dev/',
+    transformItems(items) {
+      return items.filter(item => !item.url.includes('__docs__'))
+    }
   },
   themeConfig: {
     repo: 'vuejs/vitepress',
