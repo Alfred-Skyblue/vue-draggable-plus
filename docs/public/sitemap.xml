@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Created By http://www.zhetao.com/sitemapcreator,  URLs: 31 Generated at: 2024-05-05 17:41:00 -->
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/guide/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/basic/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/api/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/faq/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/contact-me/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/guide/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/tow-list/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/basic/</loc>
+    <priority>0.99</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/api/</loc>
+    <priority>0.97</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/faq/</loc>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/target-container/</loc>
+    <priority>0.93</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/custom-clone/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/clone/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/table/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/table-column/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/handle/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/transition/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/transitions/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/demo/nested/</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/target-container/</loc>
+    <priority>0.84</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/custom-clone/</loc>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/clone/</loc>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/table/</loc>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/table-column/</loc>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/tow-list/</loc>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/handle/</loc>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/transition/</loc>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/transitions/</loc>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://vue-draggable-plus.pages.dev/en/demo/nested/</loc>
+    <priority>0.82</priority>
+  </url>
+
+</urlset>
