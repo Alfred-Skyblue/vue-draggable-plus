@@ -22,6 +22,15 @@ export default defineConfig({
   ],
   locales: {
     root: {
+      head: [
+        [
+          'meta',
+          {
+            'http-equiv': 'refresh',
+            content: '0; url=https://vue-draggable-plus.pages.dev/'
+          }
+        ]
+      ],
       lang: 'zh-CN',
       title: 'vue-draggable-plus',
       description: 'vue3拖拽排序组件',
@@ -37,6 +46,15 @@ export default defineConfig({
       }
     },
     en: {
+      head: [
+        [
+          'meta',
+          {
+            'http-equiv': 'refresh',
+            content: '0; url=https://vue-draggable-plus.pages.dev/en/'
+          }
+        ]
+      ],
       lang: 'en-US',
       title: 'vue-draggable-plus',
       description: 'vue3拖拽排序组件',
