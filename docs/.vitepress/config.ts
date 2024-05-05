@@ -12,6 +12,13 @@ export default defineConfig({
   // base: '/vue-draggable-plus/',
   head: [
     [
+      'meta',
+      {
+        name: 'baidu-site-verification',
+        content: 'codeva-zuShuqZc3x'
+      }
+    ],
+    [
       'link',
       {
         rel: 'icon',
