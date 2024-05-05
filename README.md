@@ -10,7 +10,7 @@
 
 # vue-draggable-plus
 
-[中文文档](https://vue-draggable-plus.netlify.app/)
+[中文文档](https://vue-draggable-plus.pages.dev/)
 
 
 Drag and drop sorting module, support Vue>=v3 or Vue>=2.7
