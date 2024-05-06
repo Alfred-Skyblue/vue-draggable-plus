@@ -9,7 +9,7 @@
       :disabled="disabled"
       :animation="150"
       ghostClass="ghost"
-      class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
+      class="flex flex-col gap-2 p-4 w-300px h-350px m-auto bg-gray-500/5 rounded"
       @start="onStart"
       @update="onUpdate"
     >
@@ -17,6 +17,7 @@
         v-for="item in list"
         :key="item.id"
         class="cursor-move h-30 bg-gray-500/5 rounded p-3 cursor-move"
+        :class="item.class"
       >
         {{ item.name }}
       </div>
@@ -44,6 +45,11 @@ const list = ref([
   {
     name: 'Juan',
     id: 4
+  },
+  {
+    name: 'subDisable',
+    id: 5,
+    class: 'dr-sub-disable'
   }
 ])
 

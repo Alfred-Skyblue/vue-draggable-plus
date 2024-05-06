@@ -89,7 +89,17 @@ export const VueDraggable = defineComponent<IProps>({
   setup(props, { slots, emit, expose, attrs }) {
     const events = emits.reduce((acc, key) => {
       const event = `on${key.replace(/^\S/, s => s.toUpperCase())}`
-      acc[event] = (e: any) => emit(key, e)
+      if (key === 'move') {
+        acc[event] = (e: any) => {
+            const classList = [...e.dragged.classList]
+            if (classList.includes('dr-sub-disable') || classList.includes('drSubDisable')) {
+                return false
+            }
+            return emit(key, e)
+        }
+      } else {
+          acc[event] = (e: any) => emit(key, e)
+      }
       return acc
     }, {} as any)
 

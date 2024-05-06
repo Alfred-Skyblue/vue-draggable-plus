@@ -10,12 +10,13 @@
           onStart
         }
       ]"
-      class="target-directive flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
+      class="target-directive flex flex-col gap-2 p-4 w-300px h-350px m-auto bg-gray-500/5 rounded"
     >
       <li
         v-for="item in list"
         :key="item.id"
         class="h-30 bg-gray-500/5 rounded p-3 cursor-move"
+				:class="item.class"
       >
         {{ item.name }}
       </li>
@@ -43,6 +44,11 @@ const list = ref([
   {
     name: 'Juan',
     id: 4
+  },
+  {
+    name: 'subDisable',
+    id: 5,
+    class: 'dr-sub-disable'
   }
 ])
 

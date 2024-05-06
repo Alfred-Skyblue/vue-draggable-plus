@@ -2,13 +2,14 @@
   <button @click="start()">start</button>
   <div class="flex">
     <div
-      class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
+      class="flex flex-col gap-2 p-4 w-300px h-350px m-auto bg-gray-500/5 rounded"
       ref="el"
     >
       <div
         v-for="item in list"
         :key="item.id"
         class="h-30 bg-gray-500/5 rounded p-3 cursor-move"
+				:class="item.class"
       >
         {{ item.name }}
       </div>
@@ -36,6 +37,11 @@ const list = ref([
   {
     name: 'Juan',
     id: 4
+  },
+  {
+    name: 'subDisable',
+    id: 5,
+    class: 'dr-sub-disable'
   }
 ])
 const el = ref()

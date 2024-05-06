@@ -1,4 +1,4 @@
-import Sortable, { type Options, type SortableEvent } from 'sortablejs'
+import Sortable, { type Options, type SortableEvent, type MoveEvent } from 'sortablejs'
 import {
   getCurrentInstance,
   isRef,
@@ -183,6 +183,13 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     moveArrayElement(unref(list), oldIndex!, newIndex!)
   }
 
+  function onMove(e: MoveEvent) {
+    const classList = [...(e.dragged.classList as unknown as Iterable<string>)]
+    if (classList.includes('dr-sub-disable') || classList.includes('drSubDisable')) {
+        return false
+    }
+  }
+
   /**
    * preset options
    */
@@ -190,7 +197,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     onUpdate,
     onStart,
     onAdd,
-    onRemove
+    onRemove,
+    onMove
   }
 
   function getTarget(target?: HTMLElement) {
