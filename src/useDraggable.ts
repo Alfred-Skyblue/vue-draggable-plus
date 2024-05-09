@@ -1,4 +1,8 @@
-import Sortable, { type Options, type SortableEvent } from 'sortablejs'
+import Sortable, {
+  type Options,
+  type SortableEvent,
+  MultiDrag
+} from 'sortablejs'
 import {
   getCurrentInstance,
   isRef,
@@ -12,6 +16,8 @@ import {
 import type { Fn, RefOrElement, RefOrValue } from './types'
 
 import { error } from './utils/log'
+const multiDrag = new MultiDrag()
+Sortable.mount(multiDrag)
 
 import {
   forEachObject,
@@ -23,6 +29,7 @@ import {
   isUndefined,
   mergeOptionsEvents,
   moveArrayElement,
+  moveMultiArray,
   removeElement,
   removeNode
 } from './utils'
@@ -30,6 +37,10 @@ import {
 function defaultClone<T>(element: T): T {
   if (element === undefined || element === null) return element
   return JSON.parse(JSON.stringify(element))
+}
+
+function filterIndicies(indicies: SortableEvent['oldIndicies']) {
+  return indicies.filter(i => i.index !== -1)
 }
 
 /**
@@ -51,10 +62,8 @@ function tryOnMounted(fn: Fn) {
   else nextTick(fn)
 }
 
-const CLONE_ELEMENT_KEY = Symbol('cloneElement')
-
 interface DraggableEvent extends SortableEvent {
-  item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
+  item: HTMLElement
 }
 type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy' | 'option'
 
@@ -74,6 +83,8 @@ export interface UseDraggableOptions<T> extends Options {
   immediate?: boolean
   customUpdate?: (event: SortableEvent) => void
 }
+
+let draggableItems: any = null
 
 /**
  * A custom compositionApi utils that allows you to drag and drop elements in lists.
@@ -126,12 +137,28 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     customUpdate
   } = unref(options) ?? {}
 
+  function isMulti(evt: DraggableEvent) {
+    return (
+      unref(options)?.multiDrag && filterIndicies(evt.oldIndicies).length > 0
+    )
+  }
   /**
    * Element dragging started
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
-    evt.item[CLONE_ELEMENT_KEY] = clone(unref(unref(list)?.[evt.oldIndex!]))
+    draggableItems = null
+    const { oldIndicies, oldIndex } = evt
+    const _list = unref(list)
+    let data
+    if (isMulti(evt)) {
+      data = filterIndicies(oldIndicies).map(i => unref(_list?.[i.index]))
+    } else {
+      data = unref(_list?.[oldIndex!])
+    }
+
+    // cloneMap.set(evt[isMulti() ? 'items' : 'item'], clone(data))
+    draggableItems = clone(data)
   }
 
   /**
@@ -139,10 +166,21 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onAdd(evt: DraggableEvent) {
-    const element = evt.item[CLONE_ELEMENT_KEY]
+    const element = draggableItems
+    draggableItems = null
     if (isUndefined(element)) return
-    removeNode(evt.item)
-    insertElement(unref(list), evt.newDraggableIndex!, element)
+    if (isMulti(evt)) {
+      evt.items.forEach(el => {
+        removeNode(el)
+      })
+    } else {
+      removeNode(evt.item)
+    }
+    insertElement(
+      unref(list),
+      evt.newDraggableIndex!,
+      ...(isMulti(evt) ? element : [element])
+    )
   }
 
   /**
@@ -150,10 +188,15 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onRemove(evt: DraggableEvent) {
-    const { from, item, oldIndex, oldDraggableIndex, pullMode, clone } = evt
+    const { oldDraggableIndex, pullMode, oldIndicies } = evt
     if (pullMode === 'clone') {
-      insertNodeAt(from, item, oldIndex!)
-      removeNode(clone)
+      return
+    }
+    if (isRef(list) && isMulti(evt)) {
+      const indexs = filterIndicies(oldIndicies).map(i => i.index)
+      list.value = (list.value as []).filter(
+        (_, index) => !indexs.includes(index)
+      )
       return
     }
     removeElement(unref(list), oldDraggableIndex!)
@@ -168,19 +211,34 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       customUpdate(evt)
       return
     }
-    const { from, item, oldIndex, newIndex } = evt
+    const { from, item, oldIndex, newIndex, oldIndicies, newIndicies } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
     if (isRef<any[]>(list)) {
       const newList = [...unref(list)]
-      list.value = moveArrayElement(
-        newList,
-        oldIndex!,
-        newIndex!
-      )
+      if (isMulti(evt)) {
+        list.value = moveMultiArray(
+          newList,
+          filterIndicies(oldIndicies).map(i => i.index),
+          filterIndicies(newIndicies).map(i => i.index)
+        )
+        return
+      }
+      list.value = moveArrayElement(newList, oldIndex!, newIndex!)
       return
     }
     moveArrayElement(unref(list), oldIndex!, newIndex!)
+  }
+
+  function onEnd(evt: DraggableEvent) {
+    // console.log(evt)
+    // 清空数组的方法有哪些
+    // evt.oldIndicies.length = 0
+    // evt.newIndicies.length = 0
+    // evt.clones.length = 0
+    // evt.items.length = 0
+    console.dir(multiDrag)
+    // evt.items.forEach(el => {})
   }
 
   /**
@@ -190,7 +248,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     onUpdate,
     onStart,
     onAdd,
-    onRemove
+    onRemove,
+    onEnd
   }
 
   function getTarget(target?: HTMLElement) {
@@ -208,7 +267,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   function mergeOptions() {
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
     const { immediate, clone, ...restOptions } = unref(options) ?? {}
     return mergeOptionsEvents(
       list === null ? {} : presetOptions,
@@ -220,7 +279,10 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     target = getTarget(target)
     if (instance) methods.destroy()
 
-    instance = new Sortable(target as HTMLElement, mergeOptions())
+    instance = new Sortable(target as HTMLElement, {
+      ...mergeOptions(),
+      removeCloneOnHide: true
+    })
   }
 
   watch(

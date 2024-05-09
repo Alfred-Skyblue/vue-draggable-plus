@@ -50,10 +50,10 @@ export function removeElement<T>(array: T[], index: number) {
  * Inserts an element into an array.
  * @param {T[]} array
  * @param {number} index
- * @param element
+ * @param items
  */
-export function insertElement<T>(array: T[], index: number, element: any) {
-  if (Array.isArray(array)) return array.splice(index, 0, element)
+export function insertElement<T>(array: T[], index: number, ...items: T[]) {
+  if (Array.isArray(array)) return array.splice(index, 0, ...items)
 }
 
 /**
@@ -173,4 +173,33 @@ export function forEachObject<T extends Record<string, any>>(
   Object.keys(obj).forEach(key => {
     fn(key, obj[key])
   })
+}
+
+/**
+ * Moves multiple items in an array from specified indices to new indices.
+ *
+ * @param arr The original array from which elements will be moved.
+ * @param from An array of indices indicating the positions of elements to be moved.
+ * @param to An array of indices indicating the new positions for the elements.
+ * @returns A new array with the elements moved to their new positions.
+ */
+export function moveMultiArray<T>(arr: T[], from: number[], to: number[]): T[] {
+  const result = [...arr]
+
+  const itemsToMove = from.map(index => ({ item: result[index], index }))
+
+  itemsToMove.sort((a, b) => b.index - a.index)
+
+  itemsToMove.forEach(item => {
+    result.splice(item.index, 1)
+  })
+
+  const sortedTo = to.map((index, i) => ({ index, originalIndex: from[i] }))
+  sortedTo.sort((a, b) => a.index - b.index)
+
+  sortedTo.forEach(({ index, originalIndex }) => {
+    const item = itemsToMove.find(it => it.index === originalIndex)!.item
+    result.splice(index, 0, item)
+  })
+  return result
 }

@@ -75,6 +75,7 @@ const props = [
   'tag',
   'target',
   'customUpdate',
+  'multiDrag',
   ...emits.map(key => `on${key.replace(/^\S/, s => s.toUpperCase())}`)
 ] as const
 
