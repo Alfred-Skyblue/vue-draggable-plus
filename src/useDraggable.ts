@@ -173,11 +173,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     insertNodeAt(from, item, oldIndex!)
     if (isRef<any[]>(list)) {
       const newList = [...unref(list)]
-      list.value = moveArrayElement(
-        newList,
-        oldIndex!,
-        newIndex!
-      )
+      list.value = moveArrayElement(newList, oldIndex!, newIndex!)
       return
     }
     moveArrayElement(unref(list), oldIndex!, newIndex!)
@@ -208,7 +204,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   function mergeOptions() {
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
     const { immediate, clone, ...restOptions } = unref(options) ?? {}
     return mergeOptionsEvents(
       list === null ? {} : presetOptions,
