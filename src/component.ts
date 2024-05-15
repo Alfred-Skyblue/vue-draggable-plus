@@ -89,7 +89,7 @@ export const VueDraggable = defineComponent<IProps>({
   setup(props, { slots, emit, expose, attrs }) {
     const events = emits.reduce((acc, key) => {
       const event = `on${key.replace(/^\S/, s => s.toUpperCase())}`
-      acc[event] = (e: any) => emit(key, e)
+      acc[event] = (...args: any) => emit(key, ...args)
       return acc
     }, {} as any)
 
