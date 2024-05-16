@@ -25,6 +25,15 @@ export default defineConfig({
         type: 'image/svg+xml',
         href: '/favicon.svg'
       }
+    ],
+    // <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7438b3c21281453e968baacf26657f54"}'></script>
+    [
+      'script',
+      {
+        defer: 'true',
+        src: 'https://static.cloudflareinsights.com/beacon.min.js',
+        'data-cf-beacon': '{"token": "7438b3c21281453e968baacf26657f54"}'
+      }
     ]
   ],
   locales: {
