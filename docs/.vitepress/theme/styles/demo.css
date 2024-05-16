@@ -5,8 +5,8 @@
   outline: none;
   color: white;
   margin: 0.5rem 0;
-  border-bottom: 2px solid var(--vp-c-brand-dark);
-  text-shadow: 1px 1px 1px var(--vp-c-brand-dark);
+  border-bottom: 2px solid var(--vp-c-brand-2);
+  text-shadow: 1px 1px 1px var(--vp-c-brand-2);
   border-radius: 4px;
   font-size: 1rem;
   box-sizing: border-box;
@@ -30,12 +30,12 @@
 }
 
 .vitepress-demo button:hover {
-  background-color: var(--vp-c-brand-dark);
+  background-color: var(--vp-c-brand-2);
 }
 
 .vitepress-demo button:active {
   border-bottom: 0;
-  border-top: 2px solid var(--vp-c-brand-dark);
+  border-top: 2px solid var(--vp-c-brand-2);
 }
 .vitepress-demo button ~ button {
   margin-left: 0.5rem;
