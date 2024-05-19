@@ -142,6 +142,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     const element = evt.item[CLONE_ELEMENT_KEY]
     if (isUndefined(element)) return
     removeNode(evt.item)
+    if (isRef<any[]>(list)) {
+      const newList = [...unref(list)]
+      list.value = insertElement(newList, evt.newDraggableIndex!, element)
+      return
+    }
     insertElement(unref(list), evt.newDraggableIndex!, element)
   }
 
@@ -154,6 +159,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     if (pullMode === 'clone') {
       insertNodeAt(from, item, oldIndex!)
       removeNode(clone)
+      return
+    }
+    if (isRef<any[]>(list)) {
+      const newList = [...unref(list)]
+      list.value = removeElement(newList, oldDraggableIndex!)
       return
     }
     removeElement(unref(list), oldDraggableIndex!)
