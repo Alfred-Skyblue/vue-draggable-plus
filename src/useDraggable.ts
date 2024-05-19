@@ -156,8 +156,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    */
   function onRemove(evt: DraggableEvent) {
     const { from, item, oldIndex, oldDraggableIndex, pullMode, clone } = evt
+    insertNodeAt(from, item, oldIndex!)
     if (pullMode === 'clone') {
-      insertNodeAt(from, item, oldIndex!)
       removeNode(clone)
       return
     }
