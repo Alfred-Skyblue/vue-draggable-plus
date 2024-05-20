@@ -1,11 +1,12 @@
+import { warn } from './log'
+
 /**
  * Moves an element in an array from one position to another.
  * @param {T[]} array
  * @param {number} from
  * @param {number} to
+ * @returns {T[]}
  */
-import { warn } from './log'
-
 export function moveArrayElement<T>(array: T[], from: number, to: number): T[] {
   if (to >= 0 && to < array.length) {
     array.splice(to, 0, array.splice(from, 1)[0])
@@ -43,7 +44,8 @@ export function objectMap(object: Record<any, any>) {
  * @returns {T[]}
  */
 export function removeElement<T>(array: T[], index: number) {
-  if (Array.isArray(array)) return array.splice(index, 1)
+  if (Array.isArray(array)) array.splice(index, 1)
+  return array
 }
 
 /**
@@ -51,9 +53,11 @@ export function removeElement<T>(array: T[], index: number) {
  * @param {T[]} array
  * @param {number} index
  * @param element
+ * @returns {T[]}
  */
 export function insertElement<T>(array: T[], index: number, element: any) {
-  if (Array.isArray(array)) return array.splice(index, 0, element)
+  if (Array.isArray(array)) array.splice(index, 0, element)
+  return array
 }
 
 /**
