@@ -1,6 +1,6 @@
 {
   "name": "vue-draggable-plus",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "author": {
     "name": "yangpanteng",
     "email": "yangpanteng@gmail.com"
@@ -67,7 +67,6 @@
     "@ruabick/md-demo-plugins": "latest",
     "@ruabick/vite-plugin-gen-temp": "latest",
     "@ruabick/vitepress-demo-block": "latest",
-    "@types/sortablejs": "^1.15.8",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-vue": "^5.0.4",
@@ -83,13 +82,16 @@
     "prettier": "^2.8.8",
     "sortablejs": "^1.15.2",
     "typescript": "^5.4.5",
-    "unocss": "^0.60.2",
-    "vite": "^5.2.11",
+    "unocss": "^0.60.3",
+    "vite": "^5.2.12",
     "vite-plugin-dts": "^1.7.3",
     "vitepress": "1.0.0-rc.44",
     "vue": "^3.4.27",
     "vue-demi": "^0.13.11",
     "vue-eslint-parser": "^9.4.2"
+  },
+  "dependencies": {
+    "@types/sortablejs": "^1.15.8"
   },
   "peerDependencies": {
     "@types/sortablejs": "^1.15.0"
