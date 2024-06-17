@@ -85,6 +85,7 @@ export interface UseDraggableOptions<T> extends Options {
 }
 
 let draggableItems: any = null
+let currentParentNode: Node | null = null
 
 /**
  * A custom compositionApi utils that allows you to drag and drop elements in lists.
@@ -147,6 +148,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
+    currentParentNode = evt.from
     draggableItems = null
     const { oldIndicies, oldIndex } = evt
     const _list = unref(list)
@@ -231,14 +233,19 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   }
 
   function onEnd(evt: DraggableEvent) {
-    // console.log(evt)
-    // 清空数组的方法有哪些
-    // evt.oldIndicies.length = 0
-    // evt.newIndicies.length = 0
-    // evt.clones.length = 0
-    // evt.items.length = 0
-    console.dir(multiDrag)
-    // evt.items.forEach(el => {})
+    if (!isMulti(evt)) return
+    const { items } = evt
+    nextTick(() => {
+      items.forEach(item => {
+        Object.defineProperty(item, 'parentNode', {
+          value: currentParentNode,
+          writable: false
+        })
+        // @ts-ignore
+        multiDrag?.utils?.deselect?.(item)
+      })
+      currentParentNode = null
+    })
   }
 
   /**

@@ -93,7 +93,7 @@ export const VueDraggable = defineComponent<IProps>({
       acc[event] = (e: any) => emit(key, e)
       return acc
     }, {} as any)
-
+    console.log('p', props)
     const options = computed(() => {
       // eslint-disable-next-line
       const { modelValue, ...rest } = toRefs(props)
