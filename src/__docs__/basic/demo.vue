@@ -16,7 +16,7 @@
       <div
         v-for="item in list"
         :key="item.id"
-        class="cursor-move h-30 bg-gray-500/5 rounded p-3 cursor-move"
+        class="cursor-move h-30 bg-gray-500/5 rounded p-3"
       >
         {{ item.name }}
       </div>
