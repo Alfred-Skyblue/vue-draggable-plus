@@ -62,6 +62,10 @@ const list1 = ref([
   {
     name: 'Juan',
     id: '4'
+  },
+  {
+    name: 'Juan-2',
+    id: '4-2'
   }
 ])
 const list2 = ref(
