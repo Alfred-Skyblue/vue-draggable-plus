@@ -1,4 +1,5 @@
-import Sortable, { type Options, type SortableEvent } from 'sortablejs'
+import Sortable, { type Options, type SortableEvent } from "sortablejs";
+import _ from 'lodash-es';
 import {
   getCurrentInstance,
   isRef,
@@ -7,11 +8,11 @@ import {
   unref,
   nextTick,
   watch,
-  type Ref
-} from 'vue-demi'
-import type { Fn, RefOrElement, RefOrValue } from './types'
+  type Ref,
+} from "vue-demi";
+import type { Fn, RefOrElement, RefOrValue } from "./types";
 
-import { error } from './utils/log'
+import { error } from "./utils/log";
 
 import {
   forEachObject,
@@ -24,12 +25,12 @@ import {
   mergeOptionsEvents,
   moveArrayElement,
   removeElement,
-  removeNode
-} from './utils'
+  removeNode,
+} from "./utils";
 
 function defaultClone<T>(element: T): T {
-  if (element === undefined || element === null) return element
-  return JSON.parse(JSON.stringify(element))
+  if (element === undefined || element === null) return element;
+  return JSON.parse(JSON.stringify(element));
 }
 
 /**
@@ -38,7 +39,7 @@ function defaultClone<T>(element: T): T {
  * @param fn
  */
 function tryOnUnmounted(fn: Fn) {
-  if (getCurrentInstance()) onUnmounted(fn)
+  if (getCurrentInstance()) onUnmounted(fn);
 }
 
 /**
@@ -47,16 +48,16 @@ function tryOnUnmounted(fn: Fn) {
  * @param fn
  */
 function tryOnMounted(fn: Fn) {
-  if (getCurrentInstance()) onMounted(fn)
-  else nextTick(fn)
+  if (getCurrentInstance()) onMounted(fn);
+  else nextTick(fn);
 }
 
-const CLONE_ELEMENT_KEY = Symbol('cloneElement')
+const CLONE_ELEMENT_KEY = Symbol("cloneElement");
 
 interface DraggableEvent extends SortableEvent {
-  item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
+  item: HTMLElement & { [CLONE_ELEMENT_KEY]: any };
 }
-type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy' | 'option'
+type SortableMethod = "closest" | "save" | "toArray" | "destroy" | "option";
 
 export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
   /**
@@ -64,15 +65,15 @@ export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
    * @param {HTMLElement} target - The target element to be sorted.
    * @default By default the root element of the VueDraggablePlus instance is used
    */
-  start: (target?: HTMLElement) => void
-  pause: () => void
-  resume: () => void
+  start: (target?: HTMLElement) => void;
+  pause: () => void;
+  resume: () => void;
 }
 
 export interface UseDraggableOptions<T> extends Options {
-  clone?: (element: T) => T
-  immediate?: boolean
-  customUpdate?: (event: SortableEvent) => void
+  clone?: (element: T) => T;
+  immediate?: boolean;
+  customUpdate?: (event: SortableEvent) => void;
 }
 
 /**
@@ -86,20 +87,20 @@ export function useDraggable<T>(
   el: RefOrElement,
   list?: Ref<T[] | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
-): UseDraggableReturn
+): UseDraggableReturn;
 export function useDraggable<T>(
   el: null | undefined,
   list?: Ref<T[] | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
-): UseDraggableReturn
+): UseDraggableReturn;
 export function useDraggable<T>(
   el: Ref<HTMLElement | null | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
-): UseDraggableReturn
+): UseDraggableReturn;
 export function useDraggable<T>(
   el: null | undefined,
   options?: RefOrValue<UseDraggableOptions<T>>
-): UseDraggableReturn
+): UseDraggableReturn;
 
 /**
  * A custom compositionApi utils that allows you to drag and drop elements in lists.
@@ -109,29 +110,29 @@ export function useDraggable<T>(
  * @returns {UseSortableReturn}
  */
 export function useDraggable<T>(...args: any[]): UseDraggableReturn {
-  const vm = getCurrentInstance()?.proxy
+  const vm = getCurrentInstance()?.proxy;
 
-  const el = args[0]
-  let [, list, options] = args
+  const el = args[0];
+  let [, list, options] = args;
 
   if (!Array.isArray(unref(list))) {
-    options = list
-    list = null
+    options = list;
+    list = null;
   }
 
-  let instance: Sortable | null = null
+  let instance: Sortable | null = null;
   const {
     immediate = true,
     clone = defaultClone,
-    customUpdate
-  } = unref(options) ?? {}
+    customUpdate,
+  } = unref(options) ?? {};
 
   /**
    * Element dragging started
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
-    evt.item[CLONE_ELEMENT_KEY] = clone(unref(unref(list)?.[evt.oldIndex!]))
+    evt.item[CLONE_ELEMENT_KEY] = clone(unref(unref(list)?.[evt.oldIndex!]));
   }
 
   /**
@@ -139,15 +140,19 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onAdd(evt: DraggableEvent) {
-    const element = evt.item[CLONE_ELEMENT_KEY]
-    if (isUndefined(element)) return
-    removeNode(evt.item)
+    const element = evt.item[CLONE_ELEMENT_KEY];
+    if (isUndefined(element)) return;
+    removeNode(evt.item);
     if (isRef<any[]>(list)) {
-      const newList = [...unref(list)]
-      list.value = insertElement(newList, evt.newDraggableIndex!, element)
-      return
+      const newList = [...unref(list)];
+      const existed = _.find(list?._value, element) ? true : false;
+      element.existed = existed;
+
+      if (existed) return;
+      list.value = insertElement(newList, evt.newDraggableIndex!, element);
+      return;
     }
-    insertElement(unref(list), evt.newDraggableIndex!, element)
+    insertElement(unref(list), evt.newDraggableIndex!, element);
   }
 
   /**
@@ -155,18 +160,31 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onRemove(evt: DraggableEvent) {
-    const { from, item, oldIndex, oldDraggableIndex, pullMode, clone } = evt
-    insertNodeAt(from, item, oldIndex!)
-    if (pullMode === 'clone') {
-      removeNode(clone)
-      return
+    const { from, item, oldIndex, oldDraggableIndex, pullMode, clone } = evt;
+    const symbols = Object.getOwnPropertySymbols(item);
+    // 找到 Symbol(cloneElement)
+    const cloneElementSymbol = symbols.find(
+      (symbol) => symbol.toString() === "Symbol(cloneElement)"
+    );
+
+    // 获取 Symbol(cloneElement) 的值
+    const cloneElementValue = item[cloneElementSymbol];
+    const existed = cloneElementValue.existed;
+
+    insertNodeAt(from, item, oldIndex!);
+    if (pullMode === "clone") {
+      removeNode(clone);
+      return;
     }
     if (isRef<any[]>(list)) {
-      const newList = [...unref(list)]
-      list.value = removeElement(newList, oldDraggableIndex!)
-      return
+      const newList = [...unref(list)];
+
+      if (existed) return;
+
+      list.value = removeElement(newList, oldDraggableIndex!);
+      return;
     }
-    removeElement(unref(list), oldDraggableIndex!)
+    removeElement(unref(list), oldDraggableIndex!);
   }
 
   /**
@@ -175,18 +193,18 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    */
   function onUpdate(evt: DraggableEvent) {
     if (customUpdate) {
-      customUpdate(evt)
-      return
+      customUpdate(evt);
+      return;
     }
-    const { from, item, oldIndex, newIndex } = evt
-    removeNode(item)
-    insertNodeAt(from, item, oldIndex!)
+    const { from, item, oldIndex, newIndex } = evt;
+    removeNode(item);
+    insertNodeAt(from, item, oldIndex!);
     if (isRef<any[]>(list)) {
-      const newList = [...unref(list)]
-      list.value = moveArrayElement(newList, oldIndex!, newIndex!)
-      return
+      const newList = [...unref(list)];
+      list.value = moveArrayElement(newList, oldIndex!, newIndex!);
+      return;
     }
-    moveArrayElement(unref(list), oldIndex!, newIndex!)
+    moveArrayElement(unref(list), oldIndex!, newIndex!);
   }
 
   /**
@@ -196,76 +214,76 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     onUpdate,
     onStart,
     onAdd,
-    onRemove
-  }
+    onRemove,
+  };
 
   function getTarget(target?: HTMLElement) {
-    const element = unref(el) as any
+    const element = unref(el) as any;
     if (!target) {
       target = isString(element)
         ? getElementBySelector(element, vm?.$el)
-        : element
+        : element;
     }
     // @ts-ignore
-    if (target && !isHTMLElement(target)) target = target.$el
+    if (target && !isHTMLElement(target)) target = target.$el;
 
-    if (!target) error('Root element not found')
-    return target
+    if (!target) error("Root element not found");
+    return target;
   }
 
   function mergeOptions() {
     // eslint-disable-next-line
-    const { immediate, clone, ...restOptions } = unref(options) ?? {}
+    const { immediate, clone, ...restOptions } = unref(options) ?? {};
     return mergeOptionsEvents(
       list === null ? {} : presetOptions,
       restOptions
-    ) as Options
+    ) as Options;
   }
 
   const start = (target?: HTMLElement) => {
-    target = getTarget(target)
-    if (instance) methods.destroy()
+    target = getTarget(target);
+    if (instance) methods.destroy();
 
-    instance = new Sortable(target as HTMLElement, mergeOptions())
-  }
+    instance = new Sortable(target as HTMLElement, mergeOptions());
+  };
 
   watch(
     () => options,
     () => {
-      if (!instance) return
+      if (!instance) return;
       forEachObject(mergeOptions(), (key, value) => {
         // @ts-ignore
-        instance?.option(key, value)
-      })
+        instance?.option(key, value);
+      });
     },
     { deep: true }
-  )
+  );
 
   const methods = {
     option: (name: keyof Options, value?: any) => {
       // @ts-ignore
-      return instance?.option(name, value)
+      return instance?.option(name, value);
     },
     destroy: () => {
-      instance?.destroy()
-      instance = null
+      instance?.destroy();
+      instance = null;
     },
     save: () => instance?.save(),
     toArray: () => instance?.toArray(),
     closest: (...args) => {
       // @ts-ignore
-      return instance?.closest(...args)
-    }
-  } as Pick<Sortable, SortableMethod>
+      return instance?.closest(...args);
+    },
+  } as Pick<Sortable, SortableMethod>;
 
-  const pause = () => methods?.option('disabled', true)
-  const resume = () => methods?.option('disabled', false)
+  const pause = () => methods?.option("disabled", true);
+  const resume = () => methods?.option("disabled", false);
 
   tryOnMounted(() => {
-    immediate && start()
-  })
+    immediate && start();
+  });
 
-  tryOnUnmounted(methods.destroy)
+  tryOnUnmounted(methods.destroy);
 
-  return { start, pause, resume, ...methods }
+  return { start, pause, resume, ...methods };
 }
