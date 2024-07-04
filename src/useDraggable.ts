@@ -9,7 +9,13 @@ import {
   watch,
   type Ref
 } from 'vue-demi'
-import type { Fn, RefOrElement, RefOrValue } from './types'
+import {
+  Fn,
+  MoveDataEvent,
+  RefOrElement,
+  RefOrValue,
+  SortableDataEvent
+} from './types'
 
 import { error } from './utils/log'
 
@@ -51,10 +57,24 @@ function tryOnMounted(fn: Fn) {
   else nextTick(fn)
 }
 
-const CLONE_ELEMENT_KEY = Symbol('cloneElement')
+const DATA_ELEMENT_KEY = Symbol('dataElement')
+
+const sortableEventKeys = [
+  "onStart",
+  "onEnd",
+  "onAdd",
+  "onClone",
+  "onChoose",
+  "onUnchoose",
+  "onUpdate",
+  "onSort",
+  "onRemove",
+  "onFilter",
+  "onChange"
+] as const;
 
 interface DraggableEvent extends SortableEvent {
-  item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
+  item: HTMLElement & { [DATA_ELEMENT_KEY]: any }
 }
 type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy' | 'option'
 
@@ -69,7 +89,15 @@ export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
   resume: () => void
 }
 
-export interface UseDraggableOptions<T> extends Options {
+type MoveDataFunction = (evt: MoveDataEvent, originalEvent: Event) => boolean | -1 | 1 | void
+
+type ExtendedOptions = Options & {
+  [key in typeof sortableEventKeys[number]]?: (evt: SortableDataEvent) => void
+} & {
+  onMove?: MoveDataFunction;
+}
+
+export interface UseDraggableOptions<T> extends ExtendedOptions {
   clone?: (element: T) => T
   immediate?: boolean
   customUpdate?: (event: SortableEvent) => void
@@ -130,8 +158,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * Element dragging started
    * @param {DraggableEvent} evt - DraggableEvent
    */
-  function onStart(evt: DraggableEvent) {
-    evt.item[CLONE_ELEMENT_KEY] = clone(unref(unref(list)?.[evt.oldIndex!]))
+  function onChoose(evt: DraggableEvent) {
+    evt.item[DATA_ELEMENT_KEY] = clone(unref(unref(list)?.[evt.oldIndex!]))
   }
 
   /**
@@ -139,7 +167,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt
    */
   function onAdd(evt: DraggableEvent) {
-    const element = evt.item[CLONE_ELEMENT_KEY]
+    const element = evt.item[DATA_ELEMENT_KEY]
     if (isUndefined(element)) return
     removeNode(evt.item)
     if (isRef<any[]>(list)) {
@@ -193,8 +221,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * preset options
    */
   const presetOptions: UseDraggableOptions<T> = {
+    onChoose,
     onUpdate,
-    onStart,
     onAdd,
     onRemove
   }
@@ -216,10 +244,28 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   function mergeOptions() {
     // eslint-disable-next-line
     const { immediate, clone, ...restOptions } = unref(options) ?? {}
+    sortableEventKeys.forEach(key => {
+      if (restOptions[key]) {
+        restOptions[key] = extendSortableEvent(restOptions[key])
+      }
+    })
+    if (restOptions.onMove) {
+      restOptions.onMove = extendMoveEvent(restOptions.onMove)
+    }
     return mergeOptionsEvents(
       list === null ? {} : presetOptions,
       restOptions
     ) as Options
+  }
+
+  function extendSortableEvent(fn: (evt: SortableDataEvent) => void) {
+    return (evt: DraggableEvent) =>
+      fn({ ...evt, itemData: evt.item[DATA_ELEMENT_KEY] })
+  }
+
+  function extendMoveEvent(fn: MoveDataFunction) {
+    return (moveEvent: any, originalEvent: Event) =>
+      fn({ ...moveEvent, draggedData: moveEvent.dragged[DATA_ELEMENT_KEY] }, originalEvent)
   }
 
   const start = (target?: HTMLElement) => {
