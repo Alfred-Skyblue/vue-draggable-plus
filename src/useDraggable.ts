@@ -53,8 +53,10 @@ function tryOnMounted(fn: Fn) {
 
 const CLONE_ELEMENT_KEY = Symbol('cloneElement')
 
-interface DraggableEvent extends SortableEvent {
+interface DraggableEvent<T = any> extends SortableEvent {
   item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
+  data: T
+  clonedData: T
 }
 type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy' | 'option'
 
@@ -131,7 +133,11 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
-    evt.item[CLONE_ELEMENT_KEY] = clone(unref(unref(list)?.[evt.oldIndex!]))
+    const data = unref(unref(list)?.[evt.oldIndex!])
+    const clonedData = clone(data)
+    evt.data = data
+    evt.clonedData = clonedData
+    evt.item[CLONE_ELEMENT_KEY] = clonedData
   }
 
   /**
