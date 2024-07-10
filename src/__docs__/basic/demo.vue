@@ -12,6 +12,7 @@
       class="flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-gray-500/5 rounded"
       @start="onStart"
       @update="onUpdate"
+      @end="onEnd"
     >
       <div
         v-for="item in list"
@@ -27,7 +28,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { type UseDraggableReturn, VueDraggable } from 'vue-draggable-plus'
+import {
+  type DraggableEvent,
+  type UseDraggableReturn,
+  VueDraggable
+} from 'vue-draggable-plus'
 const list = ref([
   {
     name: 'Joao',
@@ -57,8 +62,12 @@ function start() {
   el.value?.start()
 }
 
-const onStart = () => {
-  console.log('start')
+const onStart = (e: DraggableEvent) => {
+  console.log('start', e)
+}
+
+const onEnd = (e: DraggableEvent) => {
+  console.log('onEnd', e)
 }
 
 const onUpdate = () => {

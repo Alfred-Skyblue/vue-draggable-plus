@@ -12,12 +12,18 @@ All event functions starting with `on` can be passed to components using `v-on`.
 ```vue
 
 <template>
-  <VueDraggable v-model="list" @start="onStart" @end="onEnd"></VueDraggable>
+  <VueDraggable v-model="list" @start="onStart" @end="onEnd">
+    <div
+        v-for="item in list"
+        :key="item.id"
+    >
+      {{ item.name }}
+    </div>
+  </VueDraggable>
 </template>
 <script lang="ts" setup>
 import { ref } from "vue";
-import { VueDraggable } from 'vue-draggable-plus'
-import { SortableEvent } from "sortablejs";
+import { VueDraggable, DraggableEvent } from 'vue-draggable-plus'
 
 const list = ref([
   {
@@ -38,11 +44,11 @@ const list = ref([
   }
 ])
 
-function onStart(event: SortableEvent) {
+function onStart(event: DraggableEvent) {
   console.log('start drag')
 }
 
-function onEnd(event: SortableEvent) {
+function onEnd(event: DraggableEvent) {
   console.log('end drag')
 }
 </script>
@@ -50,6 +56,44 @@ function onEnd(event: SortableEvent) {
 ```
 
 > For information on using Hooks and directives, please refer to the documentation.
+
+## Types
+
+```ts
+
+type SortableMethod = 'closest' | 'save' | 'toArray' | 'destroy' | 'option'
+
+/**
+ * The return value of useDraggable
+ */
+export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
+  /**
+   * Starts dragging
+   * @param {HTMLElement} target - The element to be dragged
+   * @default - The component's root element, refer to [Target Container](/demo/target-container/), defaults to the component's root element
+   */
+  start: (target?: HTMLElement) => void
+  /**
+   * Pauses dragging
+   */
+  pause: () => void
+  /**
+   * Resumes dragging
+   */
+  resume: () => void
+}
+
+export interface UseDraggableOptions<T> extends Options {
+  clone?: (element: T) => T
+  immediate?: boolean
+  customUpdate?: (event: DraggableEvent) => void
+}
+
+interface DraggableEvent<T = any> extends DraggableEvent {
+  data: T
+  clonedData: T
+}
+```
 
 ## Options
 
@@ -138,15 +182,34 @@ type ScrollFn = ((
 | scrollSensitivity     | The distance in pixels the mouse must be to the edge to start scrolling                | `Number`                                             | -                    |
 | scrollSpeed           | The scrolling speed in ms/px                                                          | `number`                                             | -                    |
 | bubbleScroll          | Enables automatic scrolling for all parent elements to make it easier to move items   | `Boolean`                                            | `true`               |
-| onChoose              | Triggered when an item is selected                                                      | `((event: SortableEvent) => void)`                   | -                    |
-| onUnchoose            | Triggered when an item is deselected                                                    | `((event: SortableEvent) => void)`                   | -                    |
-| onStart               | Triggered when an item is picked up for drag and drop                                    | `((event: SortableEvent) => void)`                   | -                    |
-| onEnd                 | Triggered when an item is no longer being dragged                                       | `((event: SortableEvent) => void)`                   | -                    |
-| onAdd                 | Triggered when an item is moved from one list to another                                 | `((event: SortableEvent) => void)`                   | -                    |
-| onUpdate              | Triggered when the order of the items is updated                                        | `((event: SortableEvent) => void)`                   | -                    |
-| onSort                | Triggered whenever any changes are made to the list                                     | `((event: SortableEvent) => void)`                   | -                    |
-| onRemove              | Triggered when an item is removed from the list and moved to another                     | `((event: SortableEvent) => void)`                   | -                    |
-| onFilter              | Triggered when trying to drag a filtered item                                            | `((event: SortableEvent) => void)`                   | -                    |
+| onChoose              | Triggered when an item is selected                                                      | `((event: DraggableEvent) => void)`                   | -                    |
+| onUnchoose            | Triggered when an item is deselected                                                    | `((event: DraggableEvent) => void)`                   | -                    |
+| onStart               | Triggered when an item is picked up for drag and drop                                    | `((event: DraggableEvent) => void)`                   | -                    |
+| onEnd                 | Triggered when an item is no longer being dragged                                       | `((event: DraggableEvent) => void)`                   | -                    |
+| onAdd                 | Triggered when an item is moved from one list to another                                 | `((event: DraggableEvent) => void)`                   | -                    |
+| onUpdate              | Triggered when the order of the items is updated                                        | `((event: DraggableEvent) => void)`                   | -                    |
+| onSort                | Triggered whenever any changes are made to the list                                     | `((event: DraggableEvent) => void)`                   | -                    |
+| onRemove              | Triggered when an item is removed from the list and moved to another                     | `((event: DraggableEvent) => void)`                   | -                    |
+| onFilter              | Triggered when trying to drag a filtered item                                            | `((event: DraggableEvent) => void)`                   | -                    |
 | onMove                | Triggered while an item is being dragged                                                | `((event: MoveEvent,originalEvent: Event) => void)`   | -                    |
-| onClone               | Triggered when an item is cloned                                                         | `((event: SortableEvent) => void)`                   | -                    |
-| onChange              | Triggered when an item is dragged and changes position                                   | `((event: SortableEvent) => void)`                   | -                    |
+| onClone               | Triggered when an item is cloned                                                         | `((event: DraggableEvent) => void)`                   | -                    |
+| onChange              | Triggered when an item is dragged and changes position                                   | `((event: DraggableEvent) => void)`                   | -                    |
+
+
+## Component (Component Properties)
+
+### Props
+
+The component's props include all options from `Sortablejs` and can be passed to the component. For details, see [Options](#options).
+
+| Parameter              | Description                                                   | Required | Default |
+|------------------------|---------------------------------------------------------------|----------|---------|
+| modelValue (v-model)   | The list for two-way binding                                  | Yes      | -       |
+| tag                    | The tag name of the component's root element                  | No       | `div`   |
+| target                 | Specifies the target container. If not provided, the component's root element is used as the container. See [Target Container](/demo/target-container/) for details. | No       | -       |
+
+### Slots
+
+| Name    | Description | Parameters          |
+|---------|-------------|---------------------|
+| default | Default slot | UseDraggableReturn |
