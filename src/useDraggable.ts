@@ -14,11 +14,13 @@ import type { Fn, RefOrElement, RefOrValue } from './types'
 import { error } from './utils/log'
 
 import {
+  extend,
   forEachObject,
   getElementBySelector,
   insertElement,
   insertNodeAt,
   isHTMLElement,
+  isOn,
   isString,
   isUndefined,
   mergeOptionsEvents,
@@ -49,6 +51,24 @@ function tryOnUnmounted(fn: Fn) {
 function tryOnMounted(fn: Fn) {
   if (getCurrentInstance()) onMounted(fn)
   else nextTick(fn)
+}
+
+let data: any = null
+let clonedData: any = null
+
+function setCurrentData(
+  _data: typeof data = null,
+  _clonedData: typeof data = null
+) {
+  data = _data
+  clonedData = _clonedData
+}
+
+function getCurrentData() {
+  return {
+    data,
+    clonedData
+  }
 }
 
 const CLONE_ELEMENT_KEY = Symbol('cloneElement')
@@ -135,8 +155,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   function onStart(evt: DraggableEvent) {
     const data = unref(unref(list)?.[evt.oldIndex!])
     const clonedData = clone(data)
-    evt.data = data
-    evt.clonedData = clonedData
+    setCurrentData(data, clonedData)
     evt.item[CLONE_ELEMENT_KEY] = clonedData
   }
 
@@ -195,6 +214,12 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     moveArrayElement(unref(list), oldIndex!, newIndex!)
   }
 
+  function onEnd() {
+    nextTick(() => {
+      setCurrentData()
+    })
+  }
+
   /**
    * preset options
    */
@@ -202,7 +227,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     onUpdate,
     onStart,
     onAdd,
-    onRemove
+    onRemove,
+    onEnd
   }
 
   function getTarget(target?: HTMLElement) {
@@ -222,6 +248,16 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   function mergeOptions() {
     // eslint-disable-next-line
     const { immediate, clone, ...restOptions } = unref(options) ?? {}
+
+    forEachObject(restOptions, (key, fn) => {
+      if (!isOn(key)) return
+      restOptions[key] = (evt: DraggableEvent, ...args: any[]) => {
+        const data = getCurrentData()
+        extend(evt, data)
+        fn(evt, ...args)
+      }
+    })
+
     return mergeOptionsEvents(
       list === null ? {} : presetOptions,
       restOptions

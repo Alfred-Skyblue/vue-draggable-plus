@@ -178,3 +178,18 @@ export function forEachObject<T extends Record<string, any>>(
     fn(key, obj[key])
   })
 }
+
+/**
+ *
+ * @param key
+ */
+export function isOn(key: any) {
+  return (
+    key.charCodeAt(0) === 111 /* o */ &&
+    key.charCodeAt(1) === 110 /* n */ &&
+    // uppercase letter
+    (key.charCodeAt(2) > 122 || key.charCodeAt(2) < 97)
+  )
+}
+
+export const extend = Object.assign
