@@ -73,7 +73,7 @@ function getCurrentData() {
 
 const CLONE_ELEMENT_KEY = Symbol('cloneElement')
 
-interface DraggableEvent<T = any> extends SortableEvent {
+export interface DraggableEvent<T = any> extends SortableEvent {
   item: HTMLElement & { [CLONE_ELEMENT_KEY]: any }
   data: T
   clonedData: T
