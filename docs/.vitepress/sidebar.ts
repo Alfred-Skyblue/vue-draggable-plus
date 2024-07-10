@@ -26,7 +26,10 @@ export const sidebar = {
     },
     {
       text: 'FAQ',
-      items: [{ text: 'FAQ', link: '/en/faq/' }]
+      items: [
+        { text: 'Sort', link: '/en/faq/sort/' },
+        { text: 'Drag disable', link: '/en/faq/disable/' }
+      ]
     }
   ],
   '/': [
@@ -56,7 +59,10 @@ export const sidebar = {
     },
     {
       text: '常见问题',
-      items: [{ text: '常见问题', link: '/faq/' }]
+      items: [
+        { text: '排序', link: '/faq/sort/' },
+        { text: '拖拽禁用', link: '/faq/disable/' }
+      ],
     },
     {
       text: '社区群',
