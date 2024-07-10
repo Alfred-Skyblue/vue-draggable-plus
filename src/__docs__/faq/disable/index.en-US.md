@@ -7,7 +7,7 @@ map:
 
 ### How can I make some elements in a draggable container non draggable?
 
-Answer1: use the `filter` attribute and pass in a `class` to filter out the elements that should not be draggable.
+Answer: use the `filter` attribute and pass in a `class` to filter out the elements that should not be draggable.
 
 <demo src="./filter.vue"
 title="Drag disable"
