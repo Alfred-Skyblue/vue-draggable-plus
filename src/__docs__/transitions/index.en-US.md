@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/transitions
+  path: /demo/transitions
 ---
 # Mixin Animation
 

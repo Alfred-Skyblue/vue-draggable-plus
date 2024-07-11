@@ -1,6 +1,6 @@
 ---
 map:
- path: /guide/
+  path: /guide/
 ---
 # vue-draggable-plus
 

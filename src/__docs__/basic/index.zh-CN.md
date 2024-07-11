@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/basic
+  path: /demo/basic
 ---
 
 # 基础使用

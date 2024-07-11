@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/custom-clone
+  path: /demo/custom-clone
 ---
 
 # Custom Clone

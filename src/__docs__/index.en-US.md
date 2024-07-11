@@ -1,6 +1,6 @@
 ---
 map:
- path: /
+  path: /
 ---
 ---
 layout: home

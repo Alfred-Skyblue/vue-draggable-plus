@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/transition
+  path: /demo/transition
 ---
 # Transition
 

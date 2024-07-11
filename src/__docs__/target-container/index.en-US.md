@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/target-container
+  path: /demo/target-container
 ---
 
 # Specify the target container

@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/tow-list
+  path: /demo/tow-list
 ---
 # Double list drag and drop sorting
 
