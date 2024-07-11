@@ -1,6 +1,6 @@
 ---
 map:
- path: /faq/sort
+ path: /faq
 ---
 
 # Sort FAQ

@@ -1,6 +1,6 @@
 ---
 map:
- path: /faq/disable
+  path: /demo/drag-disable
 ---
 
 # Drag disable FQA

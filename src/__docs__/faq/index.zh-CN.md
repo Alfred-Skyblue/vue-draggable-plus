@@ -1,6 +1,6 @@
 ---
 map:
-  path: /faq/sort
+  path: /faq
 ---
 
 # 排序问题

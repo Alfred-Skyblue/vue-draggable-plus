@@ -17,7 +17,8 @@ export const sidebar = {
         { text: 'Mixin Animation', link: '/en/demo/transitions/' },
         { text: 'Table Row', link: '/en/demo/table/' },
         { text: 'Table Column', link: '/en/demo/table-column/' },
-        { text: 'Nesting', link: '/en/demo/nested/' }
+        { text: 'Nesting', link: '/en/demo/nested/' },
+        { text: 'Drag Disable', link: '/en/demo/drag-disable/' },
       ]
     },
     {
@@ -26,10 +27,7 @@ export const sidebar = {
     },
     {
       text: 'FAQ',
-      items: [
-        { text: 'Sort', link: '/en/faq/sort/' },
-        { text: 'Drag disable', link: '/en/faq/disable/' }
-      ]
+      items: [{ text: 'FAQ', link: '/en/faq/' }]
     }
   ],
   '/': [
@@ -50,7 +48,9 @@ export const sidebar = {
         { text: '内置动画合并', link: '/demo/transitions/' },
         { text: '表格行拖拽', link: '/demo/table/' },
         { text: '表格列拖拽', link: '/demo/table-column/' },
-        { text: '嵌套', link: '/demo/nested/' }
+        { text: '嵌套', link: '/demo/nested/' },
+        { text: '拖拽禁用', link: '/demo/drag-disable/' }
+
       ]
     },
     {
@@ -59,10 +59,7 @@ export const sidebar = {
     },
     {
       text: '常见问题',
-      items: [
-        { text: '排序', link: '/faq/sort/' },
-        { text: '拖拽禁用', link: '/faq/disable/' }
-      ],
+      items: [{ text: '常见问题', link: '/faq/' }]
     },
     {
       text: '社区群',

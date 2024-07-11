@@ -1,6 +1,6 @@
 ---
 map:
-  path: /faq/disable
+  path: /demo/drag-disable
 ---
 
 # 拖拽禁用
