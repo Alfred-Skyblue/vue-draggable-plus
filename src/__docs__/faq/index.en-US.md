@@ -1,9 +1,9 @@
 ---
 map:
- path: /faq
+ path: /faq/
 ---
 
-# Sort FAQ
+# FAQ
 
 ### Why is the order not updating correctly when I sort?
 
