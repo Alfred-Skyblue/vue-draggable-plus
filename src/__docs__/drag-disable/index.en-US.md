@@ -3,7 +3,7 @@ map:
   path: /demo/drag-disable
 ---
 
-# Drag disable FQA
+# Disable Drag Items
 
 ### How can I make some elements in a draggable container non draggable?
 
