@@ -254,7 +254,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       restOptions[key] = (evt: DraggableEvent, ...args: any[]) => {
         const data = getCurrentData()
         extend(evt, data)
-        fn(evt, ...args)
+        return fn(evt, ...args)
       }
     })
 
