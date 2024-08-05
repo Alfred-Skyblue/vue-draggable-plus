@@ -9,7 +9,7 @@ map:
 
 > 如微信群二维码失效，请添加我的微信，我会拉您进群。
 
-<img src="/group.jpg" width="300" style="margin-bottom: 30px">
+<img src="https://pub-18696240699f4d72a6461cef5f9df04c.r2.dev/we_chat_group.jpg" width="300" style="margin-bottom: 30px">
 
 
 <img src="/wechat.png" width="300">
