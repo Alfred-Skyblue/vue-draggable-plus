@@ -17,7 +17,8 @@ export const sidebar = {
         { text: 'Mixin Animation', link: '/en/demo/transitions/' },
         { text: 'Table Row', link: '/en/demo/table/' },
         { text: 'Table Column', link: '/en/demo/table-column/' },
-        { text: 'Nesting', link: '/en/demo/nested/' }
+        { text: 'Nesting', link: '/en/demo/nested/' },
+        { text: 'Disable Drag Items', link: '/en/demo/drag-disable/' },
       ]
     },
     {
@@ -47,7 +48,9 @@ export const sidebar = {
         { text: '内置动画合并', link: '/demo/transitions/' },
         { text: '表格行拖拽', link: '/demo/table/' },
         { text: '表格列拖拽', link: '/demo/table-column/' },
-        { text: '嵌套', link: '/demo/nested/' }
+        { text: '嵌套', link: '/demo/nested/' },
+        { text: '禁用拖拽项', link: '/demo/drag-disable/' }
+
       ]
     },
     {
