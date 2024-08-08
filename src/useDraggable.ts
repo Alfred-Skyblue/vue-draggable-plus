@@ -136,7 +136,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   const el = args[0]
   let [, list, options] = args
 
-  if (!Array.isArray(unref(list))) {
+  if (args.length === 2 && !Array.isArray(unref(list))) {
     options = list
     list = null
   }
@@ -259,7 +259,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     })
 
     return mergeOptionsEvents(
-      list === null ? {} : presetOptions,
+      list == null ? {} : presetOptions,
       restOptions
     ) as Options
   }
