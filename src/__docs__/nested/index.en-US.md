@@ -7,6 +7,8 @@ map:
 
 We can use recursive components to achieve nested effects
 
+When using this feature, please note: When using nested components, the **recursive component name** should be consistent with the **file name**.
+
 ::: tip
 This chapter uses the custom two-way binding method. If you don’t know much about it, please refer to the information on custom two-way binding first. `vue2` and `vue3` are different.
 :::
