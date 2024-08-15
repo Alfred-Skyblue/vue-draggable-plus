@@ -1,4 +1,4 @@
-import type { ObjectDirective, Ref } from 'vue-demi'
+import type { ObjectDirective } from 'vue-demi'
 import type { RefOrValue } from './types'
 import { useDraggable, UseDraggableOptions } from './useDraggable'
 import { isProxy, isVue3 } from 'vue-demi'
@@ -9,7 +9,7 @@ const directiveHooks = {
 }
 
 type VDraggableBinding = [
-  list: Ref<any[]>,
+  list: any,
   options?: RefOrValue<UseDraggableOptions<any>>
 ]
 
@@ -17,7 +17,7 @@ const elementMap: WeakMap<HTMLElement, () => void> = new WeakMap()
 
 export const vDraggable: ObjectDirective<
   HTMLElement,
-  VDraggableBinding | Ref<any[]>
+  VDraggableBinding | any
 > = {
   [directiveHooks.mounted](el, binding) {
     const params = isProxy(binding.value) ? [binding.value] : binding.value

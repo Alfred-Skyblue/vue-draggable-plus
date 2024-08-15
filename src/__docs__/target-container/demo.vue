@@ -1,7 +1,7 @@
 <template>
   <section>
     <div>
-      <VueDraggable v-model="list" animation="150" target=".el-table">
+      <VueDraggable v-model="list" :animation="150" target=".el-table">
         <ElTable :list="list"></ElTable>
       </VueDraggable>
     </div>

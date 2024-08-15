@@ -24,7 +24,12 @@
 import { ref } from 'vue'
 import { vDraggable } from 'vue-draggable-plus'
 
-const list = ref([
+const list = ref<
+  {
+    name: string
+    id: string
+  }[]
+>([
   {
     name: 'Joao',
     id: '1'
