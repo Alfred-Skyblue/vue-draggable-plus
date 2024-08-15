@@ -9,7 +9,7 @@ const directiveHooks = {
 }
 
 type VDraggableBinding = [
-  list: Ref<any[]>,
+  list: RefOrValue<any[]>,
   options?: RefOrValue<UseDraggableOptions<any>>
 ]
 
@@ -17,12 +17,14 @@ const elementMap: WeakMap<HTMLElement, () => void> = new WeakMap()
 
 export const vDraggable: ObjectDirective<
   HTMLElement,
-  VDraggableBinding | Ref<any[]>
+  VDraggableBinding | RefOrValue<any[]>
 > = {
   [directiveHooks.mounted](el, binding) {
     const params = isProxy(binding.value) ? [binding.value] : binding.value
 
-    const state = useDraggable(el!, ...(params as VDraggableBinding))
+    const [list, options] = params as VDraggableBinding
+
+    const state = useDraggable(el!, list as Ref, options)
     elementMap.set(el, state.destroy)
   },
   [directiveHooks.unmounted](el) {
