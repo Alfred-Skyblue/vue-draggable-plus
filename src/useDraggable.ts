@@ -92,7 +92,7 @@ export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
 }
 
 export interface UseDraggableOptions<T> extends Options {
-  clone?: (element: T) => T
+  clone?: (element: T) => T | Promise<T> | false
   immediate?: boolean
   customUpdate?: (event: SortableEvent) => void
 }
@@ -152,9 +152,12 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * Element dragging started
    * @param {DraggableEvent} evt - DraggableEvent
    */
-  function onStart(evt: DraggableEvent) {
+  async function onStart(evt: DraggableEvent) {
     const data = unref(unref(list)?.[evt.oldIndex!])
-    const clonedData = clone(data)
+    const clonedData = await clone(data)
+    if (clonedData === false) {
+      return;
+    }
     setCurrentData(data, clonedData)
     evt.item[CLONE_ELEMENT_KEY] = clonedData
   }
