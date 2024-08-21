@@ -152,14 +152,15 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * Element dragging started
    * @param {DraggableEvent} evt - DraggableEvent
    */
-  async function onStart(evt: DraggableEvent) {
+  function onStart(evt: DraggableEvent) {
     const data = unref(unref(list)?.[evt.oldIndex!])
-    const clonedData = await clone(data)
-    if (clonedData === false) {
-      return;
-    }
-    setCurrentData(data, clonedData)
-    evt.item[CLONE_ELEMENT_KEY] = clonedData
+    Promise.resolve(clone(data)).then(clonedData => {
+      if (clonedData === false) {
+        return;
+      }
+      setCurrentData(data, clonedData)
+      evt.item[CLONE_ELEMENT_KEY] = clonedData
+    })
   }
 
   /**
