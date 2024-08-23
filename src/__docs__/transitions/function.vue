@@ -6,7 +6,7 @@
       ref="el"
       type="transition"
       tag="ul"
-      :name="!drag ? 'fade' : null"
+      :name="!drag ? 'fade' : undefined"
     >
       <li
         v-for="item in list"

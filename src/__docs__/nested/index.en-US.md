@@ -7,11 +7,14 @@ map:
 
 We can use recursive components to achieve nested effects
 
+When using this feature, please note: When using nested components, the recursive component name should be consistent with the component name. It is recommended to use defineOptions({name:'ComponentName'}).
+
 ::: tip
 This chapter uses the custom two-way binding method. If you don’t know much about it, please refer to the information on custom two-way binding first. `vue2` and `vue3` are different.
 :::
 
 ## Component Usage
+
 <demo src="./demo.vue"
 title="Use Components"
 desc="">
@@ -63,6 +66,7 @@ const list = computed({
 ```
 
 ## Function Usage
+
 <demo src="./function.vue"
 title=""
 desc="Pass function option implementation">
@@ -116,6 +120,7 @@ useDraggable(el, list, {
 ```
 
 ## Directive Usage
+
 <demo src="./directive.vue"
 title="Usage Directive"
 desc="Pass command parameter implementation">
