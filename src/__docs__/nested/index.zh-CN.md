@@ -7,13 +7,14 @@ map:
 
 我们可以使用递归组件来实现嵌套的效果。
 
-我们在使用该功能时，需要注意：在使用嵌套组件时，**递归组件名**应与**文件名**保持一致
+我们在使用该功能时，需要注意：在使用嵌套组件时，**递归组件名**应与**组件名**保持一致，推荐使用 `defineOptions({name:'ComponentName'})`
 
 ::: tip
 本章使用了自定义双向绑定的方式，如果您对此还不是很了解，请先查阅自定义双向绑定的资料，`vue2` 和 `vue3` 有所不同。
 :::
 
 ## 组件使用
+
 <demo src="./demo.vue"
 title="使用组件方式"
 desc="">
@@ -65,6 +66,7 @@ const list = computed({
 ```
 
 ## 函数使用
+
 <demo src="./function.vue"
 title=""
 desc="传递函数选项实现">
@@ -118,6 +120,7 @@ useDraggable(el, list, {
 ```
 
 ## 指令使用
+
 <demo src="./directive.vue"
 title=""
 desc="传递指令参数实现">
