@@ -13,6 +13,10 @@
   vertical-align: middle;
 }
 
+.vitepress-demo li {
+  list-style-type: none;
+}
+
 .vitepress-demo button.small {
   padding: 0.25em 0.7em 0.2em 0.7em;
 }
