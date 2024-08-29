@@ -2,12 +2,17 @@
   <button @click="handleAdd">Add</button>
 
   <div class="flex justify-between">
-    <VueDraggable v-model="list" target=".sort-target" :scroll="true">
+    <VueDraggable
+      v-model="list"
+      class="flex flex-col gap-2 w-300px bg-gray-500/5 rounded"
+      target=".sort-target"
+      :scroll="true"
+    >
       <TransitionGroup
         type="transition"
         tag="ul"
         name="fade"
-        class="sort-target flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+        class="sort-target px-4"
       >
         <li
           v-for="(item, index) in list"
