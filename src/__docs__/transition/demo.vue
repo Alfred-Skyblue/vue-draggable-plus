@@ -12,7 +12,7 @@
         type="transition"
         tag="ul"
         name="fade"
-        class="sort-target px-4"
+        class="sort-target"
       >
         <li
           v-for="(item, index) in list"
@@ -80,5 +80,8 @@ function remove(index: number) {
 
 .fade-leave-active {
   position: absolute;
+}
+.sort-target {
+  padding: 0 1rem;
 }
 </style>
