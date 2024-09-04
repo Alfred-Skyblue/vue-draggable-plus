@@ -5,7 +5,7 @@
       v-model="list"
       :animation="150"
       target=".sort-target"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col gap-2 pr-4 w-300px bg-gray-500/5 rounded"
       @start="onStart"
       @end="onEnd"
     >
