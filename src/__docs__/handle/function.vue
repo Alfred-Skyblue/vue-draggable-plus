@@ -4,12 +4,12 @@
   <div class="flex justify-between">
     <section
       ref="el"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col p-4 gap-2 w-300px bg-gray-500/5 rounded"
     >
       <div
         v-for="(item, index) in list"
         :key="item.id"
-        class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-4"
+        class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
       >
         <IconSort class="handle cursor-move"></IconSort>
         <input type="text" v-model="item.name" />

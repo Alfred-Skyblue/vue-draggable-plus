@@ -7,7 +7,7 @@
       type="transition"
       tag="ul"
       name="fade"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col p-4 w-300px bg-gray-500/5 rounded"
     >
       <li
         v-for="(item, index) in list"
