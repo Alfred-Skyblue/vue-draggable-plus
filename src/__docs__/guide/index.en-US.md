@@ -77,7 +77,7 @@ const list = ref([
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useDraggable, type UseDraggableReturn } from 'vue-draggable-plus'
+import { useDraggable } from 'vue-draggable-plus'
 
 const el = ref()
 
