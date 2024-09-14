@@ -1,6 +1,6 @@
 ---
 map:
- path: /faq/
+  path: /faq/
 ---
 
 # FAQ
