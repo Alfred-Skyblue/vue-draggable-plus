@@ -1,4 +1,9 @@
-import Sortable, { type Options, type SortableEvent } from 'sortablejs'
+import Sortable, {
+  type Options,
+  type SortableEvent,
+  Swap,
+  MultiDrag
+} from 'sortablejs'
 import {
   getCurrentInstance,
   isRef,
@@ -28,6 +33,10 @@ import {
   removeElement,
   removeNode
 } from './utils'
+
+// mount internal plugins
+Sortable.mount(new Swap())
+Sortable.mount(new MultiDrag())
 
 function defaultClone<T>(element: T): T {
   if (element === undefined || element === null) return element
