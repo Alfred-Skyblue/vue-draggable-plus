@@ -132,7 +132,7 @@ export function useDraggable<T>(
  */
 export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   const vm = getCurrentInstance()?.proxy
-
+  let currentNodes: Node[] | null = null
   const el = args[0]
   let [, list, options] = args
 
@@ -153,10 +153,12 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
-    const data = unref(unref(list)?.[evt.oldIndex!])
+    const { from, oldIndex, item } = evt
+    currentNodes = Array.from(from.childNodes)
+    const data = unref(unref(list)?.[oldIndex!])
     const clonedData = clone(data)
     setCurrentData(data, clonedData)
-    evt.item[CLONE_ELEMENT_KEY] = clonedData
+    item[CLONE_ELEMENT_KEY] = clonedData
   }
 
   /**
@@ -214,9 +216,32 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     moveArrayElement(unref(list), oldIndex!, newIndex!)
   }
 
-  function onEnd() {
+  function onEnd(e: DraggableEvent) {
+    const { newIndex, oldIndex, from, to } = e
+    let error: Error | null = null
+    const isSameIndex = newIndex === oldIndex && from === to
+    try {
+      //region #202
+      if (isSameIndex) {
+        let oldNode: Node | null = null
+        currentNodes?.some((node, index) => {
+          if (oldNode && currentNodes?.length !== to.childNodes.length) {
+            from.insertBefore(oldNode, node.nextSibling)
+            return true
+          }
+          const _node = to.childNodes[index]
+          oldNode = to?.replaceChild(node, _node)
+        })
+      }
+      //endregion
+    } catch (e) {
+      error = e
+    } finally {
+      currentNodes = null
+    }
     nextTick(() => {
       setCurrentData()
+      if (error) throw error
     })
   }
 
