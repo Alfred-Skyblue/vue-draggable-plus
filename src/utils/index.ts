@@ -15,7 +15,7 @@ export function moveArrayElement<T>(array: T[], from: number, to: number): T[] {
 }
 
 /**
- *  Swaps two elements in an array.
+ * Swaps two elements in an array.
  * @param {T[]} array
  * @param {number} index1
  * @param {number} index2

@@ -254,7 +254,6 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     const { newIndex, oldIndex, from, to } = e
     let error: Error | null = null
     const isSameIndex = newIndex === oldIndex && from === to
-
     try {
       //region #202
       if (isSameIndex) {
