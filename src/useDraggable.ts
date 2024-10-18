@@ -1,5 +1,5 @@
 import { type Options, type SortableEvent } from 'sortablejs'
-import Sortable from 'sortablejs/modular/sortable.complete.esm'
+import Sortable from 'sortablejs/Sortable'
 import {
   getCurrentInstance,
   isRef,

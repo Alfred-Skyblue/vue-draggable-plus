@@ -1,4 +1,4 @@
-declare module 'sortablejs/modular/sortable.complete.esm' {
+declare module 'sortablejs/Sortable' {
   import Sortable from 'sortablejs'
   export default Sortable
 }
