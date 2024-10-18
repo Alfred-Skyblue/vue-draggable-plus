@@ -15,6 +15,22 @@ export function moveArrayElement<T>(array: T[], from: number, to: number): T[] {
 }
 
 /**
+ *  Swaps two elements in an array.
+ * @param {T[]} array
+ * @param {number} index1
+ * @param {number} index2
+ * @returns {T[]}
+ */
+export function swapArrayElement<T>(
+  array: T[],
+  index1: number,
+  index2: number
+): T[] {
+  ;[array[index1], array[index2]] = [array[index2], array[index1]]
+  return array
+}
+
+/**
  * Convert a hyphen-delimited string to camelCase.
  * @param {string} str
  * @returns {string}
