@@ -115,11 +115,7 @@ export function useDraggable<T>(
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseDraggableReturn
 export function useDraggable<T>(
-  el: Ref<HTMLElement | null | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
-): UseDraggableReturn
-export function useDraggable<T>(
-  el: null | undefined,
+  el: RefOrElement<HTMLElement | null | undefined>,
   options?: RefOrValue<UseDraggableOptions<T>>
 ): UseDraggableReturn
 
