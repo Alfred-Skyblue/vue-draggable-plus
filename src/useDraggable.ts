@@ -201,15 +201,19 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       customUpdate(evt)
       return
     }
-    const { from, item, oldIndex, newIndex } = evt
+    const { from, item, oldIndex, oldDraggableIndex, newDraggableIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
     if (isRef<any[]>(list)) {
       const newList = [...unref(list)]
-      list.value = moveArrayElement(newList, oldIndex!, newIndex!)
+      list.value = moveArrayElement(
+        newList,
+        oldDraggableIndex!,
+        newDraggableIndex!
+      )
       return
     }
-    moveArrayElement(unref(list), oldIndex!, newIndex!)
+    moveArrayElement(unref(list), oldDraggableIndex!, newDraggableIndex!)
   }
 
   function onEnd(e: DraggableEvent) {
