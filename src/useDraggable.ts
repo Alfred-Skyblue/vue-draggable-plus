@@ -1,4 +1,5 @@
-import Sortable, { type Options, type SortableEvent } from 'sortablejs'
+import { type Options, type SortableEvent } from 'sortablejs'
+import Sortable from 'sortablejs/Sortable'
 import {
   getCurrentInstance,
   isRef,
@@ -26,7 +27,8 @@ import {
   mergeOptionsEvents,
   moveArrayElement,
   removeElement,
-  removeNode
+  removeNode,
+  swapArrayElement
 } from './utils'
 
 function defaultClone<T>(element: T): T {
@@ -141,7 +143,9 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   const {
     immediate = true,
     clone = defaultClone,
-    customUpdate
+    customUpdate,
+    swap,
+    multiDrag
   } = unref(options) ?? {}
 
   /**
@@ -201,7 +205,37 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       customUpdate(evt)
       return
     }
-    const { from, item, oldIndex, newIndex } = evt
+
+    const { from, item, oldIndex, newIndex, oldIndicies, newIndicies } = evt
+
+    if (multiDrag) {
+      const oldIndexList = oldIndicies.map(i => i.index)
+      const newIndexList = newIndicies.map(i => i.index)
+
+      const newList = [...unref(list)]
+
+      const selectedItems = oldIndexList.map(index => newList[index])
+
+      oldIndexList
+        .sort((a, b) => b - a)
+        .forEach(oIndex => {
+          newList.splice(oIndex, 1)
+        })
+
+      newIndexList.forEach((nIndex, i) => {
+        newList.splice(nIndex, 0, selectedItems[i])
+      })
+
+      list.value = newList
+      return
+    }
+
+    if (swap) {
+      const newList = [...unref(list)]
+      list.value = swapArrayElement(newList, oldIndex!, newIndex!)
+      return
+    }
+
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
     if (isRef<any[]>(list)) {
