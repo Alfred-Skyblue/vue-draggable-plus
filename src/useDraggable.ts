@@ -9,7 +9,7 @@ import {
   watch,
   type Ref
 } from 'vue-demi'
-import type { Fn, RefOrElement, RefOrValue } from './types'
+import type { Fn, RefOrElement, MaybeRef } from './types'
 
 import { error } from './utils/log'
 
@@ -107,23 +107,23 @@ export interface UseDraggableOptions<T> extends Options {
 export function useDraggable<T>(
   el: RefOrElement,
   list?: Ref<T[] | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
+  options?: MaybeRef<UseDraggableOptions<T>>
 ): UseDraggableReturn
 export function useDraggable<T>(
   el: null | undefined,
   list?: Ref<T[] | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
+  options?: MaybeRef<UseDraggableOptions<T>>
 ): UseDraggableReturn
 export function useDraggable<T>(
   el: RefOrElement<HTMLElement | null | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
+  options?: MaybeRef<UseDraggableOptions<T>>
 ): UseDraggableReturn
 
 /**
  * A custom compositionApi utils that allows you to drag and drop elements in lists.
  * @param {Ref<HTMLElement | null | undefined> | string} el
  * @param {Ref<T[]>} list
- * @param {RefOrValue<UseDraggableOptions<T>>} options
+ * @param {MaybeRef<UseDraggableOptions<T>>} options
  * @returns {UseSortableReturn}
  */
 export function useDraggable<T>(...args: any[]): UseDraggableReturn {
