@@ -141,6 +141,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   const {
     immediate = true,
     clone = defaultClone,
+    forceFallback,
+    fallbackOnBody,
     customUpdate
   } = unref(options) ?? {}
 
@@ -150,7 +152,8 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    */
   function onStart(evt: DraggableEvent) {
     const { from, oldIndex, item } = evt
-    currentNodes = Array.from(from.childNodes)
+    const nodes = Array.from(from.childNodes);
+    currentNodes = forceFallback && !fallbackOnBody ? nodes.toSpliced(-1) : nodes;
     const data = unref(unref(list)?.[oldIndex!])
     const clonedData = clone(data)
     setCurrentData(data, clonedData)
