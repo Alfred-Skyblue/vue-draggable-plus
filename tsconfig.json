@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": [],
+    "types": [ "@vitest/browser/providers/playwright"],
     "skipLibCheck": true,
     "emitDeclarationOnly": true,
     "declarationDir": "dist",
