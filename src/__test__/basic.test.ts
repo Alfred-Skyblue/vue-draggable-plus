@@ -229,7 +229,8 @@ describe('basic', () => {
         screen.value!.getByText('item4').element()
       )
 
-      expect(itemElements.value.map(el => el.textContent)).toMatchInlineSnapshot(`
+      expect(itemElements.value.map(el => el.textContent))
+        .toMatchInlineSnapshot(`
         [
           "item1",
           "item2",
@@ -249,7 +250,8 @@ describe('basic', () => {
         screen.value!.getByText('item4').element()
       )
 
-      expect(itemElements.value.map(el => el.textContent)).toMatchInlineSnapshot(`
+      expect(itemElements.value.map(el => el.textContent))
+        .toMatchInlineSnapshot(`
         [
           "item2",
           "item3",
