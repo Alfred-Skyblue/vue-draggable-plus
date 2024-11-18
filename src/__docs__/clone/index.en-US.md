@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/clone
+  path: /demo/clone
 ---
 
 # Drag Clone

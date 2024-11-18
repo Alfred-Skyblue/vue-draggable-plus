@@ -1,6 +1,6 @@
 ---
 map:
- path: /demo/table-column
+  path: /demo/table-column
 ---
 # Table Column
 
