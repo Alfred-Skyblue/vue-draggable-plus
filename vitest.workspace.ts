@@ -9,7 +9,7 @@ export default defineWorkspace([
       clearMocks: true,
       browser: {
         enabled: true,
-        headless: true,
+        headless: false,
         screenshotFailures: false,
         name: 'chromium',
         provider: 'playwright',

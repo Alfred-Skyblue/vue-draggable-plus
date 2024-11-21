@@ -89,8 +89,8 @@ describe('clone', () => {
       ])
     })
 
-    // TODO: it works when the headless option is false
-    it.skip('should clone item from list1 to list2', async () => {
+    // TODO: it only works when the headless option is false
+    it('should clone item from list1 to list2', async () => {
       const list1Snap = toValue(list1.value)
       const list2Snap = toValue(list2.value)
 

@@ -72,8 +72,8 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-vue": "^5.0.4",
-    "@vitest/browser": "^2.1.4",
-    "@vitest/coverage-v8": "2.1.4",
+    "@vitest/browser": "^2.1.5",
+    "@vitest/coverage-v8": "2.1.5",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-define-config": "^1.24.1",
@@ -83,7 +83,7 @@
     "fs-extra": "^11.2.0",
     "np": "^7.7.0",
     "npm-run-all": "^4.1.5",
-    "playwright": "^1.48.2",
+    "playwright": "^1.49.0",
     "prettier": "^2.8.8",
     "sortablejs": "^1.15.2",
     "typescript": "^5.4.5",
@@ -91,7 +91,7 @@
     "vite": "^5.2.12",
     "vite-plugin-dts": "^1.7.3",
     "vitepress": "1.0.0-rc.44",
-    "vitest": "^2.1.4",
+    "vitest": "^2.1.5",
     "vitest-browser-vue": "^0.0.1",
     "vue": "^3.4.27",
     "vue-demi": "^0.13.11",
@@ -107,6 +107,5 @@
     "@vue/composition-api": {
       "optional": true
     }
-  },
-  "packageManager": "pnpm@9.13.2+sha512.88c9c3864450350e65a33587ab801acf946d7c814ed1134da4a924f6df5a2120fd36b46aab68f7cd1d413149112d53c7db3a4136624cfd00ff1846a0c6cef48a"
+  }
 }
