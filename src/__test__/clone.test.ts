@@ -3,6 +3,7 @@ import { VueDraggable } from '..'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { render, RenderResult } from 'vitest-browser-vue'
 import { computed, h, ref, toValue } from 'vue'
+import { getTextContents } from './helpers'
 
 describe('clone', () => {
   const data = Array.from({ length: 4 }).map((_, i) => `item${i + 1}`)
@@ -11,11 +12,11 @@ describe('clone', () => {
   const list2 = ref<typeof data>([])
   const screen = ref<RenderResult<object> | null>(null)
 
-  const list1Elements = computed(() =>
-    screen.value!.getByTestId('list1').elements()
+  const list1ItemElements = computed(() =>
+    screen.value!.getByTestId('list1').getByRole('listitem').elements()
   )
-  const list2Elements = computed(() =>
-    screen.value!.getByTestId('list2').elements()
+  const list2ItemElements = computed(() =>
+    screen.value!.getByTestId('list2').getByRole('listitem').elements()
   )
 
   const onClone = vi.fn()
@@ -29,6 +30,8 @@ describe('clone', () => {
         h(
           VueDraggable,
           {
+            tag: 'ul',
+            'data-testid': 'list1',
             modelValue: list1.value,
             'onUpdate:modelValue': (v: any) => (list1.value = v),
             sort: false,
@@ -36,24 +39,20 @@ describe('clone', () => {
             onClone
           },
           {
-            default: () =>
-              list1.value.map(item =>
-                h('div', { 'data-testid': 'list1' }, item)
-              )
+            default: () => list1.value.map(item => h('li', item))
           }
         ),
         h(
           VueDraggable,
           {
+            tag: 'ul',
+            'data-testid': 'list2',
             modelValue: list2.value,
             'onUpdate:modelValue': (v: any) => (list2.value = v),
             group: 'people'
           },
           {
-            default: () =>
-              list2.value.map(item =>
-                h('div', { 'data-testid': 'list2' }, item)
-              )
+            default: () => list2.value.map(item => h('li', item))
           }
         )
       ])
@@ -62,31 +61,31 @@ describe('clone', () => {
     it("shouldn't sort list1", async () => {
       const list1Snap = toValue(list1.value)
 
-      expect(list1Elements.value.map(el => el.textContent)).toEqual(list1Snap)
+      expect(getTextContents(list1ItemElements.value)).toEqual(list1Snap)
 
       await userEvent.dragAndDrop(
         screen.value!.getByText(list1Snap[0]).element(),
         screen.value!.getByText(list1Snap[1]).element()
       )
 
-      expect(list1Elements.value.map(el => el.textContent)).toEqual(list1Snap)
+      expect(getTextContents(list1ItemElements.value)).toEqual(list1Snap)
+      expect(list1.value).toEqual(list1Snap)
     })
 
     it('should sort list2', async () => {
       const list2Snap = toValue(list2.value)
 
-      expect(list2Elements.value.map(el => el.textContent)).toEqual(list2Snap)
+      expect(getTextContents(list2ItemElements.value)).toEqual(list2Snap)
 
       await userEvent.dragAndDrop(
         screen.value!.getByText(list2Snap[0]).element(),
         screen.value!.getByText(list2Snap[1]).element()
       )
 
-      expect(list2Elements.value.map(el => el.textContent)).toEqual([
-        list2Snap[1],
-        list2Snap[0],
-        ...list2Snap.slice(2)
-      ])
+      const updatedList2 = [list2Snap[1], list2Snap[0], ...list2Snap.slice(2)]
+
+      expect(getTextContents(list2ItemElements.value)).toEqual(updatedList2)
+      expect(list2.value).toEqual(updatedList2)
     })
 
     // TODO: it only works when the headless option is false
@@ -99,10 +98,10 @@ describe('clone', () => {
         screen.value!.getByText(list2Snap[0]).element()
       )
 
-      expect(list2Elements.value.map(el => el.textContent)).toEqual([
-        list1Snap[0],
-        ...list2Snap
-      ])
+      const updatedList2 = [list1Snap[0], ...list2Snap]
+
+      expect(getTextContents(list2ItemElements.value)).toEqual(updatedList2)
+      expect(list2.value).toEqual(updatedList2)
 
       expect(onClone).toHaveBeenCalledTimes(1)
     })
