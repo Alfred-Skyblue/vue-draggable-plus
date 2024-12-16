@@ -253,8 +253,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
     onStart,
     onAdd,
     onRemove,
-    onEnd,
-    emptyInsertThreshold: 0
+    onEnd
   }
 
   function getTarget(target?: HTMLElement) {
