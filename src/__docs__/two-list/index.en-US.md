@@ -1,7 +1,8 @@
 ---
 map:
- path: /demo/tow-list
+  path: /demo/two-list
 ---
+
 # Double list drag and drop sorting
 
 Drag and drop sorting between multiple lists, two-way data binding.

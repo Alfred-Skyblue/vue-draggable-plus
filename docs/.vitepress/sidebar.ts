@@ -8,7 +8,7 @@ export const sidebar = {
       text: 'Demo',
       items: [
         { text: 'Basic', link: '/en/demo/basic/' },
-        { text: 'Dual list drag and drop', link: '/en/demo/tow-list/' },
+        { text: 'Dual list drag and drop', link: '/en/demo/two-list/' },
         { text: 'Clone', link: '/en/demo/clone/' },
         { text: 'Custom Clone', link: '/en/demo/custom-clone/' },
         { text: 'Handle', link: '/en/demo/handle/' },
@@ -38,7 +38,7 @@ export const sidebar = {
       text: '演示',
       items: [
         { text: '基础使用', link: '/demo/basic/' },
-        { text: '双列表拖拽', link: '/demo/tow-list/' },
+        { text: '双列表拖拽', link: '/demo/two-list/' },
         { text: '克隆', link: '/demo/clone/' },
         { text: '自定义克隆', link: '/demo/custom-clone/' },
         { text: '指定元素触发', link: '/demo/handle/' },

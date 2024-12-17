@@ -1,7 +1,8 @@
 ---
 map:
-  path: /demo/tow-list
+  path: /demo/two-list
 ---
+
 # 双列表拖拽排序
 
 多列表之间拖拽排序，双向绑定数据。
