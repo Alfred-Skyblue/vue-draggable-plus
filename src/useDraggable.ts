@@ -9,7 +9,7 @@ import {
   watch,
   type Ref
 } from 'vue-demi'
-import type { Fn, RefOrElement, RefOrValue } from './types'
+import type { Fn, RefOrElement, MaybeRef } from './types'
 
 import { error } from './utils/log'
 
@@ -107,32 +107,28 @@ export interface UseDraggableOptions<T> extends Options {
 export function useDraggable<T>(
   el: RefOrElement,
   list?: Ref<T[] | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
+  options?: MaybeRef<UseDraggableOptions<T>>
 ): UseDraggableReturn
 export function useDraggable<T>(
   el: null | undefined,
   list?: Ref<T[] | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
+  options?: MaybeRef<UseDraggableOptions<T>>
 ): UseDraggableReturn
 export function useDraggable<T>(
-  el: Ref<HTMLElement | null | undefined>,
-  options?: RefOrValue<UseDraggableOptions<T>>
-): UseDraggableReturn
-export function useDraggable<T>(
-  el: null | undefined,
-  options?: RefOrValue<UseDraggableOptions<T>>
+  el: RefOrElement<HTMLElement | null | undefined>,
+  options?: MaybeRef<UseDraggableOptions<T>>
 ): UseDraggableReturn
 
 /**
  * A custom compositionApi utils that allows you to drag and drop elements in lists.
  * @param {Ref<HTMLElement | null | undefined> | string} el
  * @param {Ref<T[]>} list
- * @param {RefOrValue<UseDraggableOptions<T>>} options
+ * @param {MaybeRef<UseDraggableOptions<T>>} options
  * @returns {UseSortableReturn}
  */
 export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   const vm = getCurrentInstance()?.proxy
-
+  let currentNodes: Node[] | null = null
   const el = args[0]
   let [, list, options] = args
 
@@ -153,10 +149,12 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
-    const data = unref(unref(list)?.[evt.oldIndex!])
+    const { from, oldIndex, item } = evt
+    currentNodes = Array.from(from.childNodes)
+    const data = unref(unref(list)?.[oldIndex!])
     const clonedData = clone(data)
     setCurrentData(data, clonedData)
-    evt.item[CLONE_ELEMENT_KEY] = clonedData
+    item[CLONE_ELEMENT_KEY] = clonedData
   }
 
   /**
@@ -203,20 +201,47 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       customUpdate(evt)
       return
     }
-    const { from, item, oldIndex, newIndex } = evt
+    const { from, item, oldIndex, oldDraggableIndex, newDraggableIndex } = evt
     removeNode(item)
     insertNodeAt(from, item, oldIndex!)
     if (isRef<any[]>(list)) {
       const newList = [...unref(list)]
-      list.value = moveArrayElement(newList, oldIndex!, newIndex!)
+      list.value = moveArrayElement(
+        newList,
+        oldDraggableIndex!,
+        newDraggableIndex!
+      )
       return
     }
-    moveArrayElement(unref(list), oldIndex!, newIndex!)
+    moveArrayElement(unref(list), oldDraggableIndex!, newDraggableIndex!)
   }
 
-  function onEnd() {
+  function onEnd(e: DraggableEvent) {
+    const { newIndex, oldIndex, from, to } = e
+    let error: Error | null = null
+    const isSameIndex = newIndex === oldIndex && from === to
+    try {
+      //region #202
+      if (isSameIndex) {
+        let oldNode: Node | null = null
+        currentNodes?.some((node, index) => {
+          if (oldNode && currentNodes?.length !== to.childNodes.length) {
+            from.insertBefore(oldNode, node.nextSibling)
+            return true
+          }
+          const _node = to.childNodes[index]
+          oldNode = to?.replaceChild(node, _node)
+        })
+      }
+      //endregion
+    } catch (e) {
+      error = e
+    } finally {
+      currentNodes = null
+    }
     nextTick(() => {
       setCurrentData()
+      if (error) throw error
     })
   }
 
