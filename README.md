@@ -279,7 +279,7 @@ type ScrollFn = ((
 | animation               | Show animation while dragging                                                               | `Number`                                              | 0                     |
 | chosenClass             | CSS class name for chosen item                                                              | `String`                                              | 'sortable-chosen'     |
 | delay                   | Delay in milliseconds before drag starts                                                    | `Number`                                              | 0                     |
-| delayOnTouchOnly        | Delay on touch event                                                                        | `Number`                                              | 0                     |
+| delayOnTouchOnly        | Delay on touch event                                                                        | `Boolean`                                              | false                     |
 | direction               | Dragging direction, 'vertical' or 'horizontal' (default auto detect)                         | `String`                                              | -                     |
 | disabled                | Disable dragging                                                                            | `Boolean`                                             | false                 |
 | dragClass               | CSS class name for dragged item                                                              | `String`                                              | 'sortable-drag'       |

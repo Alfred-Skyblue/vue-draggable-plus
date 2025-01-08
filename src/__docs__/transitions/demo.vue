@@ -3,20 +3,20 @@
   <div class="flex justify-between">
     <VueDraggable
       v-model="list"
-      animation="150"
+      :animation="150"
       target=".sort-target"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col gap-2 pr-4 w-300px bg-gray-500/5 rounded"
       @start="onStart"
       @end="onEnd"
     >
       <TransitionGroup
         type="transition"
         tag="ul"
-        :name="!drag ? 'fade' : null"
+        :name="!drag ? 'fade' : undefined"
         class="sort-target"
       >
         <li
-          v-for="(item, index) in list"
+          v-for="item in list"
           :key="item.id"
           class="cursor-move h-50px bg-gray-500/5 rounded flex items-center justify-between px-2"
         >

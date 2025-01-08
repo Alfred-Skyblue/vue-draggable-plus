@@ -3,10 +3,10 @@
   <div class="flex justify-between">
     <TransitionGroup
       v-draggable="[list, { animation: 150, onStart, onEnd }]"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col p-4 w-300px bg-gray-500/5 rounded"
       type="transition"
       tag="ul"
-      :name="!drag ? 'fade' : null"
+      :name="!drag ? 'fade' : undefined"
     >
       <li
         v-for="item in list"

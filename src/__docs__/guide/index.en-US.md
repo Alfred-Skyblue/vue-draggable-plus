@@ -77,7 +77,7 @@ const list = ref([
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useDraggable, type UseDraggableReturn } from 'vue-draggable-plus'
+import { useDraggable } from 'vue-draggable-plus'
 
 const el = ref()
 
@@ -100,7 +100,7 @@ const list = ref([
   }
 ])
 // The return value is an object, which contains some methods, such as start, destroy, pause, etc.
-const draggable = useDraggable<UseDraggableReturn>(el, list, {
+const draggable = useDraggable(el, list, {
   animation: 150,
   onStart() {
     console.log('start')

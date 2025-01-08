@@ -4,7 +4,7 @@
   <div class="flex justify-between">
     <VueDraggable
       v-model="list"
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col gap-2 w-300px bg-gray-500/5 rounded"
       target=".sort-target"
       :scroll="true"
     >
@@ -80,5 +80,8 @@ function remove(index: number) {
 
 .fade-leave-active {
   position: absolute;
+}
+.sort-target {
+  padding: 0 1rem;
 }
 </style>

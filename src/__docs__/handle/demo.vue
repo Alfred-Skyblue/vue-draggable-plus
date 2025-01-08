@@ -11,7 +11,7 @@
       <div
         v-for="(item, index) in list"
         :key="item.id"
-        class="h-50px bg-gray-500/5 rounded flex items-center justify-between px-4"
+        class="h-50px bg-gray-500/5 px-2 rounded flex items-center justify-between"
       >
         <IconSort class="handle cursor-move"></IconSort>
         <input type="text" v-model="item.name" />

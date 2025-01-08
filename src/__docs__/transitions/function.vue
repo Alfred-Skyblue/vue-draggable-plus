@@ -2,11 +2,11 @@
   <button @click="sort">还原</button>
   <div class="flex justify-between">
     <TransitionGroup
-      class="flex flex-col gap-2 p-4 w-300px bg-gray-500/5 rounded"
+      class="flex flex-col p-4 w-300px bg-gray-500/5 rounded"
       ref="el"
       type="transition"
       tag="ul"
-      :name="!drag ? 'fade' : null"
+      :name="!drag ? 'fade' : undefined"
     >
       <li
         v-for="item in list"

@@ -149,6 +149,7 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
+<<<<<<< HEAD
     const data = unref(unref(list)?.[evt.oldIndex!])
     Promise.resolve(clone(data)).then(clonedData => {
       if (clonedData === false) {
@@ -157,6 +158,14 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
       setCurrentData(data, clonedData)
       evt.item[CLONE_ELEMENT_KEY] = clonedData
     })
+=======
+    const { from, oldIndex, item } = evt
+    currentNodes = Array.from(from.childNodes)
+    const data = unref(unref(list)?.[oldIndex!])
+    const clonedData = clone(data)
+    setCurrentData(data, clonedData)
+    item[CLONE_ELEMENT_KEY] = clonedData
+>>>>>>> main
   }
 
   /**
