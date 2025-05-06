@@ -11,5 +11,6 @@ map:
 
 <img src="https://pub-18696240699f4d72a6461cef5f9df04c.r2.dev/we_chat_group.jpg" width="300" style="margin-bottom: 30px">
 
+> 注意：提问问题请携带最小复现案例
 
 <img src="/wechat.png" width="300">
