@@ -52,6 +52,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '指南', link: '/guide/', activeMatch: '^/guide/' },
+          { text: 'vue源码学习', link: '/vueer/', activeMatch: '^/vueer/' },
           { text: '演示', link: '/demo/basic/', activeMatch: '^/demo/' },
           { text: 'API', link: '/api/', activeMatch: '^/api/' },
           { text: '常见问题', link: '/faq/', activeMatch: '^/faq/' },
