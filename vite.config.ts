@@ -41,5 +41,11 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'src')
     }
+  },
+  test: {
+    coverage: {
+      enabled: true,
+      include: ['src/component.ts', 'src/useDraggable.ts', 'src/directive.ts']
+    }
   }
 })
