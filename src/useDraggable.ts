@@ -94,7 +94,51 @@ export interface UseDraggableReturn extends Pick<Sortable, SortableMethod> {
 export interface UseDraggableOptions<T> extends Options {
   clone?: (element: T) => T
   immediate?: boolean
-  customUpdate?: (event: SortableEvent) => void
+  customUpdate?: (event: DraggableEvent<T>) => void
+  /**
+   * Element dragging started
+   */
+  onStart?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Element dragging ended
+   */
+  onEnd?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Element is dropped into the list from another list
+   */
+  onAdd?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Created a clone of an element
+   */
+  onClone?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Element is chosen
+   */
+  onChoose?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Element is unchosen
+   */
+  onUnchoose?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Changed sorting within list
+   */
+  onUpdate?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Called by any change to the list (add / update / remove)
+   */
+  onSort?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Element is removed from the list into another list
+   */
+  onRemove?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Attempt to drag a filtered element
+   */
+  onFilter?: ((event: DraggableEvent<T>) => void) | undefined;
+  /**
+   * Called when dragging element changes position
+   */
+  onChange?: ((evt: DraggableEvent<T>) => void) | undefined;
 }
 
 /**
