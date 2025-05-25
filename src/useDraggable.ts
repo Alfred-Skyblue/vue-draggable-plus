@@ -98,47 +98,47 @@ export interface UseDraggableOptions<T> extends Options {
   /**
    * Element dragging started
    */
-  onStart?: ((event: DraggableEvent<T>) => void) | undefined;
+  onStart?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Element dragging ended
    */
-  onEnd?: ((event: DraggableEvent<T>) => void) | undefined;
+  onEnd?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Element is dropped into the list from another list
    */
-  onAdd?: ((event: DraggableEvent<T>) => void) | undefined;
+  onAdd?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Created a clone of an element
    */
-  onClone?: ((event: DraggableEvent<T>) => void) | undefined;
+  onClone?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Element is chosen
    */
-  onChoose?: ((event: DraggableEvent<T>) => void) | undefined;
+  onChoose?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Element is unchosen
    */
-  onUnchoose?: ((event: DraggableEvent<T>) => void) | undefined;
+  onUnchoose?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Changed sorting within list
    */
-  onUpdate?: ((event: DraggableEvent<T>) => void) | undefined;
+  onUpdate?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Called by any change to the list (add / update / remove)
    */
-  onSort?: ((event: DraggableEvent<T>) => void) | undefined;
+  onSort?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Element is removed from the list into another list
    */
-  onRemove?: ((event: DraggableEvent<T>) => void) | undefined;
+  onRemove?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Attempt to drag a filtered element
    */
-  onFilter?: ((event: DraggableEvent<T>) => void) | undefined;
+  onFilter?: ((event: DraggableEvent<T>) => void) | undefined
   /**
    * Called when dragging element changes position
    */
-  onChange?: ((evt: DraggableEvent<T>) => void) | undefined;
+  onChange?: ((evt: DraggableEvent<T>) => void) | undefined
 }
 
 /**
