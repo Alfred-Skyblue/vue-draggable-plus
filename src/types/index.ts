@@ -1,5 +1,5 @@
 import type { Ref, ShallowRef, WritableComputedRef } from 'vue'
-export { type Options, type SortableEvent } from 'sortablejs'
+export { type Options, type SortableEvent, type MoveEvent } from 'sortablejs'
 
 /**
  * @deprecated Use MaybeRef<T> instead
