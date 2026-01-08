@@ -8,7 +8,7 @@ import {
   toRefs
 } from 'vue-demi'
 import { objectMap } from './utils'
-import { useDraggable, UseDraggableOptions } from './useDraggable'
+import { useDraggable, UseDraggableOptions, UseDraggableReturn } from './useDraggable'
 
 interface IProps extends UseDraggableOptions<any> {
   modelValue: any[]
@@ -78,7 +78,7 @@ const props = [
   ...emits.map(key => `on${key.replace(/^\S/, s => s.toUpperCase())}`)
 ] as const
 
-export const VueDraggable = defineComponent<IProps>({
+export const VueDraggable = defineComponent<IProps, UseDraggableReturn>({
   name: 'VueDraggable',
   model: {
     prop: 'modelValue',

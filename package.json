@@ -57,7 +57,8 @@
     "serve": "cross-env NODE_ENV=production vitepress serve .docs --host",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "pnpm lint --fix",
-    "release": "np"
+    "release": "np",
+    "test": "vitest --workspace=vitest.workspace.ts"
   },
   "publishConfig": {
     "access": "public",
@@ -71,6 +72,8 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vitest/browser": "^2.1.5",
+    "@vitest/coverage-v8": "2.1.5",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-define-config": "^1.24.1",
@@ -80,6 +83,7 @@
     "fs-extra": "^11.2.0",
     "np": "^7.7.0",
     "npm-run-all": "^4.1.5",
+    "playwright": "^1.49.0",
     "prettier": "^2.8.8",
     "sortablejs": "^1.15.2",
     "typescript": "^5.4.5",
@@ -87,6 +91,8 @@
     "vite": "^5.2.12",
     "vite-plugin-dts": "^1.7.3",
     "vitepress": "1.0.0-rc.44",
+    "vitest": "^2.1.5",
+    "vitest-browser-vue": "^0.0.1",
     "vue": "^3.4.27",
     "vue-demi": "^0.13.11",
     "vue-eslint-parser": "^9.4.2"
