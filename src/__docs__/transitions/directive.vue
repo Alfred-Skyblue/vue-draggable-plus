@@ -1,5 +1,5 @@
 <template>
-  <button @click="sort">还原</button>
+  <button @click="sort">Reset</button>
   <div class="flex justify-between">
     <TransitionGroup
       v-draggable="[list, { animation: 150, onStart, onEnd }]"
