@@ -1,5 +1,5 @@
 <template>
-  <button @click="sort">Reset</button>
+  <button @click="sort">Restore</button>
   <div class="flex justify-between">
     <VueDraggable
       v-model="list"

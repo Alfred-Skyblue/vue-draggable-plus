@@ -1,5 +1,5 @@
 <template>
-  <button @click="sort">Reset</button>
+  <button @click="sort">Restore</button>
   <div class="flex justify-between">
     <TransitionGroup
       class="flex flex-col p-4 w-300px bg-gray-500/5 rounded"
