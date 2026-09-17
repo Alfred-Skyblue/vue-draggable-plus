@@ -71,7 +71,6 @@ const props = [
   'scrollSensitivity',
   'scrollSpeed',
   'bubbleScroll',
-  'modelValue',
   'tag',
   'target',
   'customUpdate',
@@ -84,7 +83,16 @@ export const VueDraggable = defineComponent<IProps>({
     prop: 'modelValue',
     event: 'update:modelValue'
   },
-  props: props as unknown as any,
+  props: {
+    ...props.reduce((acc, key) => {
+      acc[key] = null
+      return acc
+    }, {} as Record<string, null>),
+    modelValue: {
+      type: Array,
+      required: true
+    }
+  } as any,
   emits: ['update:modelValue', ...emits],
   setup(props, { slots, emit, expose, attrs }) {
     const events = emits.reduce((acc, key) => {
