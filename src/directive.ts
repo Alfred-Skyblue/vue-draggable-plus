@@ -1,7 +1,7 @@
 import type { ObjectDirective, Ref } from 'vue-demi'
 import type { MaybeRef } from './types'
 import { useDraggable, UseDraggableOptions } from './useDraggable'
-import { isProxy, isVue3 } from 'vue-demi'
+import { isProxy, isRef, isVue3 } from 'vue-demi'
 
 const directiveHooks = {
   mounted: (isVue3 ? 'mounted' : 'inserted') as 'mounted',
@@ -20,7 +20,14 @@ export const vDraggable: ObjectDirective<
   VDraggableBinding | MaybeRef<any[]>
 > = {
   [directiveHooks.mounted](el, binding) {
-    const params = isProxy(binding.value) ? [binding.value] : binding.value
+    const value = binding.value
+    // Reactive arrays and refs are direct lists; plain arrays may wrap a list.
+    const isTuple =
+      Array.isArray(value) &&
+      !isProxy(value) &&
+      value.length > 0 &&
+      (value[0] == null || isRef(value[0]) || Array.isArray(value[0]))
+    const params = isTuple ? value : [value]
 
     const [list, options] = params as VDraggableBinding
 
