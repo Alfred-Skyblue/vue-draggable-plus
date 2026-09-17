@@ -11,7 +11,7 @@ import {
 } from 'vue-demi'
 import type { Fn, RefOrElement, MaybeRef } from './types'
 
-import { error } from './utils/log'
+import { error, warn } from './utils/log'
 
 import {
   extend,
@@ -175,9 +175,23 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
   let currentNodes: Node[] | null = null
   const el = args[0]
   let [, list, options] = args
+  const initialList = unref(list)
 
-  if (!Array.isArray(unref(list))) {
+  // Only the two-argument overload can receive options in place of a list.
+  const optionsOnly =
+    args.length < 3 &&
+    (list === undefined ||
+      (initialList !== null &&
+        typeof initialList === 'object' &&
+        !Array.isArray(initialList)))
+
+  if (optionsOnly) {
     options = list
+    list = null
+  } else if (!Array.isArray(initialList)) {
+    warn(
+      'The initial list must be an array, not null or undefined. Initialize it with [] before using draggable.'
+    )
     list = null
   }
 

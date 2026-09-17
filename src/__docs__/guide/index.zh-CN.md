@@ -26,6 +26,12 @@ npm install vue-draggable-plus
 
 ## 使用
 
+::: warning 初始化列表
+组件的 `v-model`、`useDraggable` 的列表参数和指令绑定的列表都必须初始化为数组，不能是 `null` 或 `undefined`（包括 `ref()` 和 `computed` 的值）。空数组 `[]` 是合法值；异步加载数据时，请先使用 `ref([])`，再填充数据。无效的初始列表会输出警告，且不会绑定列表同步事件。
+
+组件必须通过 `v-model` 或 `modelValue` 传入列表。传递列表及配置时请使用 `useDraggable(el, list, options)`；指令建议使用 `v-draggable="[list, options]"` 或 `v-draggable="[list]"`。
+:::
+
 ### 组件方式
 
 ```vue

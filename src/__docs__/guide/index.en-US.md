@@ -29,6 +29,12 @@ npm install vue-draggable-plus
 
 ## Usage
 
+::: warning Initialize the list
+The component's `v-model`, the list passed to `useDraggable`, and the directive's list must be initialized to an array, not `null` or `undefined` (including the value of a `ref()` or `computed`). An empty array `[]` is valid. For asynchronous data, initialize with `ref([])` before loading the items. An invalid initial list produces a warning and does not register list synchronization events.
+
+The component requires a list passed through `v-model` or `modelValue`. When passing both a list and options, use `useDraggable(el, list, options)`. For directives, prefer `v-draggable="[list, options]"` or `v-draggable="[list]"`.
+:::
+
 ### Component usage
 
 ```vue
