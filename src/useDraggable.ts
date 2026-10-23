@@ -195,10 +195,10 @@ export function useDraggable<T>(...args: any[]): UseDraggableReturn {
    * @param {DraggableEvent} evt - DraggableEvent
    */
   function onStart(evt: DraggableEvent) {
-    const { from, oldIndex, item } = evt
+    const { from, oldDraggableIndex, item } = evt
     const nodes = Array.from(from.childNodes);
     currentNodes = forceFallback && !fallbackOnBody ? nodes.slice(0, -1) : nodes;
-    const data = unref(unref(list)?.[oldIndex!])
+    const data = unref(unref(list)?.[oldDraggableIndex!])
     const clonedData = clone(data)
     setCurrentData(data, clonedData)
     item[CLONE_ELEMENT_KEY] = clonedData
